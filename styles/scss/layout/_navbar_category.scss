@@ -1,0 +1,42 @@
+.container {
+  .navbar-category {
+    height: $navbar-category-height;
+    background-color: #F2F3F4;
+
+    .navbar-category-measure {
+      max-width: $max-width;
+      margin:auto;
+      display: flex;
+
+      .navbar-category-items {
+        line-height: $navbar-category-height;
+        height: $navbar-category-height;
+        cursor: pointer;
+        padding: 0 1rem;
+      }
+    }
+  }
+}
+
+.container.dark {
+  .navbar-category {
+    background-color: #292929;
+    color: $white;
+  }
+}
+
+@include responsive(mobile) {
+  .container {
+    .navbar-category {
+      height: $navbar-category-height-mobile;
+  
+      .navbar-category-measure {
+        .navbar-category-items {
+          line-height: $navbar-category-height-mobile;
+          height: $navbar-category-height-mobile;
+          padding: 0 0.75rem;
+        }
+      }
+    }
+  }
+}
