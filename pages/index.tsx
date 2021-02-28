@@ -7,7 +7,7 @@ export default function Home() {
     <Container>
       <SEO/>
 
-      <div>Hello World</div>
+      <h1>Almost before we knew it, we had left the ground សួរស្តី</h1>
     </Container>
   )
 }

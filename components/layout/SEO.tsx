@@ -9,7 +9,6 @@ const SEO: FunctionComponent<Props> = (props) => {
   return (
     <Head>
       <title>{process.env.NEXT_PUBLIC_TITLE + (props.title ? " | " + props.title : "")}</title>
-      <link rel="icon" href="/favicon.ico" />
     </Head>
   );
 }
