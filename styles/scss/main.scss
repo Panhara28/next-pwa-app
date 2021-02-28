@@ -1,1 +1,11 @@
-@import "layout/container";
+@import "variables";
+@import "mediaQueries";
+@import "layout/main";
+
+
+/* Font awesome */
+@import "fontawesome/fontawesome.scss";
+@import "fontawesome/solid.scss";
+@import "fontawesome/regular.scss";
+@import "fontawesome/light.scss";
+@import "fontawesome/brands.scss";

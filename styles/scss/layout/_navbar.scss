@@ -1,0 +1,69 @@
+.container {
+  .navbar {
+    height: $navbar-height;
+    color: $white;
+    background-color: $color_primary;
+
+    .navbar-measure {
+      max-width: $max-width;
+      margin:auto;
+      display: flex;
+
+      .navbar-title {
+        margin: 0;
+        line-height: $navbar-height;
+        font-weight: 500;
+        font-size: 2rem;
+      }
+
+      .navbar-items {
+        line-height: $navbar-height;
+        height: $navbar-height;
+        cursor: pointer;
+        padding: 0 1rem;
+      }
+
+      .navbar-items-grow {
+        flex-grow: 1;
+      }
+
+      .navbar-search {
+        i {
+          line-height: $navbar-height;
+        }
+      }
+    }
+  }
+}
+
+.container.dark {
+  .navbar {
+    background-color: #000000;
+  }
+}
+
+@include responsive(mobile) {
+  .container {
+    .navbar {
+      height: $navbar-height-mobile;
+  
+      .navbar-measure {
+        .navbar-title {
+          line-height: $navbar-height-mobile;
+          font-size: 1.5rem;
+        }
+  
+        .navbar-items {
+          line-height: $navbar-height-mobile;
+          height: $navbar-height-mobile;
+        }
+
+        .navbar-search {
+          i {
+            line-height: $navbar-height-mobile;
+          }
+        }
+      }
+    }
+  }
+}

@@ -2,7 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Hanuman', 'Open Sans';
+  font-family: 'Rubik', 'Hanuman', 'Kdam Thmor';
 }
 
 a {
@@ -10,6 +10,6 @@ a {
   text-decoration: none;
 }
 
-* {
+*, *::after, *::before {
   box-sizing: border-box;
 }
