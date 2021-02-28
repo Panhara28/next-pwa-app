@@ -1,15 +1,13 @@
 import React from 'react';
-import Head from 'next/head'
+import Container from '../components/layout/Container';
+import SEO from '../components/layout/SEO';
 
 export default function Home() {
   return (
-    <div>
-      <Head>
-        <title>{process.env.NEXT_PUBLIC_TITLE}</title>
-        <link rel="icon" href="/favicon.ico" />
-        
-        <div>Hello World</div>
-      </Head>
-    </div>
+    <Container>
+      <SEO/>
+
+      <div>Hello World</div>
+    </Container>
   )
 }
