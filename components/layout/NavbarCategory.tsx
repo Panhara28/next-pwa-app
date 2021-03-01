@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 import { Graph } from '../../generated/graph';
 
@@ -20,6 +21,9 @@ const QUERY_CATEGORY = gql`
 `;
 
 const NavbarCategory: React.FunctionComponent = () => {
+  const router = useRouter();
+  const { slug } = router.query;
+
   let category_nodes: ReactNode | ReactNode[];
   const { data, loading, error} = useQuery<Graph.Query>(QUERY_CATEGORY, {
     variables: {
@@ -30,7 +34,7 @@ const NavbarCategory: React.FunctionComponent = () => {
   });
   
   if(data && data.categoryList) {
-    category_nodes = renderCategory(data.categoryList);
+    category_nodes = renderCategory(data.categoryList, slug as string);
   }
 
   return (
@@ -42,12 +46,12 @@ const NavbarCategory: React.FunctionComponent = () => {
   );
 }
 
-const renderCategory = (data: Graph.CategoryList) => {
+const renderCategory = (data: Graph.CategoryList, slug: string) => {
   const categoreis: Graph.Category[] = data.data;
   const category_nodes: ReactNode[] = categoreis.map((category, inx) => {
     return (
       <Link key={inx} href={`/category/${category.alias}`}>
-        <a className="navbar-category-items">{category.name.kh}</a>
+        <a className={"navbar-category-items" + (category.alias === slug ? " active" : "")}>{category.name.kh}</a>
       </Link>
     );
   });

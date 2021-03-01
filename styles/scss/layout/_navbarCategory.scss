@@ -26,6 +26,10 @@
         &:last-child {
           border-right: none;
         }
+
+        &:hover, &.active {
+          color: $color-primary;
+        }
       }
 
       /* Hide scrollbar */
@@ -41,7 +45,6 @@
 .container.dark-mode {
   .navbar-category {
     background-color: #292929;
-    color: $white;
   }
 }
 

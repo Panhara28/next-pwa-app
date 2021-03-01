@@ -2,6 +2,7 @@ import React from 'react';
 import Container from '../../components/layout/Container';
 import SEO from '../../components/layout/SEO';
 import { useRouter } from 'next/router';
+import Measure from '../../components/layout/Measure';
 
 const Category: React.FunctionComponent  = (props) => {
   const router = useRouter();
@@ -11,7 +12,9 @@ const Category: React.FunctionComponent  = (props) => {
     <Container>
       <SEO/>
 
-      <h1>Category: {slug}</h1>
+      <Measure>
+        <h1>Category: {slug}</h1>
+      </Measure>
     </Container>
   )
 }
