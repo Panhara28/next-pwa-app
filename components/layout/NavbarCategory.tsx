@@ -5,8 +5,8 @@ import React, { ReactNode } from 'react';
 import { Graph } from '../../generated/graph';
 
 const QUERY_CATEGORY = gql`
-  query CategoryList($pagination: PaginationInput!, $published: Boolean, $display: Boolean) {
-    categoryList(pagination: $pagination, published: $published, display: $display) {
+  query CategoryList($pagination: PaginationInput!, $parentId: Int, $published: Boolean, $display: Boolean, $exceptCategories: [Int]) {
+    categoryList(pagination: $pagination, parentId: $parentId, published: $published, display: $display, exceptCategories: $exceptCategories) {
       data {
         id, alias, name {
           kh
@@ -23,13 +23,15 @@ const QUERY_CATEGORY = gql`
 const NavbarCategory: React.FunctionComponent = () => {
   const router = useRouter();
   const { slug } = router.query;
-
+  
   let category_nodes: ReactNode | ReactNode[];
   const { data, loading, error} = useQuery<Graph.Query>(QUERY_CATEGORY, {
     variables: {
       pagination: { page: 1, size: 100},
+      parentId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
       published: true,
-      display: true
+      display: true,
+      exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS)
     }
   });
   

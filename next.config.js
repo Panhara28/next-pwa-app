@@ -1,5 +1,30 @@
 module.exports = {
+  images: {
+    domains: [
+      's1.kh1.co',
+      's2.kh1.co',
+      's3.kh1.co',
+      's4.kh1.co',
+      's5.kh1.co',
+      's6.kh1.co',
+      's7.kh1.co',
+      's8.kh1.co',
+      's9.kh1.co',
+      's10.kh1.co',
+      's11.kh1.co',
+      'www.gravatar.com'
+    ],
+  },
   sassOptions: {
-    additionalData: `$color_primary: ${process.env.COLOR_PRIMARY};`
+    additionalData: `
+      $color_primary: ${process.env.COLOR_PRIMARY};
+      $color_secondary: ${process.env.COLOR_SECONDARY};
+    `
+  },
+  serverRuntimeConfig: {
+    // Will only be available on the server side
+  },
+  publicRuntimeConfig: {
+    // Will be available on both server and client
   },
 }
