@@ -4,10 +4,10 @@ import React, { ReactNode } from 'react';
 import { Graph } from '../../generated/graph';
 
 const QUERY_CATEGORY = gql`
-  query CategoryList($pagination: PaginationInput!, $published: Boolean) {
-    categoryList(pagination: $pagination, published: $published) {
+  query CategoryList($pagination: PaginationInput!, $published: Boolean, $display: Boolean) {
+    categoryList(pagination: $pagination, published: $published, display: $display) {
       data {
-        id, name {
+        id, alias, name {
           kh
         }
       }
@@ -24,7 +24,8 @@ const NavbarCategory: React.FunctionComponent = () => {
   const { data, loading, error} = useQuery<Graph.Query>(QUERY_CATEGORY, {
     variables: {
       pagination: { page: 1, size: 100},
-      published: true
+      published: true,
+      display: true
     }
   });
   
@@ -45,7 +46,7 @@ const renderCategory = (data: Graph.CategoryList) => {
   const categoreis: Graph.Category[] = data.data;
   const category_nodes: ReactNode[] = categoreis.map((category, inx) => {
     return (
-      <Link key={inx} href={`/category/${category.id}`}>
+      <Link key={inx} href={`/category/${category.alias}`}>
         <a className="navbar-category-items">{category.name.kh}</a>
       </Link>
     );
