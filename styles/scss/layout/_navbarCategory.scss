@@ -1,24 +1,44 @@
 .container {
   .navbar-category {
     height: $navbar-category-height;
-    background-color: #F2F3F4;
+    background-color: #D7DBDD;
 
     .navbar-category-measure {
       max-width: $max-width;
       margin:auto;
+      overflow: auto;
       display: flex;
 
       .navbar-category-items {
         line-height: $navbar-category-height;
         height: $navbar-category-height;
-        cursor: pointer;
         padding: 0 1rem;
+        flex-shrink: 0;
+        min-width: 100px;
+        text-align: center;
+        border-left: 1px solid $color-primary;
+        border-right: 1px solid $color-primary;
+
+        &:first-child {
+          border-left: none;
+        }
+
+        &:last-child {
+          border-right: none;
+        }
+      }
+
+      /* Hide scrollbar */
+      -ms-overflow-style: none;  /* Internet Explorer 10+ */
+      scrollbar-width: none;  /* Firefox */
+      &::-webkit-scrollbar { 
+        display: none;
       }
     }
   }
 }
 
-.container.dark {
+.container.dark-mode {
   .navbar-category {
     background-color: #292929;
     color: $white;

@@ -21,22 +21,20 @@
         height: $navbar-height;
         cursor: pointer;
         padding: 0 1rem;
+
+        i {
+          line-height: $navbar-height;
+        }
       }
 
       .navbar-items-grow {
         flex-grow: 1;
       }
-
-      .navbar-search {
-        i {
-          line-height: $navbar-height;
-        }
-      }
     }
   }
 }
 
-.container.dark {
+.container.dark-mode {
   .navbar {
     background-color: #000000;
   }
@@ -57,9 +55,7 @@
           line-height: $navbar-height-mobile;
           height: $navbar-height-mobile;
           padding: 0 0.75rem;
-        }
 
-        .navbar-search {
           i {
             line-height: $navbar-height-mobile;
           }
