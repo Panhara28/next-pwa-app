@@ -4,7 +4,7 @@ import SEO from '../../components/layout/SEO';
 import { useRouter } from 'next/router';
 import Measure from '../../components/layout/Measure';
 
-const Article: React.FunctionComponent  = (props) => {
+const Article: React.FunctionComponent  = () => {
   const router = useRouter();
   const { id } = router.query;
 

@@ -4,7 +4,7 @@ import SEO from '../../components/layout/SEO';
 import { useRouter } from 'next/router';
 import Measure from '../../components/layout/Measure';
 
-const Category: React.FunctionComponent  = (props) => {
+const Category: React.FunctionComponent  = () => {
   const router = useRouter();
   const { slug } = router.query;
 
