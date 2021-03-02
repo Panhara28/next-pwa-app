@@ -1,6 +1,7 @@
 module.exports = {
-  locales: ['km', 'my', 'vi'],
+  locales: ['en', 'km', 'my', 'vi'],
   defaultLocale: process.env.LOCALE,
+  localeDetection: false,
   pages: {
     "*": ["common"]
   }
