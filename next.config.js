@@ -1,4 +1,7 @@
+const nextTranslate = require('next-translate');
+
 module.exports = {
+  ...nextTranslate(),
   images: {
     domains: [
       's1.kh1.co',

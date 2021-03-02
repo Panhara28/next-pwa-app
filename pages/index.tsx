@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 import ArticleList from '../components/article/ArticleList';
 import Container from '../components/layout/Container';
@@ -6,6 +7,7 @@ import Measure from '../components/layout/Measure';
 import SEO from '../components/layout/SEO';
 import Spinner from '../components/utilities/Spinner';
 import { Graph } from '../generated/graph';
+import useTranslation from 'next-translate/useTranslation';
 
 const QUERY_ARTICLE_LATEST = gql`
   query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {
@@ -52,8 +54,9 @@ export default function Home() {
 }
 
 const ArticleLatest = () => {
-  let article_latest: ReactNode;
+  const { t } = useTranslation();
 
+  let article_latest: ReactNode;
   const { data, loading, error } = useQuery<Graph.Query>(QUERY_ARTICLE_LATEST, {
     variables: {
       pagination: {
@@ -76,7 +79,7 @@ const ArticleLatest = () => {
 
   return (
     <div>
-      <h2>LATEST ARTICLE</h2>
+      <h2>{t("common:latest-article")}</h2>
 
       {article_latest}
     </div>
