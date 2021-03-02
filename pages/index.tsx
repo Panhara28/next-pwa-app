@@ -1,5 +1,4 @@
 import { gql, useQuery } from '@apollo/client';
-import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 import ArticleList from '../components/article/ArticleList';
 import Container from '../components/layout/Container';
