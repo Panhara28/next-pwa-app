@@ -14,7 +14,7 @@ COPY . .
 ARG LOCALE=""
 ENV LOCALE=${LOCALE}
 
-RUN echo "value for NOVA_GIT_COMPOSER_TOKEN: [${NOVA_GIT_COMPOSER_TOKEN}]"
+RUN echo "value for LOCALE: [${LOCALE}]"
 
 # Building app
 RUN yarn build
