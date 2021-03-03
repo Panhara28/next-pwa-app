@@ -78,7 +78,7 @@ const ArticleLatest = () => {
 
   return (
     <div>
-      <h2>{t("common:latest-article")}</h2>
+      <h2 className="uppercase">{t("common:latest-article")}</h2>
 
       {article_latest}
     </div>

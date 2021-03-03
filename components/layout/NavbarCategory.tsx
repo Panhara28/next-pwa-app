@@ -25,7 +25,7 @@ const NavbarCategory: React.FunctionComponent = () => {
   const { slug } = router.query;
   
   let category_nodes: ReactNode | ReactNode[];
-  const { data, loading, error} = useQuery<Graph.Query>(QUERY_CATEGORY, {
+  const { data, loading, error } = useQuery<Graph.Query>(QUERY_CATEGORY, {
     variables: {
       pagination: { page: 1, size: 100},
       parentId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
