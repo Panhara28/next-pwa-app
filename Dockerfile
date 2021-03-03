@@ -11,7 +11,7 @@ RUN yarn install
 # Copying source files
 COPY . .
 
-ARG LOCALE=""
+ARG LOCALE
 ENV LOCALE=${LOCALE}
 
 RUN echo "value for LOCALE: [${LOCALE}]"
