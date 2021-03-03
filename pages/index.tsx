@@ -60,7 +60,7 @@ const ArticleLatest = () => {
     variables: {
       pagination: {
         page: 1,
-        size: 10
+        size: 15
       }, filter:{
         format: "EDITOR_JS",
         type: "PUBLISHED",

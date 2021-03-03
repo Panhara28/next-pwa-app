@@ -4,7 +4,6 @@ import { renderArticleImage, renderArticleParagraph } from './../../functions/ar
 
 const ArticleContent = ({ article }: { article: Graph.Article}) => {
   const content = JSON.parse(article.content).blocks;
-  console.log(content);
 
   const renderContents = {
     "paragraph": renderArticleParagraph,
