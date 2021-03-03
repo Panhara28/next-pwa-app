@@ -11,6 +11,11 @@ RUN yarn install
 # Copying source files
 COPY . .
 
+ARG LOCALE=""
+ENV LOCALE=${LOCALE}
+
+RUN echo "value for NOVA_GIT_COMPOSER_TOKEN: [${NOVA_GIT_COMPOSER_TOKEN}]"
+
 # Building app
 RUN yarn build
 
