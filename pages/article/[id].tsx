@@ -6,6 +6,13 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { initializeApollo } from '../../lib/apolloClient';
 import { gql } from '@apollo/client';
 import { Graph } from '../../generated/graph';
+import ArticleLayout from '../../components/layout/article/ArticleLayout';
+import ArticleLayoutDetail from '../../components/layout/article/ArticleLayoutDetail';
+import ArticleLayoutSide from '../../components/layout/article/ArticleLayoutSide';
+import Image from 'next/image';
+import { parsedImage } from './../../functions/Image';
+import ArticleContent from '../../components/article/ArticleContent';
+import useTranslation from 'next-translate/useTranslation';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
@@ -37,6 +44,7 @@ const QUERY_ARTICLE = gql`
 `;
 
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const { t } = useTranslation();
   const article: Graph.Article = data.article;
   
   return (
@@ -44,7 +52,20 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
       <SEO/>
 
       <Measure>
-        <h1>Article: { article.title }</h1>
+        <ArticleLayout>
+          <ArticleLayoutDetail>
+            <h1 className="title">{ article.title }</h1>
+            <div className="thumbnail"><Image src={parsedImage(article.thumbnail)} alt={article.thumbnail} width={420} height={220}/></div>
+            <div className="title-sub">{article.summary}</div>
+
+            <ArticleContent article={article}/>
+          </ArticleLayoutDetail>
+          <ArticleLayoutSide>
+            <div className="related-article">
+              <h2 className="title">{ t("article:related-article") }</h2>
+            </div>            
+          </ArticleLayoutSide>
+        </ArticleLayout>
       </Measure>
     </Container>
   )
