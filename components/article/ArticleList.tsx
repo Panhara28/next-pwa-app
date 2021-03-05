@@ -23,8 +23,8 @@ const ArticleList = (articles: Graph.Article[]) => {
           <div className="author">
             <Image src={getArticleContentWriterProfilePiceture(article)} alt={article.contentWriter.name.en} width={25} height={25}/>
             <div className="name">{article.contentWriter.nameDisplay}</div>
-            <div>&nbsp;·&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY ha")}</div>
-            <div>&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
+            <div><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</div>
+            <div><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
           </div>
         </div>
       </div>

@@ -13,6 +13,8 @@ import Image from 'next/image';
 import { parsedImage } from './../../functions/Image';
 import ArticleContent from '../../components/article/ArticleContent';
 import useTranslation from 'next-translate/useTranslation';
+import { getArticleCategoryName } from './../../functions/articleHelper';
+import { getDateByFormat, getElapseTime } from './../../functions/date';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
@@ -26,7 +28,7 @@ const QUERY_ARTICLE = gql`
         kh
       }
       publishedDateTime {
-        kh
+        en
       }
       thumbnail
       contentWriter {
@@ -56,7 +58,12 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
           <ArticleLayoutDetail>
             <h1 className="title">{ article.title }</h1>
             <div className="thumbnail"><Image src={parsedImage(article.thumbnail)} alt={article.thumbnail} width={420} height={220}/></div>
-            <div className="title-sub">{article.summary}</div>
+            <div className="summary">
+              <div className="category">{getArticleCategoryName(article)}</div>
+              <span className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>
+              <span className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</span>
+              <div className="title-sub">{article.summary}</div>
+            </div>
 
             <ArticleContent article={article}/>
           </ArticleLayoutDetail>

@@ -1,10 +1,12 @@
 .article-layout {
   display: flex;
   flex-wrap: wrap;
+  gap: 1rem;
 
   .article-layout-detail {
     display: flex;
     flex-wrap: wrap;
+
     width: 850px;
 
     .title {
@@ -12,12 +14,29 @@
       margin: 1rem 0;
     }
 
-    .title-sub {
+    .summary {
       width: 50%;
-      margin: 0;
       padding-left: 1rem;
-      font-style: italic;
       color: #7B7D7D;
+
+      .title-sub {
+        margin: 0;
+        font-style: italic;
+      }
+
+      .datetime {
+        margin-left: 0.5rem;
+      }
+
+      .category {
+        display: inline-block;
+        font-size: 0.75rem;
+        background-color: $color-secondary;
+        color: $white;
+        border-radius: 5px;
+        padding: 0.25rem 0.25rem 0 0.25rem;
+        margin-bottom: 0.5rem;
+      }
     }
 
     .thumbnail {
@@ -48,7 +67,6 @@
 
   .article-layout-side {
     flex-grow: 1;
-    margin-left: 1rem;
 
     .related-article {
       position: sticky;
@@ -68,7 +86,7 @@
 .container.dark-mode {
   .article-layout {
     .article-layout-detail {
-      .title-sub {
+      .summary {
         color: #D0D3D4;
       }
 
@@ -99,8 +117,6 @@
     }
 
     .article-layout-side {
-      margin: 0;
-
       .related-article {
         position: unset;
       }
@@ -115,9 +131,13 @@
         font-size: 1.5rem;
       }
 
-      .title-sub {
+      .summary {
         width: 100%;
         padding: 0;
+
+        .category {
+          margin: 0.5rem 0;
+        }
       }
   
       .thumbnail {

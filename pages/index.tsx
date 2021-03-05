@@ -77,10 +77,10 @@ const ArticleLatest = () => {
   }
 
   return (
-    <div>
+    <>
       <h2 className="uppercase">{t("common:latest-article")}</h2>
 
       {article_latest}
-    </div>
+    </>
   );
 }
