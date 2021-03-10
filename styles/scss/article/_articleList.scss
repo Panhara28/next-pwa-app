@@ -4,7 +4,6 @@
   .article-list-items {
     margin-bottom: 1rem;
     display: flex;
-    gap: 1rem;
 
     .thumbnail {
       width: 30%;
@@ -17,6 +16,7 @@
 
     .detail {
       width: 70%;
+      padding-left: 1rem;
 
       .category {
         display: inline-block;
@@ -51,11 +51,14 @@
         line-height: 29px;
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5rem;
 
         img {
           border: 2px solid $color-secondary!important;
           border-radius: 50%;
+        }
+
+        .name {
+          padding: 0 0.5rem;
         }
       }
     }

@@ -1,12 +1,10 @@
 .article-layout {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
 
   .article-layout-detail {
     display: flex;
     flex-wrap: wrap;
-
     width: 850px;
 
     .title {
@@ -67,6 +65,7 @@
 
   .article-layout-side {
     flex-grow: 1;
+    margin-left: 1rem;
 
     .related-article {
       position: sticky;
@@ -117,6 +116,8 @@
     }
 
     .article-layout-side {
+      margin: 0;
+      
       .related-article {
         position: unset;
       }
