@@ -62,7 +62,7 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
               <div className="category">{getArticleCategoryName(article)}</div>
               <span className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>
               <span className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</span>
-              <div className="title-sub">{article.summary}</div>
+              <p className="title-sub">{article.summary}</p>
             </div>
 
             <ArticleContent article={article}/>

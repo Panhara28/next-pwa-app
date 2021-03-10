@@ -13,3 +13,7 @@ a {
 *, *::after, *::before {
   box-sizing: border-box;
 }
+
+p {
+  font-size: 1.2rem;
+}
