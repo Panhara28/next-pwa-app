@@ -79,6 +79,23 @@
       border: 2px solid $color-secondary;
       border-radius: 10px;
 
+      .author {
+        width: 100%;
+        line-height: 50px;
+        display: flex;
+        flex-wrap: wrap;
+        margin-bottom: 0.5rem;
+  
+        img {
+          border: 2px solid $color-secondary!important;
+          border-radius: 50%;
+        }
+  
+        .name {
+          padding: 0 0.5rem;
+        }
+      }
+
       .title {
         margin: 0;
       }

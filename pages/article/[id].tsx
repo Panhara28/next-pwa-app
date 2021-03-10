@@ -13,7 +13,7 @@ import Image from 'next/image';
 import { parsedImage } from './../../functions/Image';
 import ArticleContent from '../../components/article/ArticleContent';
 import useTranslation from 'next-translate/useTranslation';
-import { getArticleCategoryName } from './../../functions/articleHelper';
+import { getArticleCategoryName, getArticleContentWriterProfilePiceture } from './../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from './../../functions/date';
 
 const QUERY_ARTICLE = gql`
@@ -38,7 +38,7 @@ const QUERY_ARTICLE = gql`
         nameDisplay
         username
         name {
-          kh
+          en
         }
       }
     }
@@ -69,6 +69,11 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
           </ArticleLayoutDetail>
           <ArticleLayoutSide>
             <div className="related-article">
+              <div className="author">
+                <Image src={getArticleContentWriterProfilePiceture(article)} alt={article.contentWriter.name.en} width={50} height={50}/>
+                <div className="name">{article.contentWriter.nameDisplay}</div>
+              </div>
+
               <h2 className="title">{ t("article:related-article") }</h2>
             </div>            
           </ArticleLayoutSide>
