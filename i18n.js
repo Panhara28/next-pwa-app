@@ -5,5 +5,6 @@ module.exports = {
   pages: {
     "*": ["common"],
     "/article/[articleId]/[articleTitleSlug]": ["article"]
-  }
+  },
+  logBuild: false
 }
