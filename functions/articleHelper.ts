@@ -19,5 +19,9 @@ export const getArticleContentWriterProfilePiceture = (article: Graph.Article) =
 }
 
 export const getArticleTitleSlug = (articleTitle: string) => {
-  return articleTitle.toLocaleLowerCase().replaceAll(" ", "-");
+  let titleSlug = articleTitle.toLocaleLowerCase().replaceAll(" ", "-").replaceAll("?", "");
+  // Replace hidden space for khmer character &#8203;
+  titleSlug = titleSlug.replaceAll("​", "");
+
+  return encodeURIComponent(titleSlug);
 }
