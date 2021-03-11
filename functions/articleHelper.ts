@@ -17,3 +17,7 @@ export const getArticleContentWriterProfilePiceture = (article: Graph.Article) =
     return `https://www.gravatar.com/avatar/${md5(article.contentWriter.name.en)}?s=100&d=retro&r=PG`;
   }
 }
+
+export const getArticleTitleSlug = (articleTitle: string) => {
+  return articleTitle.toLocaleLowerCase().replaceAll(" ", "-");
+}

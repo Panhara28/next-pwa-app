@@ -1,20 +1,20 @@
 import React from 'react';
-import Container from '../../components/layout/Container';
-import SEO from '../../components/layout/SEO';
-import Measure from '../../components/layout/Measure';
+import Container from '../../../components/layout/Container';
+import SEO from '../../../components/layout/SEO';
+import Measure from '../../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { initializeApollo } from '../../lib/apolloClient';
+import { initializeApollo } from '../../../lib/apolloClient';
 import { gql } from '@apollo/client';
-import { Graph } from '../../generated/graph';
-import ArticleLayout from '../../components/layout/article/ArticleLayout';
-import ArticleLayoutDetail from '../../components/layout/article/ArticleLayoutDetail';
-import ArticleLayoutSide from '../../components/layout/article/ArticleLayoutSide';
+import { Graph } from '../../../generated/graph';
+import ArticleLayout from '../../../components/layout/article/ArticleLayout';
+import ArticleLayoutDetail from '../../../components/layout/article/ArticleLayoutDetail';
+import ArticleLayoutSide from '../../../components/layout/article/ArticleLayoutSide';
 import Image from 'next/image';
-import { parsedImage } from './../../functions/Image';
-import ArticleContent from '../../components/article/ArticleContent';
+import { parsedImage } from '../../../functions/Image';
+import ArticleContent from '../../../components/article/ArticleContent';
 import useTranslation from 'next-translate/useTranslation';
-import { getArticleCategoryName, getArticleContentWriterProfilePiceture } from './../../functions/articleHelper';
-import { getDateByFormat, getElapseTime } from './../../functions/date';
+import { getArticleCategoryName, getArticleContentWriterProfilePiceture } from '../../../functions/articleHelper';
+import { getDateByFormat, getElapseTime } from '../../../functions/date';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
@@ -84,12 +84,12 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { id } = context.params;
+  const { articleId } = context.params;
 
   let client = initializeApollo();
   const { data } = await client.query({
     query: QUERY_ARTICLE,
-    variables: { id: Number(id) }
+    variables: { id: Number(articleId) }
   });
 
   return {
