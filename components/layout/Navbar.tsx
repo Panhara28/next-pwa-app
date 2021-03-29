@@ -1,13 +1,12 @@
 import Link from 'next/link';
-import React from 'react';
-import { LocalStorageOptions } from '../../generated/localStorageTypes';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../context/ThemeContext';
 
 const Navbar: React.FunctionComponent = () => {
-  let options: LocalStorageOptions;
-  if(process.browser) {
-    options = JSON.parse(localStorage.getItem("options"));
+  const { colorMode, setColorMode } = useContext(ThemeContext);
 
-    if(options && options.darkmode) {
+  if(process.browser) {
+    if(colorMode === "dark") {
       document.querySelector(".toggle-dark-mode-ico").classList.add("fa-sun");
     } else {
       document.querySelector(".toggle-dark-mode-ico").classList.add("fa-moon");
@@ -24,7 +23,10 @@ const Navbar: React.FunctionComponent = () => {
         </div>
 
         <div className="navbar-items-grow"></div>
-        <div className="navbar-items" onClick={toggleDarkMode}><i className={"toggle-dark-mode-ico fal fa-lg" + (process.browser ? (options && options.darkmode ? " fa-sun" : " fa-moon") : "")}></i></div>
+        <div className="navbar-items" onClick={() => { 
+          toggleDarkMode();
+          setColorMode(colorMode === "dark" ? "light" : "dark");
+        }}><i className={"toggle-dark-mode-ico fal fa-lg" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
         <div className="navbar-items"><i className="fal fa-search fa-lg"></i></div>
       </div>
     </div>
@@ -35,18 +37,6 @@ const toggleDarkMode = () => {
   document.querySelector('.container').classList.toggle('dark-mode');
   document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-moon');
   document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-sun');
-
-  let options:LocalStorageOptions;
-  if(localStorage.getItem("options")) {
-    options = JSON.parse(localStorage.getItem("options"));
-    options.darkmode = !options.darkmode;
-  } else {
-    options = {
-      darkmode: true
-    };
-  }
-
-  localStorage.setItem("options", JSON.stringify(options));
 }
 
 export default Navbar;

@@ -1,19 +1,19 @@
-import React, { useState } from 'react';
-import { LocalStorageOptions } from '../../generated/localStorageTypes';
+import React, { useContext } from 'react';
 import Navbar from './Navbar';
 import NavbarCategory from './NavbarCategory';
+import { ThemeContext } from './../context/ThemeContext';
 
 const Container: React.FunctionComponent = (props) => {
-  let options: LocalStorageOptions;
+  const { colorMode } = useContext(ThemeContext);
+
   if(process.browser) {
-    options = JSON.parse(localStorage.getItem("options"));
-    if(options && options.darkmode) {
+    if(colorMode === "dark") {
       document.querySelector(".container").classList.add("dark-mode");
     }
   }
 
   return (
-    <div className={"container" + (options && options.darkmode ? " dark-mode": "")}>
+    <div className={"container" + (colorMode === "dark" ? " dark-mode": "")}>
       <Navbar/>
       <NavbarCategory/>
 
