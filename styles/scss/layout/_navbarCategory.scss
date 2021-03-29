@@ -1,7 +1,8 @@
 .container {
   .navbar-category {
     height: $navbar-category-height;
-    background-color: #D7DBDD;
+    background-color: var(--bg-color-navbar-category);
+    color: var(--color-text-primary);
 
     .navbar-category-measure {
       max-width: $max-width;
@@ -39,12 +40,6 @@
         display: none;
       }
     }
-  }
-}
-
-.container.dark-mode {
-  .navbar-category {
-    background-color: #292929;
   }
 }
 

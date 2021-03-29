@@ -1,9 +1,5 @@
 .container {
   min-height: 100vh;
-  background-color: #FBFCFC;
-}
-
-.container.dark-mode {
-  background-color: #393939;
-  color: $white;
+  background-color: var(--bg-color-container);
+  color: var(--color-text-primary);
 }

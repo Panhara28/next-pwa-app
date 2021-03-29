@@ -22,7 +22,7 @@
         display: inline-block;
         font-size: 0.75rem;
         background-color: $color-secondary;
-        color: $white;
+        color: var(--color-white);
         border-radius: 5px;
         padding: 0.25rem 0.25rem 0 0.25rem;
         margin-bottom: 0.5rem;
@@ -44,7 +44,7 @@
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;  
         overflow: hidden;
-        color: #7B7D7D;
+        color: var(--color-text-secondary);
       }
 
       .author {
@@ -60,18 +60,6 @@
 
         .name {
           padding: 0 0.5rem;
-        }
-      }
-    }
-  }
-}
-
-.container.dark-mode {
-  .article-list {
-    .article-list-items {
-      .detail {
-        .title-sub {
-          color: #D0D3D4;
         }
       }
     }

@@ -23,20 +23,46 @@ const Navbar: React.FunctionComponent = () => {
         </div>
 
         <div className="navbar-items-grow"></div>
-        <div className="navbar-items" onClick={() => { 
-          toggleDarkMode();
-          setColorMode(colorMode === "dark" ? "light" : "dark");
-        }}><i className={"toggle-dark-mode-ico fal fa-lg" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
+        <div className="navbar-items" onClick={() => { toggleDarkMode(colorMode, setColorMode) }}><i className={"toggle-dark-mode-ico fal fa-lg" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
         <div className="navbar-items"><i className="fal fa-search fa-lg"></i></div>
       </div>
     </div>
   );
 }
 
-const toggleDarkMode = () => {
+const setCSSVar = (property, color) => {
+  document.documentElement.style.setProperty(property, color);
+}
+
+const toggleDarkMode = (colorMode, setColorMode) => {
   document.querySelector('.container').classList.toggle('dark-mode');
   document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-moon');
   document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-sun');
+
+  let theme = {};
+  if(colorMode === "dark") {
+    theme = {
+      '--color-text-primary': '#000000',
+      '--color-text-secondary': '#7b7d7d',
+      '--bg-color-navbar': process.env.NEXT_PUBLIC_COLOR_PRIMARY,
+      '--bg-color-navbar-category': '#D7DBDD',
+      '--bg-color-container': '#FBFCFC'
+    };
+  } else {
+    theme = {
+      '--color-text-primary': '#FDFEFE',
+      '--color-text-secondary': '#d0d3d4',
+      '--bg-color-navbar': '#000000',
+      '--bg-color-navbar-category': '#292929',
+      '--bg-color-container': '#393939'
+    };
+  }
+
+  for(let key in theme) {
+    setCSSVar(key, theme[key]);
+  }
+
+  setColorMode(colorMode === "dark" ? "light" : "dark");
 }
 
 export default Navbar;

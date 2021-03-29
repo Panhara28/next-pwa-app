@@ -20,8 +20,8 @@ module.exports = {
   },
   sassOptions: {
     additionalData: `
-      $color_primary: ${process.env.COLOR_PRIMARY};
-      $color_secondary: ${process.env.COLOR_SECONDARY};
+      $color-primary: ${process.env.NEXT_PUBLIC_COLOR_PRIMARY};
+      $color-secondary: ${process.env.NEXT_PUBLIC_COLOR_SECONDARY};
     `
   },
   serverRuntimeConfig: {

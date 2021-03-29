@@ -4,8 +4,8 @@
     top: 0;
     z-index: 1;
     height: $navbar-height;
-    color: $white;
-    background-color: $color_primary;
+    color: var(--color-white);
+    background-color: var(--bg-color-navbar);
 
     .navbar-measure {
       max-width: $max-width;
@@ -34,12 +34,6 @@
         flex-grow: 1;
       }
     }
-  }
-}
-
-.container.dark-mode {
-  .navbar {
-    background-color: #000000;
   }
 }
 

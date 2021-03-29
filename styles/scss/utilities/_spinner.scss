@@ -19,7 +19,7 @@
     width: 6px;
     height: 18px;
     border-radius: 20%;
-    background: $black;
+    background: var(--color-text-primary);
   }
 
   div:nth-child(1) {
@@ -78,13 +78,5 @@
   }
   100% {
     opacity: 0;
-  }
-}
-
-.container.dark-mode {
-  .lds-spinner {
-    div:after {
-      background: $white;
-    }
   }
 }

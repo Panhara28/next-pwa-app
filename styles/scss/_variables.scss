@@ -1,12 +1,21 @@
 $max-width: 1200px;
 
-//Colors 
-$black: #000000;
-$white: #FDFEFE;
-
 //Heights
 $navbar-height: 60px;
 $navbar-height-mobile: 50px;
 
 $navbar-category-height: 45px;
 $navbar-category-height-mobile: 35px;
+
+:root {
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-black: #000000;
+  --color-white: #FDFEFE;
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: #7b7d7d;
+
+  --bg-color-navbar: var(--color-primary);
+  --bg-color-navbar-category: #D7DBDD;
+  --bg-color-container: #FBFCFC;
+}
