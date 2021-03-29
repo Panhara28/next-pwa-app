@@ -35,7 +35,6 @@ const setCSSVar = (property, color) => {
 }
 
 const toggleDarkMode = (colorMode, setColorMode) => {
-  document.querySelector('.container').classList.toggle('dark-mode');
   document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-moon');
   document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-sun');
 
