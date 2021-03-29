@@ -11,7 +11,7 @@ export function renderArticleImage(block, key) {
   return (
     <figure key={key} className="image">
       <Image src={url} alt={url} width={block.data.file.width} height={block.data.file.height}/>
-      <figcaption className="caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}></figcaption>
+      { block.data.caption && <figcaption className="caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}/> }
     </figure>
   );
 }
