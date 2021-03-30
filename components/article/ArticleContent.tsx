@@ -28,6 +28,9 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
 }
 
 const initEmbed = () => {
+  const [scriptFacebook, setFacebookScript] = useState('');
+  const [hasFacebookLoaded] = useScript(scriptFacebook, { async: true, isEnabled: !!scriptFacebook });
+
   const [scriptIG, setIGScript] = useState('');
   const [hasIGLoaded] = useScript(scriptIG, { async: true, isEnabled: !!scriptIG });
 
@@ -41,8 +44,18 @@ const initEmbed = () => {
     const articleContentElms = document.querySelector(".article-layout-detail .content");
 
     if(articleContentElms) {
+      // Detect facebook embed
+      if(articleContentElms.querySelector(".facebook_post") || articleContentElms.querySelector(".facebook_video")) {
+        // Ref: https://stackoverflow.com/questions/11536314/how-to-re-init-facebook
+        if (hasFacebookLoaded && (window as any)?.FB?.XFBML) {
+          (window as any).FB.XFBML.parse();
+        } else {
+          setFacebookScript('https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v10.0');
+        }
+      }
+
       // Detect instagram embed
-      if(articleContentElms.querySelector(".instagram-media")) {
+      if(articleContentElms.querySelector(".instagram")) {
         // Ref: https://stackoverflow.com/questions/27408917/instagram-embeds-not-working-when-adding-embeds-dynamically
         if (hasIGLoaded && (window as any)?.instgrm?.Embeds) {
           (window as any).instgrm.Embeds.process();
@@ -52,7 +65,7 @@ const initEmbed = () => {
       }
 
       // Detect twitter embed
-      if (articleContentElms.querySelector('.twitter-tweet')) {
+      if (articleContentElms.querySelector('.twitter')) {
         // Ref: https://stackoverflow.com/questions/9423182/can-twitters-embedded-tweets-be-rendered-dynamically
         if (hasTwitterLoaded && (window as any)?.twttr?.widgets) {
           (window as any).twttr.widgets.load();
@@ -62,7 +75,7 @@ const initEmbed = () => {
       }
 
       // Detect tiktok embed
-      if (articleContentElms.querySelector('.tiktok-embed')) {
+      if (articleContentElms.querySelector('.tiktok')) {
         // Ref: https://developers.tiktok.com/doc/Embed
         // Because of tiktok does not have init function
         // We have to re-add the script everytime the component is loaded

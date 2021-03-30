@@ -29,7 +29,7 @@ export function renderArticleEmbed(block, key) {
     );
   } else if (data.service === "youtube") {
     return (
-      <div key={key} className="embed">
+      <div key={key} className={"embed " + data.service}>
         <div style={{ width: "100%", position: "relative", paddingBottom: ((data.height / data.width) * 100) + "%", height: "0px" }}>
           <iframe 
             style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
@@ -46,32 +46,16 @@ export function renderArticleEmbed(block, key) {
     );
   } else if(data.service === "facebook_video") {
     return(
-      <div key={key} style={{ textAlign: "center" }}>
-        <div style={{ width: "100%", position: "relative", paddingBottom: "56.25%", height: "0px" }}>
-          <iframe 
-            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-            allowFullScreen
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            frameBorder={0}
-            src={"https://www.facebook.com/plugins/video.php?href=" + data.embedUrl + "&show_text=false"}
-            ></iframe>
-        </div>
-        { data.caption && <i dangerouslySetInnerHTML={{ __html: data.caption }}></i> }
+      <div key={key} className={"embed " + data.service}>
+        <div className="fb-video" data-lazy={true} data-href={data.embedUrl}></div>
+        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );
   } else if(data.service === "facebook_post") {
     return(
-      <div key={key} style={{ textAlign: "center" }}>
-        <div style={{ width: "100%", position: "relative", paddingBottom: "56.25%", height: "0px" }}>
-          <iframe 
-            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
-            allowFullScreen
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            frameBorder={0}
-            src={"https://www.facebook.com/plugins/post.php?href=" + data.embedUrl + "&show_text=true"}
-            ></iframe>
-        </div>
-        { data.caption && <i dangerouslySetInnerHTML={{ __html: data.caption }}></i> }
+      <div key={key} className={"embed " + data.service}>
+        <div className="fb-post" data-lazy={true} data-href={data.embedUrl}></div>
+        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );
   }
