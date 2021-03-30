@@ -66,6 +66,35 @@
           color: var(--color-text-secondary);
         }
       }
+
+      .embed {
+        text-align: center;
+        margin: 1rem 0;
+
+        &.instagram {
+          iframe {
+            margin: auto!important;
+          }
+        }
+
+        &.twitter {
+          .twitter-tweet {
+            margin: auto!important;
+          }
+        }
+
+        &.tiktok {
+          .tiktok-embed {
+            margin: auto!important;
+          }
+        }
+
+        .caption {
+          font-size: rem(12px);
+          font-style: italic;
+          color: var(--color-text-secondary);
+        }
+      }
     }
   }
 

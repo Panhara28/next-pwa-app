@@ -15,3 +15,66 @@ export function renderArticleImage(block, key) {
     </figure>
   );
 }
+
+export function renderArticleEmbed(block, key) {
+  const data = block.data;
+  const raw_service = ["instagram", "tiktok", "twitter", "dailymail", "bbc"];
+
+  if(raw_service.indexOf(data.service) > -1) {
+    return (
+      <div key={key} className={"embed " + data.service}>
+        <div dangerouslySetInnerHTML={{ __html: data.source }}></div>
+        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
+      </div>
+    );
+  } else if (data.service === "youtube") {
+    return (
+      <div key={key} className="embed">
+        <div style={{ width: "100%", position: "relative", paddingBottom: ((data.height / data.width) * 100) + "%", height: "0px" }}>
+          <iframe 
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+            allowFullScreen
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            frameBorder={0}
+            width={data.width}
+            height={data.height}
+            src={data.embedUrl}
+            ></iframe>
+        </div>
+        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
+      </div>
+    );
+  } else if(data.service === "facebook_video") {
+    return(
+      <div key={key} style={{ textAlign: "center" }}>
+        <div style={{ width: "100%", position: "relative", paddingBottom: "56.25%", height: "0px" }}>
+          <iframe 
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+            allowFullScreen
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            frameBorder={0}
+            src={"https://www.facebook.com/plugins/video.php?href=" + data.embedUrl + "&show_text=false"}
+            ></iframe>
+        </div>
+        { data.caption && <i dangerouslySetInnerHTML={{ __html: data.caption }}></i> }
+      </div>
+    );
+  } else if(data.service === "facebook_post") {
+    return(
+      <div key={key} style={{ textAlign: "center" }}>
+        <div style={{ width: "100%", position: "relative", paddingBottom: "56.25%", height: "0px" }}>
+          <iframe 
+            style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
+            allowFullScreen
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            frameBorder={0}
+            src={"https://www.facebook.com/plugins/post.php?href=" + data.embedUrl + "&show_text=true"}
+            ></iframe>
+        </div>
+        { data.caption && <i dangerouslySetInnerHTML={{ __html: data.caption }}></i> }
+      </div>
+    );
+  }
+
+  return null;
+}
