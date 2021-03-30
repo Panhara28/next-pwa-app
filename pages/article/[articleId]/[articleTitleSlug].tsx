@@ -57,7 +57,7 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
         <ArticleLayout>
           <ArticleLayoutDetail>
             <h1 className="title">{ article.title }</h1>
-            <div className="thumbnail"><Image src={parsedImage(article.thumbnail)} alt={article.thumbnail} width={420} height={220}/></div>
+            <div className="thumbnail"><Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={420} height={220}/></div>
             <div className="summary">
               <div className="category">{getArticleCategoryName(article)}</div>
               <span className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>
@@ -70,7 +70,7 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
           <ArticleLayoutSide>
             <div className="related-article">
               <div className="author">
-                <Image src={getArticleContentWriterProfilePiceture(article)} alt={article.contentWriter.name.en} width={50} height={50}/>
+                <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={50} height={50}/>
                 <div className="name">{article.contentWriter.nameDisplay}</div>
               </div>
 

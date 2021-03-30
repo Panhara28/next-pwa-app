@@ -10,9 +10,9 @@ export const getArticleCategoryName = (article: Graph.Article) => {
   }
 }
 
-export const getArticleContentWriterProfilePiceture = (article: Graph.Article) => {
+export const getArticleContentWriterProfilePiceture = (article: Graph.Article, width: number, height: number) => {
   if(article.contentWriter.profilePicture) {
-    return parsedImage(article.contentWriter.profilePicture);
+    return parsedImage(article.contentWriter.profilePicture, width, height);
   } else {
     return `https://www.gravatar.com/avatar/${md5(article.contentWriter.name.en)}?s=100&d=retro&r=PG`;
   }

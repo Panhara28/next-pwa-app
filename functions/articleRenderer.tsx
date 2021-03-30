@@ -6,7 +6,7 @@ export function renderArticleParagraph(block, key) {
 }
 
 export function renderArticleImage(block, key) {
-  const url = parsedImage(block.data.file.url);
+  const url = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height);
 
   return (
     <figure key={key} className="image">

@@ -12,19 +12,19 @@ const ArticleList = (articles: Graph.Article[]) => {
       <div className="article-list-items" key={article.id}>
         <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}>
           <a className="thumbnail">
-            <Image src={parsedImage(article.thumbnail)} alt={article.thumbnail} width={350} height={185}/>
+            <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={350} height={185}/>
           </a>
         </Link>
 
         <div className="detail">
           <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h3 className="title">{article.title}</h3></a></Link>
           <p className="title-sub">{article.summary}</p>
-          <div className="category">{getArticleCategoryName(article)}</div>
           <div className="author">
-            <Image src={getArticleContentWriterProfilePiceture(article)} alt={article.contentWriter.name.en} width={25} height={25}/>
+            <div className="category">{getArticleCategoryName(article)}</div>
+            <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={25} height={25}/>
             <div className="name">{article.contentWriter.nameDisplay}</div>
-            <div><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</div>
-            <div>&nbsp;<i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
+            <div className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
+            <div className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
           </div>
         </div>
       </div>
