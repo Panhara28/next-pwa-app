@@ -13,7 +13,7 @@
       .navbar-category-items {
         line-height: $navbar-category-height;
         height: $navbar-category-height;
-        padding: 0 1rem;
+        padding: 0 $content-padding;
         flex-shrink: 0;
         min-width: 100px;
         text-align: center;
@@ -52,7 +52,7 @@
         .navbar-category-items {
           line-height: $navbar-category-height-mobile;
           height: $navbar-category-height-mobile;
-          padding: 0 0.75rem;
+          padding: 0 $content-padding-mobile;
         }
       }
     }

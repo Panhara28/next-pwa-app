@@ -1,5 +1,11 @@
 .measure {
   max-width: $max-width;
   margin: auto;
-  padding: 0 1rem;
+  padding: 0 $content-padding;
+}
+
+@include responsive(mobile) {
+  .measure {
+    padding: 0 $content-padding-mobile;
+  }
 }

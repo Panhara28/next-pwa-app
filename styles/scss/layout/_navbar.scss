@@ -23,7 +23,7 @@
         line-height: $navbar-height;
         height: $navbar-height;
         cursor: pointer;
-        padding: 0 1rem;
+        padding: 0 $content-padding;
 
         i {
           line-height: $navbar-height;
@@ -51,7 +51,7 @@
         .navbar-items {
           line-height: $navbar-height-mobile;
           height: $navbar-height-mobile;
-          padding: 0 0.75rem;
+          padding: 0 $content-padding-mobile;
 
           i {
             line-height: $navbar-height-mobile;
