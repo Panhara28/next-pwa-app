@@ -16,7 +16,7 @@
         margin: 0;
         line-height: $navbar-height;
         font-weight: 500;
-        font-size: 2rem;
+        font-size: rem(32px);
       }
 
       .navbar-items {
@@ -45,7 +45,7 @@
       .navbar-measure {
         .navbar-title {
           line-height: $navbar-height-mobile;
-          font-size: 1.5rem;
+          font-size: rem(26px);
         }
   
         .navbar-items {

@@ -28,7 +28,7 @@
 
       .category {
         display: inline-block;
-        font-size: 0.75rem;
+        font-size: rem(12px);
         background-color: $color-secondary;
         color: var(--color-white);
         border-radius: 5px;
@@ -59,7 +59,7 @@
         }
 
         .caption {
-          font-size: 0.8rem;
+          font-size: rem(12px);
           font-style: italic;
           color: var(--color-text-secondary);
         }
@@ -131,7 +131,7 @@
   .article-layout {
     .article-layout-detail {
       .title {
-        font-size: 1.8rem;
+        font-size: rem(26px);
       }
 
       .summary {
