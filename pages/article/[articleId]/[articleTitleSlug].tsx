@@ -53,7 +53,7 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
     <Container>
       <SEO 
         title={article.title}
-        pathname={"/article/" + article.id}
+        pathname={data.pathname}
         description={article.summary}
         type={"article"}
         image={article.thumbnail}
@@ -99,7 +99,12 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   });
 
   return {
-    props: { data }
+    props: { 
+      data: {
+        article: data.article,
+        pathname: context.resolvedUrl
+      } 
+    }
   };
 }
 
