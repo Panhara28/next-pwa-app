@@ -10,10 +10,10 @@ body {
 }
 
 a {
-  color: inherit;
+  color: #047bf8;
   text-decoration: none;
 }
 
-p {
+p, ul, ol {
   font-size: 1.125rem;
 }

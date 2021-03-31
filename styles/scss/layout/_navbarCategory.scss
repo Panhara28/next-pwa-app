@@ -19,6 +19,7 @@
         text-align: center;
         border-left: 1px solid $color-secondary;
         border-right: 1px solid $color-secondary;
+        color: var(--color-text-primary);
 
         &:first-child {
           border-left: none;

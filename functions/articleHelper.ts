@@ -22,6 +22,8 @@ export const getArticleTitleSlug = (articleTitle: string) => {
   let titleSlug = articleTitle.toLocaleLowerCase().replaceAll(" ", "-").replaceAll("?", "");
   // Replace hidden space for khmer character &#8203;
   titleSlug = titleSlug.replaceAll("​", "");
+  // Replace special characters
+  titleSlug = titleSlug.replace(/[!@^=&\/\\#,+()$~%'":*?<>{}]/g, '');
 
   return encodeURIComponent(titleSlug);
 }

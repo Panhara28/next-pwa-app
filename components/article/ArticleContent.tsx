@@ -1,15 +1,22 @@
+import useTranslation from 'next-translate/useTranslation';
 import React, { useEffect, useState } from 'react';
 import { Graph } from '../../generated/graph';
-import { renderArticleImage, renderArticleParagraph, renderArticleEmbed } from './../../functions/articleRenderer';
+import { renderArticleImage, renderArticleParagraph, renderArticleEmbed, renderArticleHeader, renderArticleListItem, renderArticleBlockQuote, renderArticleCode, renderArticleSource } from './../../functions/articleRenderer';
 import useScript from './../hooks/useScript';
 
 const ArticleContent = ({ article }: { article: Graph.Article}) => {
+  const { t } = useTranslation();
   const content = JSON.parse(article.content).blocks;
-
+  
   const renderContents = {
     "paragraph": renderArticleParagraph,
+    "header": renderArticleHeader,
     "image": renderArticleImage,
-    "embed": renderArticleEmbed
+    "embed": renderArticleEmbed,
+    "list": renderArticleListItem,
+    "quote": renderArticleBlockQuote,
+    "code": renderArticleCode,
+    "source": renderArticleSource
   };
 
   // Init embed 
@@ -19,8 +26,13 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
     <div className="content">
       {
         content.map((block, inx) => {
-          if (renderContents[block.type] === undefined) return null;
-          return renderContents[block.type](block, inx);
+          if(renderContents[block.type] === undefined) return null;
+
+          if(block.type === "source") {
+            return renderContents[block.type](block, inx, t("article:source"));
+          } else {
+            return renderContents[block.type](block, inx);
+          }
         })
       }
     </div>

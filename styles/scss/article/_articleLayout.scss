@@ -67,6 +67,35 @@
         }
       }
 
+      .blockquote {
+        font-style: italic;
+        margin: 0;
+
+        p {
+          margin: 0;
+        }
+
+        blockquote {
+          background-image: url("/assets/quote-left-solid.svg"), url("/assets/quote-right-solid.svg");
+          background-size: rem(40px);
+          background-position: left top, right bottom;
+          background-repeat: no-repeat;
+          padding: rem(10px) rem(60px);
+          margin: 0;
+        }
+
+        .caption {
+          margin-top: rem(8px);
+          font-size: rem(24px);
+          text-align: right;
+
+          &::before {
+            content: '—';
+            margin-right: rem(4px);
+          }
+        }
+      }
+
       .embed {
         text-align: center;
         margin: 1rem 0;
@@ -111,6 +140,18 @@
           font-style: italic;
           color: var(--color-text-secondary);
         }
+      }
+
+      .code {
+        overflow: auto;
+        background: #001628;
+        color: var(--color-white);
+        line-height: rem(18px);
+        padding: rem(8px) rem(12px);
+      }
+
+      mark {
+        padding: rem(2px) rem(1px);
       }
     }
   }
@@ -196,6 +237,13 @@
       }
 
       .content {
+        .blockquote {
+          blockquote {
+            background-image: url("/assets/quote-left-solid.svg");
+            padding: rem(10px) 0 rem(10px) rem(60px);
+          }
+        }
+
         .embed {
           &.instagram {
             .instagram-media {
