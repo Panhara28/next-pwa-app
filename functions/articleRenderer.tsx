@@ -112,7 +112,7 @@ export const renderArticleCode = (block, key) => {
 export const renderArticleSource = (block, key, translation = "Source") => {
   return (
     <p key={key}>
-      <b>{translation}</b>៖ <a target="_blank" href={block.data.sourceLink}>{block.data.sourceName}</a>
+      <b>{translation}</b>៖ <a target="_blank" rel="noopener" href={block.data.sourceLink}>{block.data.sourceName}</a>
     </p>
   );
 }
