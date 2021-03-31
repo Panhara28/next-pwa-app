@@ -42,7 +42,7 @@ const toggleDarkMode = (colorMode, setColorMode) => {
   if(colorMode === "dark") {
     theme = {
       '--color-text-primary': '#000000',
-      '--color-text-secondary': '#7b7d7d',
+      '--color-text-secondary': '#474747',
       '--bg-color-navbar': process.env.NEXT_PUBLIC_COLOR_PRIMARY,
       '--bg-color-navbar-category': '#D7DBDD',
       '--bg-color-container': '#FBFCFC'
