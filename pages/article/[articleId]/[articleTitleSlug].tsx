@@ -48,10 +48,16 @@ const QUERY_ARTICLE = gql`
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const { t } = useTranslation();
   const article: Graph.Article = data.article;
-  
+
   return (
     <Container>
-      <SEO/>
+      <SEO 
+        title={article.title}
+        pathname={"/article/" + article.id}
+        description={article.summary}
+        type={"article"}
+        image={article.thumbnail}
+      />
 
       <Measure>
         <ArticleLayout>
