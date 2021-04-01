@@ -71,7 +71,7 @@ const ArticleLatest = () => {
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
         categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS)
-      }, sort: "CREATED"
+      }, sort: "PUBLISHED"
     }
   });
 

@@ -64,6 +64,44 @@
       }
     }
   }
+
+  &.small {
+    .article-list-items {
+      .detail {
+        .title {
+          font-size: rem(16px);
+          -webkit-line-clamp: 2;
+        }
+  
+        .datetime {
+          font-size: rem(12px);
+          padding: rem(2px) 0;
+        }
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+@include responsive(tablet) {
+  .article-list {
+    &.small {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      
+      .article-list-items {
+        padding-right: rem(8px);
+        margin-bottom: 0;
+        flex-shrink: 0;
+        scroll-snap-align: start;
+        width: 100%
+      }
+    }
+  }
 }
 
 @include responsive(mobile) {
@@ -78,6 +116,7 @@
 
         .title {
           font-size: rem(16px);
+          -webkit-line-clamp: 2;
         }
 
         .title-sub {

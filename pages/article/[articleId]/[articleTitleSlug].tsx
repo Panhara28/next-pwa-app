@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import Container from '../../../components/layout/Container';
 import SEO from '../../../components/layout/SEO';
 import Measure from '../../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { initializeApollo } from '../../../lib/apolloClient';
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { Graph } from '../../../generated/graph';
 import ArticleLayout from '../../../components/layout/article/ArticleLayout';
 import ArticleLayoutDetail from '../../../components/layout/article/ArticleLayoutDetail';
@@ -15,6 +15,8 @@ import ArticleContent from '../../../components/article/ArticleContent';
 import useTranslation from 'next-translate/useTranslation';
 import { getArticleCategoryName, getArticleContentWriterProfilePiceture } from '../../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from '../../../functions/date';
+import PalceholderArticleRelated from '../../../components/placeholder/article/PlaceholderArticleRelated';
+import ArticleListRelated from './../../../components/article/ArticleListRelated';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
@@ -24,6 +26,7 @@ const QUERY_ARTICLE = gql`
       content
       summary
       nextId
+      categoryId
       categoryName {
         kh
       }
@@ -40,6 +43,21 @@ const QUERY_ARTICLE = gql`
         name {
           en
         }
+      }
+    }
+  }
+`;
+
+const QUERY_ARTICLE_RELATED = gql`
+  query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {
+    articleList(pagination: $pagination, filter: $filter, sort: $sort) {
+      data {
+        id
+        title
+        thumbnail 
+        publishedDateTime {
+          en
+        } 
       }
     }
   }
@@ -74,19 +92,57 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
             <ArticleContent article={article}/>
           </ArticleLayoutDetail>
           <ArticleLayoutSide>
-            <div className="related-article">
+            <div className="article-related">
               <div className="author">
                 <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={50} height={50}/>
-                <div className="name">{article.contentWriter.nameDisplay}</div>
+                <div className="name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
               </div>
 
-              <h2 className="title">{ t("article:related-article") }</h2>
+              <h2>{ t("article:related-article") }</h2>
+
+              <ArticleRelated writerId={article.contentWriter.id} categoryId={article.categoryId} categorySubId={article.categorySubId}/>
             </div>            
           </ArticleLayoutSide>
         </ArticleLayout>
       </Measure>
     </Container>
   )
+}
+
+const ArticleRelated = ({ writerId, categoryId, categorySubId }: { writerId: number, categoryId: number, categorySubId: number }) => {
+  const { t } = useTranslation();
+
+  let article_related: ReactNode;
+
+  const { data, loading, error } = useQuery<Graph.Query>(QUERY_ARTICLE_RELATED, {
+    variables: {
+      pagination: {
+        page: 1,
+        size: 4
+      }, filter:{
+        format: "EDITOR_JS",
+        type: "PUBLISHED",
+        siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
+        categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categoryId : categorySubId,
+        exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS),
+        writerId: writerId
+      }, sort: "PUBLISHED"
+    }
+  });
+
+  if(loading) return <PalceholderArticleRelated/>;
+
+  if(error) return <div className="error">{ t("error:description.general") }</div>;
+
+  if(data && data.articleList) {
+    // Remove the first article to prevent duplicate with the current article from the same writer
+    let articles = [...data.articleList.data];
+    articles.splice(0, 1);
+
+    article_related = ArticleListRelated(articles);
+  }
+
+  return <>{article_related}</>;
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
