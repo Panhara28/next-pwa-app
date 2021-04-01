@@ -4,9 +4,9 @@ import ArticleList from '../components/article/ArticleList';
 import Container from '../components/layout/Container';
 import Measure from '../components/layout/Measure';
 import SEO from '../components/layout/SEO';
-import Spinner from '../components/utilities/Spinner';
 import { Graph } from '../generated/graph';
 import useTranslation from 'next-translate/useTranslation';
+import PalceholderArticleList from '../components/placeholder/article/PlaceholderArticleList';
 
 const QUERY_ARTICLE_LATEST = gql`
   query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {
@@ -39,12 +39,16 @@ const QUERY_ARTICLE_LATEST = gql`
 `;
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
     <Container>
       <SEO/>
 
       <Measure>
         <div style={{ maxWidth: "850px" }}>
+
+          <h2 className="uppercase">{t("common:latest-article")}</h2>
           <ArticleLatest/>
         </div>
       </Measure>
@@ -53,8 +57,6 @@ export default function Home() {
 }
 
 const ArticleLatest = () => {
-  const { t } = useTranslation();
-
   let article_latest: ReactNode;
   const { data, loading, error } = useQuery<Graph.Query>(QUERY_ARTICLE_LATEST, {
     variables: {
@@ -70,17 +72,11 @@ const ArticleLatest = () => {
     }
   });
 
-  if(loading) return <Spinner/>;
+  if(loading) return <PalceholderArticleList/>;
 
   if(data && data.articleList) {
     article_latest = ArticleList(data.articleList.data);
   }
 
-  return (
-    <>
-      <h2 className="uppercase">{t("common:latest-article")}</h2>
-
-      {article_latest}
-    </>
-  );
+  return <>{article_latest}</>;
 }

@@ -1,0 +1,116 @@
+/**
+ * placeholder-loading v0.3.0
+ * Author: Zalog (https://www.zalog.ro/)
+ * License: MIT
+ **/
+ .ph-item {
+  direction: ltr;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  background-color: var(--bg-color-container);
+
+  &::before {
+    content: " ";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 50%;
+    z-index: 1;
+    width: 500%;
+    margin-left: -250%;
+    -webkit-animation: phAnimation .5s linear infinite;
+    animation: phAnimation .5s linear infinite;
+    background: var(--bg-color-placeholder-animation);
+  }
+
+  & > * {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column;
+    padding-right: rem(8px);
+    padding-left: rem(8px);
+  }
+}
+
+.ph-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: rem(8px);
+
+  div {
+    height: rem(10px);
+    margin-bottom: rem(8px);
+    background-color: var(--bg-color-navbar-category);
+  }
+
+  .big, .big div {
+    height: rem(20px);
+    margin-bottom: rem(16px);
+  }
+
+  .empty {
+    background-color: hsla(0, 0%, 100%, 0);
+  }
+}
+
+.ph-col-2 {
+  flex: 0 0 16.66667%;
+}
+.ph-col-4 {
+  flex: 0 0 33.33333%;
+}
+.ph-col-6 {
+  flex: 0 0 50%;
+}
+.ph-col-8 {
+  flex: 0 0 66.66667%;
+}
+.ph-col-10 {
+  flex: 0 0 83.33333%;
+}
+.ph-col-12 {
+  flex: 0 0 100%;
+}
+
+.ph-avatar {
+  position: relative;
+  width: 100%;
+  min-width: 50px;
+  background-color: var(--bg-color-navbar-category);
+  margin-bottom: rem(16px);
+  border-radius: 50%;
+  overflow: hidden;
+
+  &::before {
+    content: " ";
+    display: block;
+    padding-top: 100%;
+  }
+}
+
+.ph-picture {
+  width: 100%;
+  height: 120px;
+  background-color: var(--bg-color-navbar-category);
+  margin-bottom: rem(16px);
+}
+
+@-webkit-keyframes phAnimation {
+  0% {
+    transform: translate3d(-30%, 0, 0);
+  }
+  to {
+    transform: translate3d(30%, 0, 0);
+  }
+}
+@keyframes phAnimation {
+  0% {
+    transform: translate3d(-30%, 0, 0);
+  }
+  to {
+    transform: translate3d(30%, 0, 0);
+  }
+}

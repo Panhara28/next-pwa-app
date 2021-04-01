@@ -44,8 +44,9 @@ const toggleDarkMode = (colorMode, setColorMode) => {
       '--color-text-primary': '#000000',
       '--color-text-secondary': '#474747',
       '--bg-color-navbar': process.env.NEXT_PUBLIC_COLOR_PRIMARY,
-      '--bg-color-navbar-category': '#D7DBDD',
-      '--bg-color-container': '#FBFCFC'
+      '--bg-color-navbar-category': '#ECF0F1',
+      '--bg-color-container': '#FBFCFC',
+      '--bg-color-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--bg-color-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%'
     };
   } else {
     theme = {
@@ -53,7 +54,8 @@ const toggleDarkMode = (colorMode, setColorMode) => {
       '--color-text-secondary': '#d0d3d4',
       '--bg-color-navbar': '#000000',
       '--bg-color-navbar-category': '#292929',
-      '--bg-color-container': '#393939'
+      '--bg-color-container': '#393939',
+      '--bg-color-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--bg-color-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%'
     };
   }
 

@@ -34,7 +34,8 @@
         '--color-text-secondary': '#d0d3d4',
         '--bg-color-navbar': '#000000',
         '--bg-color-navbar-category': '#292929',
-        '--bg-color-container': '#393939'
+        '--bg-color-container': '#393939',
+        '--bg-color-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--bg-color-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%'
       };
     }
 
