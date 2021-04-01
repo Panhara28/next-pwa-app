@@ -3,7 +3,7 @@ module.exports = {
   defaultLocale: process.env.LOCALE,
   localeDetection: false,
   pages: {
-    "*": ["common"],
+    "*": ["common", "error"],
     "/article/[articleId]/[articleTitleSlug]": ["article"]
   },
   logBuild: false

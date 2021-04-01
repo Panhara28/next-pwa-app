@@ -5,7 +5,7 @@ const PalceholderArticleList: React.FunctionComponent = (props) => {
 
   for(let i = 0; i <= 2; i++) {
     placeholders.push(
-      <div className="ph-item">
+      <div key={i} className="ph-item">
         <div className="ph-col-4">
           <div className="ph-picture"/>
         </div>

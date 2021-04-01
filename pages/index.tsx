@@ -57,6 +57,8 @@ export default function Home() {
 }
 
 const ArticleLatest = () => {
+  const { t } = useTranslation();
+
   let article_latest: ReactNode;
   const { data, loading, error } = useQuery<Graph.Query>(QUERY_ARTICLE_LATEST, {
     variables: {
@@ -73,6 +75,8 @@ const ArticleLatest = () => {
   });
 
   if(loading) return <PalceholderArticleList/>;
+
+  if(error) return <div className="error">{ t("error:description.general") }</div>;
 
   if(data && data.articleList) {
     article_latest = ArticleList(data.articleList.data);
