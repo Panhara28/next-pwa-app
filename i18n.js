@@ -4,7 +4,7 @@ module.exports = {
   localeDetection: false,
   pages: {
     "*": ["common", "error"],
-    "/article/[articleId]/[articleTitleSlug]": ["article"]
+    "/article/[articleId]/[[...articleTitleSlug]]": ["article"]
   },
   logBuild: false
 }

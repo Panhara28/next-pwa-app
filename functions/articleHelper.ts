@@ -23,7 +23,7 @@ export const getArticleTitleSlug = (articleTitle: string) => {
   // Replace hidden space for khmer character &#8203;
   titleSlug = titleSlug.replaceAll("​", "");
   // Replace special characters
-  titleSlug = titleSlug.replace(/[!@^=&\/\\#,+()$~%'":*?<>{}]/g, '');
+  titleSlug = titleSlug.replace(/[!@^=&\/\\#,+()$~%'":*?<>.{}…]/g, '');
 
   return encodeURIComponent(titleSlug);
 }

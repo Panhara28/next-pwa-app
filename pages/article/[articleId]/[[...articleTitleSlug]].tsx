@@ -16,7 +16,7 @@ import useTranslation from 'next-translate/useTranslation';
 import { getArticleCategoryName, getArticleContentWriterProfilePiceture } from '../../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from '../../../functions/date';
 import PalceholderArticleRelated from '../../../components/placeholder/article/PlaceholderArticleRelated';
-import ArticleListRelated from './../../../components/article/ArticleListRelated';
+import ArticleListRelated from '../../../components/article/ArticleListRelated';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
