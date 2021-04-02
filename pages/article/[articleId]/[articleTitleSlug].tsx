@@ -27,7 +27,11 @@ const QUERY_ARTICLE = gql`
       summary
       nextId
       categoryId
+      categorySubId
       categoryName {
+        kh
+      }
+      categoryNameSub {
         kh
       }
       publishedDateTime {
@@ -113,7 +117,7 @@ const ArticleRelated = ({ writerId, categoryId, categorySubId }: { writerId: num
   const { t } = useTranslation();
 
   let article_related: ReactNode;
-
+  
   const { data, loading, error } = useQuery<Graph.Query>(QUERY_ARTICLE_RELATED, {
     variables: {
       pagination: {
@@ -123,7 +127,8 @@ const ArticleRelated = ({ writerId, categoryId, categorySubId }: { writerId: num
         format: "EDITOR_JS",
         type: "PUBLISHED",
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
-        categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categoryId : categorySubId,
+        categoryId: !process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categoryId : undefined,
+        categorySubId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categorySubId : undefined,
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS),
         writerId: writerId
       }, sort: "PUBLISHED"
