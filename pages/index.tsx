@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import ArticleList from '../components/article/ArticleList';
 import Container from '../components/layout/Container';
 import Measure from '../components/layout/Measure';
@@ -7,6 +7,7 @@ import SEO from '../components/layout/SEO';
 import { Graph } from '../generated/graph';
 import useTranslation from 'next-translate/useTranslation';
 import PalceholderArticleList from '../components/placeholder/article/PlaceholderArticleList';
+import LazyLoading from '../components/utilities/LazyLoading';
 
 const QUERY_ARTICLE_LATEST = gql`
   query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {
@@ -40,6 +41,7 @@ const QUERY_ARTICLE_LATEST = gql`
 
 export default function Home() {
   const { t } = useTranslation();
+  const [ pages, setPages ] = useState<number[]>([1]);
 
   return (
     <Container>
@@ -49,21 +51,31 @@ export default function Home() {
         <div style={{ maxWidth: "850px" }}>
 
           <h2 className="uppercase">{t("common:latest-article")}</h2>
-          <ArticleLatest/>
+          {
+            pages.map((page, inx) => {
+              return (
+                <LazyLoading key={inx}>
+                  <ArticleLatest page={page} onComplete={(page) => { setPages([...pages, page]); }}/>
+                </LazyLoading>
+              );
+            })
+          }
+
+          <PalceholderArticleList/>
         </div>
       </Measure>
     </Container>
   )
 }
 
-const ArticleLatest = () => {
+const ArticleLatest = ({ page, onComplete }: { page: number, onComplete: (nextPage: number) => void }) => {
   const { t } = useTranslation();
-
+  
   let article_latest: ReactNode;
-  const { data, loading, error } = useQuery<Graph.Query>(QUERY_ARTICLE_LATEST, {
+  const { data, error } = useQuery<Graph.Query>(QUERY_ARTICLE_LATEST, {
     variables: {
       pagination: {
-        page: 1,
+        page: page,
         size: 15
       }, filter:{
         format: "EDITOR_JS",
@@ -72,10 +84,17 @@ const ArticleLatest = () => {
         categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS)
       }, sort: "PUBLISHED"
+    },
+    onCompleted: () => {
+      onComplete(++page);
     }
   });
 
-  if(loading) return <PalceholderArticleList/>;
+  useEffect(() => {
+    if(data && data.articleList) {
+      
+    }
+  }, [data]);
 
   if(error) return <div className="error">{ t("error:description.general") }</div>;
 
