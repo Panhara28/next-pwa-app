@@ -4,8 +4,8 @@ import '../styles/globals.css';
 import '../styles/scss/main.scss';
 import useApollo from '../lib/apolloClient';
 import ThemeProvider from '../components/context/ThemeContext';
-import ReactGA from "react-ga";
 import { Router } from 'next/router';
+import  ReactGA  from 'react-ga';
 
 function MyApp({ Component, pageProps }) {
   const apolloClient = useApollo(pageProps.initialApolloState);

@@ -8,6 +8,7 @@ import { Graph } from '../generated/graph';
 import useTranslation from 'next-translate/useTranslation';
 import PalceholderArticleList from '../components/placeholder/article/PlaceholderArticleList';
 import LazyLoading from '../components/utilities/LazyLoading';
+import ReactGA  from 'react-ga';
 
 const QUERY_ARTICLE_LATEST = gql`
   query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {
@@ -86,6 +87,7 @@ const ArticleLatest = ({ page, onComplete }: { page: number, onComplete: (nextPa
       }, sort: "PUBLISHED"
     },
     onCompleted: () => {
+      ReactGA.pageview('/?page=' + page);
       onComplete(++page);
     }
   });
