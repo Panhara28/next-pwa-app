@@ -22,7 +22,7 @@ export function renderArticleHeader(block, key) {
 }
 
 export const renderArticleImage = (block, key) => {
-  const url = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height);
+  const url = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height, 100, false);
 
   return (
     <figure key={key} className="image">

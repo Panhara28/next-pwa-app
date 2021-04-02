@@ -1,4 +1,4 @@
-export const parsedImage = (url: string, width: number, height: number, quality: number = 90) => {
+export const parsedImage = (url: string, width: number, height: number, quality: number = 100, resize = true) => {
   let parsedUrl;
   if(url.indexOf("https") > -1 || url.indexOf("http") > -1) {
     parsedUrl = new URL(url);
@@ -6,5 +6,6 @@ export const parsedImage = (url: string, width: number, height: number, quality:
     parsedUrl = new URL("https:" + url);
   }
   
-  return parsedUrl.origin + "/__image/w=" + width + ",h=" + height + ",q=" + quality + parsedUrl.pathname;
+  if(resize) return parsedUrl.origin + "/__image/w=" + width + ",h=" + height + ",q=" + quality + parsedUrl.pathname;
+  else return parsedUrl.origin + parsedUrl.pathname;
 }
