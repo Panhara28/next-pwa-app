@@ -18,6 +18,7 @@
     "next-translate": "^1.0.4",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-ga": "^3.3.0",
     "sass": "^1.32.8",
     "sass-rem": "^2.0.1",
     "webpack": "^5.24.2"
