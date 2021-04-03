@@ -3,114 +3,160 @@
  * Author: Zalog (https://www.zalog.ro/)
  * License: MIT
  **/
- .ph-item {
-  direction: ltr;
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  overflow: hidden;
-  background-color: var(--bg-color-container);
+ 
+@-webkit-keyframes phAnimation {
+	0% {
+		transform: translate3d(-30%, 0, 0);
+	}
 
-  &::before {
-    content: " ";
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 50%;
-    z-index: 1;
-    width: 500%;
-    margin-left: -250%;
-    -webkit-animation: phAnimation .5s linear infinite;
-    animation: phAnimation .5s linear infinite;
-    background: var(--bg-color-placeholder-animation);
-  }
+	to {
+		transform: translate3d(30%, 0, 0);
+	}
+}
 
-  & > * {
-    flex: 1 1 auto;
-    display: flex;
-    flex-flow: column;
-    padding-right: rem(8px);
-    padding-left: rem(8px);
-  }
+@keyframes phAnimation {
+	0% {
+		transform: translate3d(-30%, 0, 0);
+	}
+
+	to {
+		transform: translate3d(30%, 0, 0);
+	}
+}
+
+.ph-item {
+	direction: ltr;
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	padding: rem(30px) rem(15px) rem(15px);
+	overflow: hidden;
+	margin-bottom: rem(30px);
+	background-color: var(--bg-color-container);
+	border: 2px solid var(--bg-color-navbar-category);
+	border-radius: 10px;
+	box-sizing: border-box;
+
+	&:before {
+		box-sizing: border-box;
+		content: " ";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 50%;
+		z-index: 1;
+		width: 500%;
+		margin-left: -250%;
+		-webkit-animation: phAnimation 0.6s linear infinite;
+		animation: phAnimation 0.6s linear infinite;
+		background: var(--bg-color-placeholder-animation);
+	}
+
+	>* {
+		flex: 1 1 auto;
+		display: flex;
+		flex-flow: column;
+		padding-right: rem(15px);
+		padding-left: rem(15px);
+	}
 }
 
 .ph-row {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: rem(8px);
+	display: flex;
+	flex-wrap: wrap;
+	margin-bottom: rem(7.5px);
 
-  div {
-    height: rem(10px);
-    margin-bottom: rem(8px);
-    background-color: var(--bg-color-navbar-category);
-  }
+	div {
+		height: rem(10px);
+		margin-bottom: rem(7.5px);
+		background-color: var(--bg-color-navbar-category);
+	}
 
-  .big, .big div {
-    height: rem(20px);
-    margin-bottom: rem(16px);
-  }
+	.big {
+		height: rem(22px);
+		margin-bottom: rem(15px);
+	}
 
-  .empty {
-    background-color: hsla(0, 0%, 100%, 0);
-  }
+	.empty {
+		background-color: hsla(0, 0%, 100%, 0);
+	}
+}
+
+.ph-row.big {
+	div {
+		height: rem(22px);
+		margin-bottom: rem(15px);
+	}
 }
 
 .ph-col-2 {
-  flex: 0 0 16.66667%;
+	flex: 0 0 16.66667%;
 }
+
 .ph-col-4 {
-  flex: 0 0 33.33333%;
+	flex: 0 0 33.33333%;
 }
+
 .ph-col-6 {
-  flex: 0 0 50%;
+	flex: 0 0 50%;
 }
+
 .ph-col-8 {
-  flex: 0 0 66.66667%;
+	flex: 0 0 66.66667%;
 }
+
 .ph-col-10 {
-  flex: 0 0 83.33333%;
+	flex: 0 0 83.33333%;
 }
+
 .ph-col-12 {
-  flex: 0 0 100%;
+	flex: 0 0 100%;
 }
 
 .ph-avatar {
-  position: relative;
-  width: 100%;
-  min-width: 50px;
-  background-color: var(--bg-color-navbar-category);
-  margin-bottom: rem(16px);
-  border-radius: 50%;
-  overflow: hidden;
+	position: relative;
+	width: 100%;
+	min-width: 50px;
+	background-color: var(--bg-color-navbar-category);
+	margin-bottom: rem(15px);
+	border-radius: 50%;
+	overflow: hidden;
 
-  &::before {
-    content: " ";
-    display: block;
-    padding-top: 100%;
-  }
+	&:before {
+		content: " ";
+		display: block;
+		padding-top: 100%;
+	}
 }
 
 .ph-picture {
-  width: 100%;
-  height: 120px;
-  background-color: var(--bg-color-navbar-category);
-  margin-bottom: rem(16px);
+	width: 100%;
+	height: rem(120px);
+	background-color: var(--bg-color-navbar-category);
+	margin-bottom: rem(15px);
+
+  &.small {
+    height: rem(60px);
+  }
 }
 
-@-webkit-keyframes phAnimation {
-  0% {
-    transform: translate3d(-30%, 0, 0);
+@include responsive(mobile) {
+  .ph-item {
+    padding: rem(15px) rem(7.5px) rem(7.5px);
+    margin-bottom: rem(15px);
+
+    >* {
+      padding-right: rem(7.5px);
+      padding-left: rem(7.5px);
+    }
   }
-  to {
-    transform: translate3d(30%, 0, 0);
+
+  .ph-row {
+    margin-bottom: 0;
   }
-}
-@keyframes phAnimation {
-  0% {
-    transform: translate3d(-30%, 0, 0);
-  }
-  to {
-    transform: translate3d(30%, 0, 0);
+
+  .ph-avatar, .ph-picture {
+    margin-bottom: rem(7.5px);
   }
 }

@@ -4,12 +4,14 @@ import NavbarCategory from './NavbarCategory';
 
 const Container: React.FunctionComponent = (props) => {
   return (
-    <div className={"container"}>
+    <>
       <Navbar/>
       <NavbarCategory/>
-
-      { props.children }
-    </div>
+      
+      <div className={"container"}>
+        { props.children }
+      </div>
+    </>
   );
 }
 

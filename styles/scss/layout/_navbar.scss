@@ -1,63 +1,59 @@
-.container {
-  .navbar {
-    position: sticky;
-    top: 0;
-    z-index: 1;
-    height: $navbar-height;
-    color: var(--color-white);
-    background-color: var(--bg-color-navbar);
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: $navbar-height;
+  color: var(--color-white);
+  background-color: var(--bg-color-navbar);
 
-    .navbar-measure {
-      max-width: $max-width;
-      margin:auto;
-      display: flex;
+  .navbar-measure {
+    max-width: $max-width;
+    margin:auto;
+    display: flex;
 
-      .navbar-title {
-        margin: 0;
+    .navbar-title {
+      margin: 0;
+      line-height: $navbar-height;
+      font-weight: 500;
+      font-size: rem(32px);
+      color: var(--color-white);
+      text-transform: uppercase;
+    }
+
+    .navbar-items {
+      line-height: $navbar-height;
+      height: $navbar-height;
+      cursor: pointer;
+      padding: 0 $content-padding;
+
+      i {
         line-height: $navbar-height;
-        font-weight: 500;
-        font-size: rem(32px);
-        color: var(--color-white);
-        text-transform: uppercase;
       }
+    }
 
-      .navbar-items {
-        line-height: $navbar-height;
-        height: $navbar-height;
-        cursor: pointer;
-        padding: 0 $content-padding;
-
-        i {
-          line-height: $navbar-height;
-        }
-      }
-
-      .navbar-items-grow {
-        flex-grow: 1;
-      }
+    .navbar-items-grow {
+      flex-grow: 1;
     }
   }
 }
 
 @include responsive(mobile) {
-  .container {
-    .navbar {
-      height: $navbar-height-mobile;
-  
-      .navbar-measure {
-        .navbar-title {
-          line-height: $navbar-height-mobile;
-          font-size: rem(26px);
-        }
-  
-        .navbar-items {
-          line-height: $navbar-height-mobile;
-          height: $navbar-height-mobile;
-          padding: 0 $content-padding-mobile;
+  .navbar {
+    height: $navbar-height-mobile;
 
-          i {
-            line-height: $navbar-height-mobile;
-          }
+    .navbar-measure {
+      .navbar-title {
+        line-height: $navbar-height-mobile;
+        font-size: rem(26px);
+      }
+
+      .navbar-items {
+        line-height: $navbar-height-mobile;
+        height: $navbar-height-mobile;
+        padding: 0 $content-padding-mobile;
+
+        i {
+          line-height: $navbar-height-mobile;
         }
       }
     }

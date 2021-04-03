@@ -1,10 +1,9 @@
 @import "~sass-rem";
-@import "variables";
 @import "mediaQueries";
+@import "variables";
+@import "utilities/main";
 @import "layout/main";
 @import "article/main";
-
-@import "utilities/main";
 
 /* Font awesome */
 @import "fontawesome/fontawesome.scss";

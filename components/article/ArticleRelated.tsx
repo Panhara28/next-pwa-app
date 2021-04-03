@@ -2,12 +2,15 @@ import React, { ReactNode } from 'react';
 import { Graph } from '../../generated/graph';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getArticleTitleSlug } from '../../functions/articleHelper';
+import { getArticleContentWriterProfilePiceture, getArticleTitleSlug } from '../../functions/articleHelper';
 import { parsedImage } from '../../functions/Image';
 import { getElapseTime, getDateByFormat } from '../../functions/date';
+import useTranslation from 'next-translate/useTranslation';
 
-const ArticleListRelated = (articles: Graph.Article[]) => {
-  const article_nodes: ReactNode[] = articles.map(article => {
+const ArticleRelated = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
+  const { t } = useTranslation();
+
+  const article_nodes: ReactNode[] = articleRelated.map(article => {
     return (
       <div className="article-list-items" key={article.id}>
         <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}>
@@ -26,10 +29,19 @@ const ArticleListRelated = (articles: Graph.Article[]) => {
   });
 
   return (
-    <div className="article-list small">
-      { article_nodes }
-    </div>
+    <div className="article-related">
+      <div className="author">
+        <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={50} height={50}/>
+        <div className="name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
+      </div>
+
+      <h2>{ t("article:related-article") }</h2>
+
+      <div className="article-list small">
+        { article_nodes }
+      </div>
+    </div> 
   );
 }
 
-export default ArticleListRelated;
+export default ArticleRelated;

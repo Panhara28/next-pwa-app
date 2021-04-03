@@ -1,60 +1,56 @@
-.container {
-  .navbar-category {
-    height: $navbar-category-height;
-    background-color: var(--bg-color-navbar-category);
-    color: var(--color-text-primary);
+.navbar-category {
+  height: $navbar-category-height;
+  background-color: var(--bg-color-navbar-category);
+  color: var(--color-text-primary);
 
-    .navbar-category-measure {
-      max-width: $max-width;
-      margin:auto;
-      overflow: auto;
-      display: flex;
+  .navbar-category-measure {
+    max-width: $max-width;
+    margin:auto;
+    overflow: auto;
+    display: flex;
 
-      .navbar-category-items {
-        line-height: $navbar-category-height;
-        height: $navbar-category-height;
-        padding: 0 $content-padding;
-        flex-shrink: 0;
-        min-width: 100px;
-        text-align: center;
-        border-left: 1px solid $color-secondary;
-        border-right: 1px solid $color-secondary;
-        color: var(--color-text-primary);
+    .navbar-category-items {
+      line-height: $navbar-category-height;
+      height: $navbar-category-height;
+      padding: 0 $content-padding;
+      flex-shrink: 0;
+      min-width: 100px;
+      text-align: center;
+      border-left: 1px solid $color-secondary;
+      border-right: 1px solid $color-secondary;
+      color: var(--color-text-primary);
 
-        &:first-child {
-          border-left: none;
-        }
-
-        &:last-child {
-          border-right: none;
-        }
-
-        &:hover, &.active {
-          color: $color-secondary;
-        }
+      &:first-child {
+        border-left: none;
       }
 
-      /* Hide scrollbar */
-      -ms-overflow-style: none;  /* Internet Explorer 10+ */
-      scrollbar-width: none;  /* Firefox */
-      &::-webkit-scrollbar { 
-        display: none;
+      &:last-child {
+        border-right: none;
       }
+
+      &:hover, &.active {
+        color: $color-secondary;
+      }
+    }
+
+    /* Hide scrollbar */
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+    &::-webkit-scrollbar { 
+      display: none;
     }
   }
 }
 
 @include responsive(mobile) {
-  .container {
-    .navbar-category {
-      height: $navbar-category-height-mobile;
-  
-      .navbar-category-measure {
-        .navbar-category-items {
-          line-height: $navbar-category-height-mobile;
-          height: $navbar-category-height-mobile;
-          padding: 0 $content-padding-mobile;
-        }
+  .navbar-category {
+    height: $navbar-category-height-mobile;
+
+    .navbar-category-measure {
+      .navbar-category-items {
+        line-height: $navbar-category-height-mobile;
+        height: $navbar-category-height-mobile;
+        padding: 0 $content-padding-mobile;
       }
     }
   }

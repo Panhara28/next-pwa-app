@@ -46,9 +46,9 @@ export default function Home() {
 
   return (
     <Container>
-      <SEO/>
-
       <Measure>
+        <SEO/>
+        
         <div style={{ maxWidth: "850px" }}>
 
           <h2 className="uppercase">{t("common:latest-article")}</h2>
@@ -56,7 +56,7 @@ export default function Home() {
             pages.map((page, inx) => {
               return (
                 <LazyLoading key={inx}>
-                  <ArticleLatest page={page} onComplete={(page) => { setPages([...pages, page]); }}/>
+                  <ArticleLatest page={page} onCompleted={(page) => { setPages([...pages, page]); }}/>
                 </LazyLoading>
               );
             })
@@ -69,7 +69,7 @@ export default function Home() {
   )
 }
 
-const ArticleLatest = ({ page, onComplete }: { page: number, onComplete: (nextPage: number) => void }) => {
+const ArticleLatest = ({ page, onCompleted }: { page: number, onCompleted: (nextPage: number) => void }) => {
   const { t } = useTranslation();
   
   let article_latest: ReactNode;
@@ -77,7 +77,7 @@ const ArticleLatest = ({ page, onComplete }: { page: number, onComplete: (nextPa
     variables: {
       pagination: {
         page: page,
-        size: 15
+        size: 10
       }, filter:{
         format: "EDITOR_JS",
         type: "PUBLISHED",
@@ -88,7 +88,7 @@ const ArticleLatest = ({ page, onComplete }: { page: number, onComplete: (nextPa
     },
     onCompleted: () => {
       ReactGA.pageview('/?page=' + page);
-      onComplete(++page);
+      onCompleted(++page);
     }
   });
 
