@@ -10,7 +10,7 @@ import useTranslation from 'next-translate/useTranslation';
 const ArticleRelated = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
   const { t } = useTranslation();
 
-  const article_nodes: ReactNode[] = articleRelated.map(article => {
+  const articleNodes: ReactNode[] = articleRelated.map(article => {
     return (
       <div className="article-list-items" key={article.id}>
         <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}>
@@ -38,7 +38,7 @@ const ArticleRelated = ({ article, articleRelated }: { article: Graph.Article, a
       <h2>{ t("article:related-article") }</h2>
 
       <div className="article-list small">
-        { article_nodes }
+        { articleNodes }
       </div>
     </div> 
   );

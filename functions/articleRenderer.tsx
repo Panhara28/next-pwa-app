@@ -34,9 +34,9 @@ export const renderArticleImage = (block, key) => {
 
 export const renderArticleEmbed = (block, key) => {
   const data = block.data;
-  const raw_service = ["instagram", "tiktok", "twitter", "dailymail", "bbc"];
+  const rawServices = ["instagram", "tiktok", "twitter", "dailymail", "bbc"];
 
-  if(raw_service.indexOf(data.service) > -1) {
+  if(rawServices.indexOf(data.service) > -1) {
     return (
       <div key={key} className={"embed " + data.service}>
         <div dangerouslySetInnerHTML={{ __html: data.source }}></div>

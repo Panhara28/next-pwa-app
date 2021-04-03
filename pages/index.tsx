@@ -72,7 +72,7 @@ export default function Home() {
 const ArticleLatest = ({ page, onCompleted }: { page: number, onCompleted: (nextPage: number) => void }) => {
   const { t } = useTranslation();
   
-  let article_latest: ReactNode;
+  let articleLatest: ReactNode;
   const { data, error } = useQuery<Graph.Query>(QUERY_ARTICLE_LATEST, {
     variables: {
       pagination: {
@@ -95,8 +95,8 @@ const ArticleLatest = ({ page, onCompleted }: { page: number, onCompleted: (next
   if(error) return <div className="error">{ t("error:description.general") }</div>;
 
   if(data && data.articleList) {
-    article_latest = <ArticleList articles={data.articleList.data}/>;
+    articleLatest = <ArticleList articles={data.articleList.data}/>;
   }
 
-  return <>{article_latest}</>;
+  return <>{articleLatest}</>;
 }

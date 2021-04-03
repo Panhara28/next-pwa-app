@@ -7,7 +7,7 @@ import { parsedImage } from '../../functions/Image';
 import { getElapseTime, getDateByFormat } from './../../functions/date';
 
 const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
-  const article_nodes: ReactNode[] = articles.map(article => {
+  const articleNodes: ReactNode[] = articles.map(article => {
     return (
       <div className="article-list-items" key={article.id}>
         <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}>
@@ -33,7 +33,7 @@ const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
 
   return (
     <div className="article-list">
-      { article_nodes }
+      { articleNodes }
     </div>
   );
 }

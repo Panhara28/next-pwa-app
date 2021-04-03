@@ -24,7 +24,7 @@ const NavbarCategory: React.FunctionComponent = () => {
   const router = useRouter();
   const { slug } = router.query;
   
-  let category_nodes: ReactNode | ReactNode[];
+  let categoryNodes: ReactNode | ReactNode[];
   const { data, loading, error } = useQuery<Graph.Query>(QUERY_CATEGORY, {
     variables: {
       pagination: { page: 1, size: 100},
@@ -36,13 +36,13 @@ const NavbarCategory: React.FunctionComponent = () => {
   });
   
   if(data && data.categoryList) {
-    category_nodes = renderCategory(data.categoryList, slug as string);
+    categoryNodes = renderCategory(data.categoryList, slug as string);
   }
 
   return (
     <div className="navbar-category">
       <div className="navbar-category-measure">
-        {category_nodes}
+        {categoryNodes}
       </div>
     </div>
   );
@@ -50,7 +50,7 @@ const NavbarCategory: React.FunctionComponent = () => {
 
 const renderCategory = (data: Graph.CategoryList, slug: string) => {
   const categoreis: Graph.Category[] = data.data;
-  const category_nodes: ReactNode[] = categoreis.map((category, inx) => {
+  const categoryNodes: ReactNode[] = categoreis.map((category, inx) => {
     return (
       <Link key={inx} href={`/category/${category.alias}`}>
         <a className={"navbar-category-items" + (category.alias === slug ? " active" : "")}>{category.name.kh}</a>
@@ -58,7 +58,7 @@ const renderCategory = (data: Graph.CategoryList, slug: string) => {
     );
   });
 
-  return category_nodes;
+  return categoryNodes;
 }
 
 export default NavbarCategory;
