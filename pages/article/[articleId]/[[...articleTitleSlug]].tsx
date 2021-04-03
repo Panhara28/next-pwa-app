@@ -1,20 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Container from '../../../components/layout/Container';
-import SEO from '../../../components/layout/SEO';
 import Measure from '../../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { initializeApollo } from '../../../lib/apolloClient';
 import { gql } from '@apollo/client';
 import { Graph } from '../../../generated/graph';
-import ArticleLayout from '../../../components/layout/article/ArticleLayout';
-import ArticleLayoutDetail from '../../../components/layout/article/ArticleLayoutDetail';
-import ArticleLayoutSide from '../../../components/layout/article/ArticleLayoutSide';
-import Image from 'next/image';
-import { parsedImage } from '../../../functions/Image';
-import ArticleContent from '../../../components/article/ArticleContent';
-import { getArticleCategoryName } from '../../../functions/articleHelper';
-import { getDateByFormat, getElapseTime } from '../../../functions/date';
-import ArticleRelated from './../../../components/article/ArticleRelated';
+import PalceholderArticle from '../../../components/placeholder/article/PlaceholderArticle';
+import LazyLoading from '../../../components/utilities/LazyLoading';
+import ArticleDetail from './../../../components/article/ArticleDetail';
+import ArticleNext from '../../../components/article/ArticleNext';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
@@ -68,50 +62,27 @@ const QUERY_ARTICLE_RELATED = gql`
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const article: Graph.Article = data.article;
   const articleRelated: Graph.Article[] = data.articleRelated;
+  const [ nextIds, setNextIds ] = useState<number[]>(article.nextId ? [ article.nextId ] : []);
 
   return (
     <Container>
       <Measure>
         <ArticleDetail article={article} articleRelated={articleRelated} pathname={data.pathname}/>
+        
+        {
+          nextIds.map((nextId, inx) => {
+            return (
+              <LazyLoading key={inx}>
+                <ArticleNext nextId={nextId} onCompleted={(nextId) => { setNextIds([...nextIds, nextId]); }}/>
+              </LazyLoading>
+            );
+          })
+        }
+
+        <PalceholderArticle/>
       </Measure>
     </Container>
   )
-}
-
-const ArticleDetail = ({ article, articleRelated, pathname }: { article: Graph.Article, articleRelated: Graph.Article[], pathname: string }) => {
-  return (
-    <>
-      <SEO 
-        title={article.title}
-        pathname={pathname}
-        description={article.summary}
-        type={"article"}
-        image={article.thumbnail}
-      />
-
-      <ArticleLayout>
-        <ArticleLayoutDetail>
-          <h1 className="title">{ article.title }</h1>
-          <div className="thumbnail"><Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={420} height={220}/></div>
-          <div className="summary">
-            <div className="category">{getArticleCategoryName(article)}</div>
-            <span className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>
-            <span className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</span>
-            <p className="title-sub">{article.summary}</p>
-          </div>
-
-          <ArticleContent article={article}/>
-        </ArticleLayoutDetail>
-        <ArticleLayoutSide>
-          <ArticleRelated article={article} articleRelated={articleRelated}/>
-        </ArticleLayoutSide>
-      </ArticleLayout>
-    </>
-  );
-}
-
-const ArticleNext = ({ nextId, onCompleted }: { nextId: number, onCompleted: () => void }) => {
-
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
@@ -143,9 +114,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 
   // Remove article to prevent duplicate with the current article from the same writer
   const articleRelatedFiltered = [...articleRelated];
-  for(let i = 0; i < articleRelated.length; i++) {
-    if(articleRelated[i].id === article.id) {
+  for(let i = 0; i < articleRelatedFiltered.length; i++) {
+    if(articleRelatedFiltered[i].id === article.id) {
       articleRelatedFiltered.splice(i, 1);
+      break;
     }
   }
 

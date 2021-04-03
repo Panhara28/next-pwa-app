@@ -31,7 +31,7 @@ const ArticleRelated = ({ article, articleRelated }: { article: Graph.Article, a
   return (
     <div className="article-related">
       <div className="author">
-        <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={50} height={50}/>
+        <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={60} height={60}/>
         <div className="name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
       </div>
 

@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import ArticleList from '../components/article/ArticleList';
 import Container from '../components/layout/Container';
 import Measure from '../components/layout/Measure';
@@ -92,16 +92,10 @@ const ArticleLatest = ({ page, onCompleted }: { page: number, onCompleted: (next
     }
   });
 
-  useEffect(() => {
-    if(data && data.articleList) {
-      
-    }
-  }, [data]);
-
   if(error) return <div className="error">{ t("error:description.general") }</div>;
 
   if(data && data.articleList) {
-    article_latest = ArticleList(data.articleList.data);
+    article_latest = <ArticleList articles={data.articleList.data}/>;
   }
 
   return <>{article_latest}</>;

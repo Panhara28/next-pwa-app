@@ -6,7 +6,7 @@ import { getArticleCategoryName, getArticleContentWriterProfilePiceture, getArti
 import { parsedImage } from '../../functions/Image';
 import { getElapseTime, getDateByFormat } from './../../functions/date';
 
-const ArticleList = (articles: Graph.Article[]) => {
+const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
   const article_nodes: ReactNode[] = articles.map(article => {
     return (
       <div className="article-list-items" key={article.id}>
