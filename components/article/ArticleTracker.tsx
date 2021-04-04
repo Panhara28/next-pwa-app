@@ -6,7 +6,7 @@ const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
   const containerRef = useRef<HTMLDivElement>();
 
   const onScroll = () => {
-    if(containerRef) {
+    if(containerRef.current) {
       const box = containerRef.current.getBoundingClientRect();
       const progress = (document.documentElement.clientHeight - box.top) / box.height;
       level = Math.max(level, progress);
