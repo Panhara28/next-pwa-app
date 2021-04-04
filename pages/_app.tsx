@@ -11,14 +11,11 @@ function MyApp({ Component, pageProps }) {
   const apolloClient = useApollo(pageProps.initialApolloState);
 
   useEffect(() => {
-    ReactGA.initialize(process.env.NEXT_PUBLIC_GA_ID, {
-      debug: true
-    });
+    ReactGA.initialize(process.env.NEXT_PUBLIC_GA_ID);
     ReactGA.pageview(window.location.pathname + window.location.search);
 
     Router.events.on("routeChangeComplete", () => {
       ReactGA.pageview(window.location.pathname + window.location.search);
-      console.log("route change");
     });
   }, []);
 
