@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import React, { useEffect, useState } from 'react';
+import React, { ReactNode, useEffect, useRef, useState } from 'react';
 import { Graph } from '../../generated/graph';
 import { renderArticleImage, renderArticleParagraph, renderArticleEmbed, renderArticleHeader, renderArticleListItem, renderArticleBlockQuote, renderArticleCode, renderArticleSource } from './../../functions/articleRenderer';
 import useScript from './../hooks/useScript';
@@ -7,6 +7,7 @@ import useScript from './../hooks/useScript';
 const ArticleContent = ({ article }: { article: Graph.Article}) => {
   const { t } = useTranslation();
   const content = JSON.parse(article.content).blocks;
+  const containerRef = useRef<HTMLDivElement>(null);
   
   const renderContents = {
     "paragraph": renderArticleParagraph,
@@ -20,10 +21,10 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
   };
 
   // Init embed 
-  initEmbed();
+  initEmbed(containerRef);
   
   return (
-    <div className="content">
+    <div ref={containerRef} className="content">
       {
         content.map((block, inx) => {
           if(renderContents[block.type] === undefined) return null;
@@ -39,7 +40,7 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
   );
 }
 
-const initEmbed = () => {
+const initEmbed = (containerRef) => {
   const [scriptFacebook, setFacebookScript] = useState('');
   const [hasFacebookLoaded] = useScript(scriptFacebook, { async: true, isEnabled: !!scriptFacebook });
 
@@ -53,7 +54,7 @@ const initEmbed = () => {
   const [hasTiktokLoaded] = useScript(scriptTiktok, { async: true, isEnabled: !!scriptTiktok });
 
   useEffect(() => {
-    const articleContentElms = document.querySelector(".article-layout-detail .content");
+    const articleContentElms = containerRef.current;
 
     if(articleContentElms) {
       // Detect facebook embed
