@@ -9,7 +9,7 @@ const LazyLoading: React.FunctionComponent = (props) => {
     if(containerRef.current) {
       const offset = containerRef.current.getBoundingClientRect().top - window.innerHeight;
 
-      if(!scrollReached && Math.floor(offset) <= 100) {
+      if(!scrollReached && Math.floor(offset) <= 0) {
         // Render childrend when the scroll position is reached
         setScrollReached(true);
 

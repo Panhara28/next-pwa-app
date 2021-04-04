@@ -40,7 +40,7 @@ const QUERY_ARTICLE = gql`
   }
 `;
 
-const ArticleNext = ({ nextId, onCompleted }: { nextId: number, onCompleted: (nextId: number) => void }) => {
+const ArticleNext = ({ nextId, onCompleted }: { nextId: number, onCompleted: (article: Graph.Article) => void }) => {
   const { t } = useTranslation();
 
   let article_next: ReactNode;
@@ -49,10 +49,7 @@ const ArticleNext = ({ nextId, onCompleted }: { nextId: number, onCompleted: (ne
     onCompleted: (data) => {
       if(data && data.article) {
         ReactGA.pageview(`/article/${data.article.id}/${getArticleTitleSlug(data.article.title)}`);
-        
-        if(data.article.nextId) {
-          onCompleted(data.article.nextId);
-        }
+        onCompleted(data.article);
       }
     }
   });

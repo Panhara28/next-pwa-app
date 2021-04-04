@@ -64,14 +64,14 @@ export const renderArticleEmbed = (block, key) => {
   } else if(data.service === "facebook_video") {
     return(
       <div key={key} className={"embed " + data.service}>
-        <div className="fb-video" data-lazy={true} data-href={data.embedUrl}></div>
+        <div className="fb-video" data-href={data.embedUrl}></div>
         { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );
   } else if(data.service === "facebook_post") {
     return(
       <div key={key} className={"embed " + data.service}>
-        <div className="fb-post" data-lazy={true} data-href={data.embedUrl}></div>
+        <div className="fb-post" data-href={data.embedUrl}></div>
         { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );

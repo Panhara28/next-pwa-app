@@ -9,8 +9,8 @@ import PalceholderArticle from '../../../components/placeholder/article/Placehol
 import LazyLoading from '../../../components/utilities/LazyLoading';
 import ArticleDetail from './../../../components/article/ArticleDetail';
 import ArticleNext from '../../../components/article/ArticleNext';
-import SEO from './../../../components/layout/SEO';
 import { getArticleTitleSlug } from './../../../functions/articleHelper';
+import { useRouter } from 'next/router';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
@@ -65,22 +65,11 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
   const article: Graph.Article = data.article;
   const articleRelated: Graph.Article[] = data.articleRelated;
 
-  const pathname = `/article/${article.id}`;
-  const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
-
   const [ nextIds, setNextIds ] = useState<number[]>(article.nextId ? [ article.nextId ] : []);
+  const router = useRouter();
 
   return (
     <Container>
-      <SEO 
-        title={article.title}
-        pathname={pathname}
-        canonical={canonical}
-        description={article.summary}
-        type={"article"}
-        image={article.thumbnail}
-      />
-
       <Measure>
         <ArticleDetail article={article} articleRelated={articleRelated}/>
         
@@ -88,7 +77,13 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
           nextIds.map((nextId, inx) => {
             return (
               <LazyLoading key={inx}>
-                <ArticleNext nextId={nextId} onCompleted={(nextId) => { setNextIds([...nextIds, nextId]); }}/>
+                <ArticleNext nextId={nextId} onCompleted={(article) => { 
+                  router.replace( `/article/${article.id}/${getArticleTitleSlug(article.title)}`, undefined, { shallow: true });
+
+                  if(article.nextId) {
+                    setNextIds([...nextIds, article.nextId]); 
+                  }
+                }}/>
               </LazyLoading>
             );
           })

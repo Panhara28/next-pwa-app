@@ -6,12 +6,25 @@ import ArticleLayoutSide from './../layout/article/ArticleLayoutSide';
 import { Graph } from "../../generated/graph";
 import Image from "next/image";
 import { parsedImage } from './../../functions/Image';
-import { getArticleCategoryName } from './../../functions/articleHelper';
+import { getArticleCategoryName, getArticleTitleSlug } from './../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from './../../functions/date';
+import SEO from './../layout/SEO';
 
 const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
+  const pathname = `/article/${article.id}`;
+  const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
+
   return (
     <ArticleLayout>
+      <SEO 
+        title={article.title}
+        pathname={pathname}
+        canonical={canonical}
+        description={article.summary}
+        type={"article"}
+        image={article.thumbnail}
+      />
+
       <ArticleLayoutDetail>
         <h1 className="title">{ article.title }</h1>
         <div className="thumbnail"><Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={420} height={220}/></div>
