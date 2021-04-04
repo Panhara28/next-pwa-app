@@ -42,9 +42,7 @@ const LazyLoading: React.FunctionComponent = (props) => {
   }, []);
 
   return (
-    <div className="lazy-loading" ref={containerRef}>
-      { scrollReached ? props.children : null }
-    </div>
+    <>{ scrollReached ? props.children : <div className="lazy-loading" ref={containerRef}/>}</>
   );
 }
 
