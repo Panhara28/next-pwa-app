@@ -47,8 +47,6 @@ const ArticleNext = ({ nextId, onCompleted }: { nextId: number, onCompleted: (ar
   const { data, error } = useQuery<Graph.Query>(QUERY_ARTICLE, {
     variables: { id: nextId },
     onCompleted: (data) => {
-      //ReactGA.pageview(`/article/${data.article.id}/${getArticleTitleSlug(data.article.title)}`);
-
       onCompleted(data.article);
     }
   });
