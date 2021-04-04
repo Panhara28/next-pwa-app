@@ -78,8 +78,8 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
             return (
               <LazyLoading key={inx}>
                 <ArticleNext nextId={nextId} onCompleted={(article) => { 
-                  router.replace( `/article/${article.id}/${getArticleTitleSlug(article.title)}`, undefined, { shallow: true });
-
+                  if(article) router.replace( `/article/${article.id}/${getArticleTitleSlug(article.title)}`, undefined, { shallow: true });
+                  
                   if(article.nextId) {
                     setNextIds([...nextIds, article.nextId]); 
                   }
