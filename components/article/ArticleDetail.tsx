@@ -7,15 +7,19 @@ import ArticleLayoutSide from './../layout/article/ArticleLayoutSide';
 import { Graph } from "../../generated/graph";
 import Image from "next/image";
 import { parsedImage } from './../../functions/Image';
-import { getArticleCategoryName } from './../../functions/articleHelper';
+import { getArticleCategoryName, getArticleTitleSlug } from './../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from './../../functions/date';
 
-const ArticleDetail = ({ article, articleRelated, pathname }: { article: Graph.Article, articleRelated: Graph.Article[], pathname: string }) => {
+const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
+  const pathname = `/article/${article.id}`;
+  const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
+
   return (
     <>
       <SEO 
         title={article.title}
         pathname={pathname}
+        canonical={canonical}
         description={article.summary}
         type={"article"}
         image={article.thumbnail}

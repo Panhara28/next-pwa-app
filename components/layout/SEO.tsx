@@ -4,6 +4,7 @@ import Head from 'next/head';
 type Props = {
   title?: string
   pathname?: string
+  canonical?: string
   description?: string 
   type?: string
   image?: string
@@ -19,7 +20,7 @@ const SEO: FunctionComponent<Props> = (props) => {
       <meta name="Content-Type-Style" content="text/css" />
       <meta name="description" content={props.description ? props.description : `Visit ${process.env.NEXT_PUBLIC_TITLE} for up-to-the-minute news, breaking news, and feature stories.`}/>	
       <meta name="referrer" content="always" />
-      <link rel="canonical" href={process.env.NEXT_PUBLIC_URL + (props.pathname ? props.pathname : "")}/>
+      <link rel="canonical" href={process.env.NEXT_PUBLIC_URL + (props.canonical ? props.canonical : "")}/>
 
       {/* Facebook Meta */}
       <meta property="og:url" content={process.env.NEXT_PUBLIC_URL + (props.pathname ? props.pathname : "")}/>

@@ -3,7 +3,7 @@ import ArticleLayout from './../../layout/article/ArticleLayout';
 import ArticleLayoutDetail from './../../layout/article/ArticleLayoutDetail';
 import ArticleLayoutSide from './../../layout/article/ArticleLayoutSide';
 
-const PalceholderArticle: React.FunctionComponent = (props) => {
+const PalceholderArticle: React.FunctionComponent = () => {
   return (
     <ArticleLayout>
       <ArticleLayoutDetail>
