@@ -9,6 +9,8 @@ import PalceholderArticle from '../../../components/placeholder/article/Placehol
 import LazyLoading from '../../../components/utilities/LazyLoading';
 import ArticleDetail from './../../../components/article/ArticleDetail';
 import ArticleNext from '../../../components/article/ArticleNext';
+import SEO from './../../../components/layout/SEO';
+import { getArticleTitleSlug } from './../../../functions/articleHelper';
 
 const QUERY_ARTICLE = gql`
   query article($id: Int!) {
@@ -62,10 +64,23 @@ const QUERY_ARTICLE_RELATED = gql`
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const article: Graph.Article = data.article;
   const articleRelated: Graph.Article[] = data.articleRelated;
+
+  const pathname = `/article/${article.id}`;
+  const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
+
   const [ nextIds, setNextIds ] = useState<number[]>(article.nextId ? [ article.nextId ] : []);
 
   return (
     <Container>
+      <SEO 
+        title={article.title}
+        pathname={pathname}
+        canonical={canonical}
+        description={article.summary}
+        type={"article"}
+        image={article.thumbnail}
+      />
+
       <Measure>
         <ArticleDetail article={article} articleRelated={articleRelated}/>
         

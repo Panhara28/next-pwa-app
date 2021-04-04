@@ -3,7 +3,6 @@ import { ReactNode } from 'react';
 import { useQuery, gql } from '@apollo/client';
 import { Graph } from "../../generated/graph";
 import ArticleDetail from './ArticleDetail';
-import { getArticleTitleSlug } from './../../functions/articleHelper';
 
 const QUERY_ARTICLE_RELATED = gql`
   query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {

@@ -10,9 +10,9 @@ const Category: React.FunctionComponent  = () => {
 
   return (
     <Container>
+      <SEO/>
+      
       <Measure>
-        <SEO/>
-
         <h1>Category: {slug}</h1>
       </Measure>
     </Container>

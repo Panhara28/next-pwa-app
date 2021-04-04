@@ -46,9 +46,9 @@ export default function Home() {
 
   return (
     <Container>
+      <SEO/>
+
       <Measure>
-        <SEO/>
-        
         <div style={{ maxWidth: "850px" }}>
 
           <h2 className="uppercase">{t("common:latest-article")}</h2>
