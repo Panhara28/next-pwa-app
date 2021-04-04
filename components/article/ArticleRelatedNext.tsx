@@ -56,8 +56,7 @@ const ArticleRelatedNext = ({ article }: { article: Graph.Article}) => {
     article_next = 
     <ArticleDetail 
       article={article} 
-      articleRelated={articleRelated} 
-      pathname={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}
+      articleRelated={articleRelated}
     />;
   }
 
