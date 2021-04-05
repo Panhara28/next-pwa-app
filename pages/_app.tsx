@@ -15,7 +15,9 @@ function MyApp({ Component, pageProps }) {
     ReactGA.pageview(window.location.pathname + window.location.search);
 
     Router.events.on("routeChangeComplete", () => {
-      ReactGA.pageview(window.location.pathname + window.location.search);
+      setTimeout(() => {
+        ReactGA.pageview(window.location.pathname + window.location.search);
+      }, 1000);
     });
   }, []);
 
