@@ -5,11 +5,9 @@ import Link from 'next/link';
 import { getArticleContentWriterProfilePiceture, getArticleTitleSlug } from '../../functions/articleHelper';
 import { parsedImage } from '../../functions/Image';
 import { getElapseTime, getDateByFormat } from '../../functions/date';
-import useTranslation from 'next-translate/useTranslation';
+import { getArticleCategoryName } from './../../functions/articleHelper';
 
-const ArticleRelated = ({ article, articles }: { article: Graph.Article, articles: Graph.Article[] }) => {
-  const { t } = useTranslation();
-
+const ArticleListSmall = ({ articles }: { articles: Graph.Article[] }) => {
   const articleNodes: ReactNode[] = articles.map(article => {
     return (
       <div className="article-list-items" key={article.id}>
@@ -21,27 +19,25 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
 
         <div className="detail">
           <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h3 className="title">{article.title}</h3></a></Link>
+
+          <div className="author">
+            <div className="category">{getArticleCategoryName(article)}</div>
+            <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={25} height={25}/>
+            <div className="name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
+          </div>
+
           <div className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
-          <div className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
+            <div className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
         </div>
       </div>
     );
   });
 
   return (
-    <div className="article-related">
-      <div className="author">
-        <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={60} height={60}/>
-        <div className="name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
-      </div>
-
-      <h2>{ t("article:related-article") }</h2>
-
-      <div className="article-list small related">
-        { articleNodes }
-      </div>
-    </div> 
+    <div className="article-list small">
+      { articleNodes }
+    </div>
   );
 }
 
-export default ArticleRelated;
+export default ArticleListSmall;

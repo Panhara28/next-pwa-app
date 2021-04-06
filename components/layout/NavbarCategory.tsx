@@ -1,31 +1,16 @@
-import { gql, useQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { ReactNode } from 'react';
 import { Graph } from '../../generated/graph';
-
-const QUERY_CATEGORY = gql`
-  query CategoryList($pagination: PaginationInput!, $parentId: Int, $published: Boolean, $display: Boolean, $exceptCategories: [Int]) {
-    categoryList(pagination: $pagination, parentId: $parentId, published: $published, display: $display, exceptCategories: $exceptCategories) {
-      data {
-        id, alias, name {
-          kh
-        }
-      }
-      
-      page {
-        total, current, size
-      }
-    }
-  }
-`;
+import { graphQuery } from '../../generated/graphQuery';
 
 const NavbarCategory: React.FunctionComponent = () => {
   const router = useRouter();
   const { slug } = router.query;
   
   let categoryNodes: ReactNode | ReactNode[];
-  const { data, loading, error } = useQuery<Graph.Query>(QUERY_CATEGORY, {
+  const { data, loading, error } = useQuery<Graph.Query>(graphQuery.QUERY_CATEGORY, {
     variables: {
       pagination: { page: 1, size: 100},
       parentId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,

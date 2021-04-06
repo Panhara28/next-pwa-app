@@ -3,4 +3,38 @@
   background-color: var(--bg-color-container);
   color: var(--color-text-primary);
   overflow: auto;
+
+  .container-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: rem(16px);
+    grid-template-areas: 
+      "article-top article-top article-top"
+      "article-latest article-latest article-weekly"
+    ;
+    
+    .grid-article-top {
+      grid-area: article-top;
+    }
+
+    .grid-article-weekly {
+      grid-area: article-weekly;
+    }
+
+    .grid-article-latest {
+      grid-area: article-latest;
+    }
+  }
+}
+
+@include responsive(tablet) {
+  .container {
+    .container-grid {
+      grid-template-areas:
+        "article-top article-top article-top"
+        "article-weekly article-weekly article-weekly"
+        "article-latest article-latest article-latest" 
+      ;
+    }
+  }
 }

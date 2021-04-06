@@ -1,10 +1,15 @@
 .article-layout {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: rem(16px);
+  grid-template-areas: 
+    "article-detail article-detail article-side"
+  ;
   
   .article-layout-detail {
+    grid-area: article-detail;
     display: flex;
     flex-wrap: wrap;
-    width: 800px;
 
     .title {
       width: 100%;
@@ -157,8 +162,7 @@
   }
 
   .article-layout-side {
-    margin-left: rem(16px);
-    width: calc(400px - #{rem(48px)});
+    grid-area: article-side;
     padding: rem(16px) 0;
 
     .article-related {
@@ -186,30 +190,12 @@
   }
 }
 
-@include responsive(tablet-big) {
-  .article-layout {
-    .article-layout-detail {
-      width: 650px;
-    }
-  }
-}
-
 @include responsive(tablet) {
   .article-layout {
-    flex-wrap: wrap;
-
-    .article-layout-detail {
-      width: 100%;
-    }
-
-    .article-layout-side {
-      margin: 0;
-      width: 100%;
-      
-      .article-related {
-        position: unset;
-      }
-    }
+    grid-template-areas: 
+      "article-detail article-detail article-detail"
+      "article-side article-side article-side"
+    ;
   }
 }
 

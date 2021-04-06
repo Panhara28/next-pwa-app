@@ -1,29 +1,16 @@
 import useTranslation from "next-translate/useTranslation";
 import { ReactNode } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Graph } from "../../generated/graph";
 import ArticleDetail from './ArticleDetail';
+import { graphQuery } from "../../generated/graphQuery";
 
-const QUERY_ARTICLE_RELATED = gql`
-  query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {
-    articleList(pagination: $pagination, filter: $filter, sort: $sort) {
-      data {
-        id
-        title
-        thumbnail 
-        publishedDateTime {
-          en
-        } 
-      }
-    }
-  }
-`;
 
 const ArticleRelatedNext = ({ article }: { article: Graph.Article}) => {
   const { t } = useTranslation();
 
   let article_next: ReactNode;
-  const { data, error } = useQuery<Graph.Query>(QUERY_ARTICLE_RELATED, {
+  const { data, error } = useQuery<Graph.Query>(graphQuery.QUERY_ARTICLE_RELATED, {
     variables: {
       pagination: {
         page: 1,

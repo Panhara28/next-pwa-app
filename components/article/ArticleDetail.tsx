@@ -1,4 +1,3 @@
-import ArticleRelated from "./ArticleRelated";
 import ArticleLayout from './../layout/article/ArticleLayout';
 import ArticleLayoutDetail from './../layout/article/ArticleLayoutDetail';
 import ArticleContent from './ArticleContent';
@@ -10,6 +9,7 @@ import { getArticleCategoryName, getArticleTitleSlug } from './../../functions/a
 import { getDateByFormat, getElapseTime } from './../../functions/date';
 import SEO from './../layout/SEO';
 import ArticleTracker from "./ArticleTracker";
+import ArticleRelated from "./ArticleRelated";
 
 const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
   const pathname = `/article/${article.id}`;
@@ -40,7 +40,7 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
           <ArticleContent article={article}/>
         </ArticleLayoutDetail>
         <ArticleLayoutSide>
-          <ArticleRelated article={article} articleRelated={articleRelated}/>
+          <ArticleRelated article={article} articles={articleRelated}/>
         </ArticleLayoutSide>
       </ArticleLayout>
     </ArticleTracker>

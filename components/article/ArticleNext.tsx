@@ -1,50 +1,15 @@
 import useTranslation from 'next-translate/useTranslation';
 import { ReactNode } from 'react';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { Graph } from '../../generated/graph';
-import ReactGA  from 'react-ga';
-import { getArticleTitleSlug } from './../../functions/articleHelper';
 import ArticleRelatedNext from './ArticleRelatedNext';
-
-const QUERY_ARTICLE = gql`
-  query article($id: Int!) {
-    article(id: $id) {
-      id
-      title
-      content
-      summary
-      nextId
-      categoryId
-      categorySubId
-      categoryName {
-        kh
-      }
-      categoryNameSub {
-        kh
-      }
-      publishedDateTime {
-        en
-      }
-      thumbnail
-      contentWriter {
-        id
-        groupId
-        profilePicture
-        nameDisplay
-        username
-        name {
-          en
-        }
-      }
-    }
-  }
-`;
+import { graphQuery } from '../../generated/graphQuery';
 
 const ArticleNext = ({ nextId, onCompleted }: { nextId: number, onCompleted: (article: Graph.Article) => void }) => {
   const { t } = useTranslation();
 
   let article_next: ReactNode;
-  const { data, error } = useQuery<Graph.Query>(QUERY_ARTICLE, {
+  const { data, error } = useQuery<Graph.Query>(graphQuery.QUERY_ARTICLE, {
     variables: { id: nextId },
     onCompleted: (data) => {
       onCompleted(data.article);

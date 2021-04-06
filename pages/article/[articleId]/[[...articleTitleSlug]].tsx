@@ -3,7 +3,6 @@ import Container from '../../../components/layout/Container';
 import Measure from '../../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { initializeApollo } from '../../../lib/apolloClient';
-import { gql } from '@apollo/client';
 import { Graph } from '../../../generated/graph';
 import PalceholderArticle from '../../../components/placeholder/article/PlaceholderArticle';
 import LazyLoading from '../../../components/utilities/LazyLoading';
@@ -11,55 +10,7 @@ import ArticleDetail from './../../../components/article/ArticleDetail';
 import ArticleNext from '../../../components/article/ArticleNext';
 import { getArticleTitleSlug } from './../../../functions/articleHelper';
 import { useRouter } from 'next/router';
-
-const QUERY_ARTICLE = gql`
-  query article($id: Int!) {
-    article(id: $id) {
-      id
-      title
-      content
-      summary
-      nextId
-      categoryId
-      categorySubId
-      categoryName {
-        kh
-      }
-      categoryNameSub {
-        kh
-      }
-      publishedDateTime {
-        en
-      }
-      thumbnail
-      contentWriter {
-        id
-        groupId
-        profilePicture
-        nameDisplay
-        username
-        name {
-          en
-        }
-      }
-    }
-  }
-`;
-
-const QUERY_ARTICLE_RELATED = gql`
-  query ArticleList($pagination: PaginationInput!, $filter: ArticleFilterInput, $sort: ArticleSortEnum) {
-    articleList(pagination: $pagination, filter: $filter, sort: $sort) {
-      data {
-        id
-        title
-        thumbnail 
-        publishedDateTime {
-          en
-        } 
-      }
-    }
-  }
-`;
+import { graphQuery } from '../../../generated/graphQuery';
 
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const article: Graph.Article = data.article;
@@ -98,14 +49,14 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { articleId } = context.params;
 
-  let client = initializeApollo();
+  const client = initializeApollo();
   const article = (await client.query({
-    query: QUERY_ARTICLE,
+    query: graphQuery.QUERY_ARTICLE,
     variables: { id: Number(articleId) }
   })).data.article;
 
   const articleRelated = (await client.query({
-    query: QUERY_ARTICLE_RELATED,
+    query: graphQuery.QUERY_ARTICLE_RELATED,
     variables: {
       pagination: {
         page: 1,

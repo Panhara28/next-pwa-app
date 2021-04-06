@@ -16,6 +16,14 @@ export const getNowDateTime = () => {
   return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).format('YYYY-MM-DD HH:mm:ss'); 
 }
 
+export const getStartOfWeekDate = () => {
+  return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).startOf('week').format('YYYY-MM-DD'); 
+}
+
+export const getEndOfWeekDate = () => {
+  return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).endOf('week').format('YYYY-MM-DD'); 
+}
+
 export const getElapseTime = (date: any, suffix: boolean = false) => {
   if(date) return moment(date).fromNow(suffix);
   
