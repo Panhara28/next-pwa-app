@@ -44,12 +44,15 @@ const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
       article_id: props.articleID
     });
 
+    // Because unload event is extremely unreliable, especially on mobile
+    // Ref: https://developers.google.com/web/updates/2018/07/page-lifecycle-api?utm_source=lighthouse&utm_medium=devtools#the-unload-event
+    const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload';
+    window.addEventListener(terminationEvent, onUnload);
     window.addEventListener("scroll", onScroll);
-    window.addEventListener("unload", onUnload);
 
     return () => {
+      window.removeEventListener(terminationEvent, onUnload);
       window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("unload", onUnload);
       onUnload();
     }
   }, []);
