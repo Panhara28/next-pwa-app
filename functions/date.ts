@@ -17,11 +17,11 @@ export const getNowDateTime = () => {
 }
 
 export const getStartOfWeekDate = () => {
-  return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).startOf('week').format('YYYY-MM-DD'); 
+  return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).startOf('isoWeek').format('YYYY-MM-DD'); 
 }
 
 export const getEndOfWeekDate = () => {
-  return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).endOf('week').format('YYYY-MM-DD'); 
+  return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).endOf('isoWeek').format('YYYY-MM-DD'); 
 }
 
 export const getElapseTime = (date: any, suffix: boolean = false) => {

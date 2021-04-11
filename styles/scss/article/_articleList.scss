@@ -1,11 +1,9 @@
 .article-list {
-  overflow: auto;
-
-  .article-list-items {
+  .article-list-item {
     margin-bottom: rem(16px);
     display: flex;
 
-    .thumbnail {
+    .article-list-item-thumbnail {
       width: 30%;
 
       img {
@@ -14,11 +12,11 @@
       }
     }
 
-    .detail {
+    .article-list-item-detail {
       width: 70%;
       padding-left: rem(16px);
 
-      .title {
+      .article-list-item-detail-title {
         margin: 0;
         display: -webkit-box;
         -webkit-line-clamp: 3;
@@ -27,7 +25,7 @@
         color: var(--color-text-primary);
       }
 
-      .title-sub {
+      .article-list-item-detail-title-sub {
         margin: 0.5rem 0;
         font-style: italic;
         font-size: rem(16px);
@@ -38,13 +36,13 @@
         color: var(--color-text-secondary);
       }
 
-      .author {
+      .article-list-item-detail-author {
         font-size: rem(12px);
         display: flex;
         flex-wrap: wrap;
         align-items: center;
 
-        .category {
+        .article-list-item-detail-author-category {
           font-size: rem(12px);
           background-color: $color-secondary;
           color: var(--color-white);
@@ -58,73 +56,117 @@
           border-radius: 50%;
         }
 
-        .name {
+        .article-list-item-detail-author-name {
           margin: 0 rem(8px);
         }
       }
     }
   }
+}
 
-  &.small {
-    .article-list-items {
-      .detail {
-        .title {
-          font-size: rem(16px);
-          -webkit-line-clamp: 2;
+.article-list-small {
+  .article-list-small-item {
+    margin-bottom: rem(16px);
+    display: flex;
+
+    .article-list-small-item-thumbnail {
+      width: 30%;
+
+      img {
+        border: 2px solid $color-secondary!important;
+        border-radius: 10px;
+      }
+    }
+
+    .article-list-small-item-detail {
+      width: 70%;
+      padding-left: rem(16px);
+
+      .article-list-small-item-detail-title {
+        margin: 0;
+        display: -webkit-box;
+        font-size: rem(16px);
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+        color: var(--color-text-primary);
+      }
+
+      .article-list-small-item-detail-title-sub {
+        margin: 0.5rem 0;
+        font-style: italic;
+        font-size: rem(16px);
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+        color: var(--color-text-secondary);
+      }
+
+      .article-list-small-item-detail-author {
+        font-size: rem(12px);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+
+        .article-list-small-item-detail-author-category {
+          font-size: rem(12px);
+          background-color: $color-secondary;
+          color: var(--color-white);
+          border-radius: 5px;
+          padding: rem(4px) rem(4px) 0 rem(4px);
+          margin-right: rem(8px);
         }
 
-        .datetime {
-          font-size: rem(12px);
-          padding: rem(2px) 0;
+        img {
+          border: 2px solid $color-secondary!important;
+          border-radius: 50%;
+        }
+
+        .article-list-small-item-detail-author-name {
+          margin: 0 rem(8px);
         }
       }
 
-      &:last-child {
-        margin-bottom: 0;
+      .article-list-small-item-detail-datetime {
+        font-size: rem(12px);
+        padding: rem(2px) 0;
       }
     }
   }
 }
 
 @include responsive(tablet) {
-  .article-list {
-    &.small.related {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      
-      .article-list-items {
-        padding-right: rem(8px);
-        margin-bottom: 0;
-        flex-shrink: 0;
-        scroll-snap-align: start;
-        width: 90%
-      }
+  .article-list-small.article-list-related {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    
+    .article-list-small-item {
+      padding-right: rem(8px);
+      margin-bottom: 0;
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      width: 90%
     }
   }
 }
 
 @include responsive(mobile) {
   .article-list {
-    .article-list-items {
-      .thumbnail {
-        width: 35%;
-      }
-
-      .detail {
-        width: 70%;
-
-        .title {
+    .article-list-item {
+      .article-list-item-detail {
+        .article-list-item-detail-title {
           font-size: rem(16px);
           -webkit-line-clamp: 2;
         }
 
-        .title-sub {
+        .article-list-item-detail-title-sub {
           display: none;
         }
 
-        .author {
-          .datetime {
+        .article-list-item-detail-author {
+          .article-list-item-detail-author-datetime {
             width: 100%;
             margin: rem(2px) 0;
           }

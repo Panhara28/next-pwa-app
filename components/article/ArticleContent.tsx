@@ -1,5 +1,5 @@
 import useTranslation from 'next-translate/useTranslation';
-import React, { ReactNode, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Graph } from '../../generated/graph';
 import { renderArticleImage, renderArticleParagraph, renderArticleEmbed, renderArticleHeader, renderArticleListItem, renderArticleBlockQuote, renderArticleCode, renderArticleSource } from './../../functions/articleRenderer';
 import useScript from './../hooks/useScript';
@@ -24,7 +24,7 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
   initEmbed(containerRef);
   
   return (
-    <div ref={containerRef} className="content">
+    <div ref={containerRef} className="grid-article-content">
       {
         content.map((block, inx) => {
           if(renderContents[block.type] === undefined) return null;

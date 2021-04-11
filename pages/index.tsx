@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Container from '../components/layout/Container';
 import Measure from '../components/layout/Measure';
-import SEO from '../components/layout/SEO';
+import SEO from '../components/utilities/SEO';
 import useTranslation from 'next-translate/useTranslation';
 import PalceholderArticleList from '../components/placeholder/article/PlaceholderArticleList';
 import LazyLoading from '../components/utilities/LazyLoading';
@@ -72,7 +72,7 @@ const sortArticle = (articles: Graph.Article[]) => {
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const client = initializeApollo();
-  
+
   const articleLatest = (await client.query({
     query: graphQuery.QUERY_ARTICLE_LATEST,
     variables: {

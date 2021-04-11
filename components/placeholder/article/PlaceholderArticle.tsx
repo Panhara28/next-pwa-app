@@ -7,7 +7,7 @@ const PalceholderArticle: React.FunctionComponent = () => {
   return (
     <ArticleLayout>
       <ArticleLayoutDetail>
-        <div className="title">
+        <div className="grid-article-title">
           <div className="ph-item" style={{ margin: 0 }}>
             <div className="ph-col-12">
               <div className="ph-row">
@@ -19,13 +19,13 @@ const PalceholderArticle: React.FunctionComponent = () => {
           </div>
         </div>
 
-        <div className="thumbnail">
+        <div className="grid-article-thumbnail">
           <div className="ph-item">
             <div className="ph-picture"></div>
           </div>
         </div>
 
-        <div className="summary">
+        <div className="grid-article-summary">
           <div className="ph-item">
             <div className="ph-col-12">
               <div className="ph-row">

@@ -7,7 +7,7 @@ import Image from "next/image";
 import { parsedImage } from './../../functions/Image';
 import { getArticleCategoryName, getArticleTitleSlug } from './../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from './../../functions/date';
-import SEO from './../layout/SEO';
+import SEO from '../utilities/SEO';
 import ArticleTracker from "./ArticleTracker";
 import ArticleRelated from "./ArticleRelated";
 
@@ -28,13 +28,13 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
         />
 
         <ArticleLayoutDetail>
-          <h1 className="title">{ article.title }</h1>
-          <div className="thumbnail"><Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={420} height={220}/></div>
-          <div className="summary">
-            <div className="category">{getArticleCategoryName(article)}</div>
-            <span className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>
-            <span className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</span>
-            <p className="title-sub">{article.summary}</p>
+          <h1 className="grid-article-title">{ article.title }</h1>
+          <div className="grid-article-thumbnail"><Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={420} height={220}/></div>
+          <div className="grid-article-summary">
+            <div className="article-summary-category">{getArticleCategoryName(article)}</div>
+            <span className="article-summary-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>
+            <span className="article-summary-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</span>
+            <p className="article-summary-title-sub">{article.summary}</p>
           </div>
 
           <ArticleContent article={article}/>

@@ -12,17 +12,17 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
 
   const articleNodes: ReactNode[] = articles.map(article => {
     return (
-      <div className="article-list-items" key={article.id}>
+      <div className="article-list-small-item" key={article.id}>
         <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}>
-          <a className="thumbnail">
+          <a className="article-list-small-item-thumbnail">
             <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={350} height={185}/>
           </a>
         </Link>
 
-        <div className="detail">
-          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h3 className="title">{article.title}</h3></a></Link>
-          <div className="datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
-          <div className="datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
+        <div className="article-list-small-item-detail">
+          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h3 className="article-list-small-item-detail-title">{article.title}</h3></a></Link>
+          <div className="article-list-small-item-detail-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
+          <div className="article-list-small-item-detail-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
         </div>
       </div>
     );
@@ -30,14 +30,14 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
 
   return (
     <div className="article-related">
-      <div className="author">
+      <div className="article-related-author">
         <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={60} height={60}/>
-        <div className="name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
+        <div className="article-related-name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
       </div>
 
       <h2>{ t("article:related-article") }</h2>
 
-      <div className="article-list small related">
+      <div className="article-list-small article-list-related">
         { articleNodes }
       </div>
     </div> 

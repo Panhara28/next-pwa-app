@@ -25,9 +25,9 @@ export const renderArticleImage = (block, key) => {
   const url = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height, 100, false);
 
   return (
-    <figure key={key} className="image">
+    <figure key={key} className="article-content-image">
       <Image src={url} alt={url} width={block.data.file.width} height={block.data.file.height}/>
-      { block.data.caption && <figcaption className="caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}/> }
+      { block.data.caption && <figcaption className="article-content-caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}/> }
     </figure>
   );
 }
@@ -38,14 +38,14 @@ export const renderArticleEmbed = (block, key) => {
 
   if(rawServices.indexOf(data.service) > -1) {
     return (
-      <div key={key} className={"embed " + data.service}>
+      <div key={key} className={"article-content-embed " + data.service}>
         <div dangerouslySetInnerHTML={{ __html: data.source }}></div>
-        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
+        { data.caption && <span className="article-content-caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );
   } else if (data.service === "youtube") {
     return (
-      <div key={key} className={"embed " + data.service}>
+      <div key={key} className={"article-content-embed " + data.service}>
         <div style={{ width: "100%", position: "relative", paddingBottom: ((data.height / data.width) * 100) + "%", height: "0px" }}>
           <iframe 
             style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
@@ -58,21 +58,21 @@ export const renderArticleEmbed = (block, key) => {
             src={data.embedUrl}
             />
         </div>
-        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
+        { data.caption && <span className="article-content-caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );
   } else if(data.service === "facebook_video") {
     return(
-      <div key={key} className={"embed " + data.service}>
+      <div key={key} className={"article-content-embed " + data.service}>
         <div className="fb-video" data-href={data.embedUrl}></div>
-        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
+        { data.caption && <span className="article-content-caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );
   } else if(data.service === "facebook_post") {
     return(
-      <div key={key} className={"embed " + data.service}>
+      <div key={key} className={"article-content-embed " + data.service}>
         <div className="fb-post" data-href={data.embedUrl}></div>
-        { data.caption && <span className="caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
+        { data.caption && <span className="article-content-caption" dangerouslySetInnerHTML={{ __html: data.caption }}/> }
       </div>
     );
   }
@@ -92,18 +92,18 @@ export const renderArticleListItem = (block, key) => {
 
 export const renderArticleBlockQuote = (block, key) => {
   return (
-    <figure key={key} className="blockquote">
+    <figure key={key} className="article-content-blockquote">
       <blockquote>
         <p dangerouslySetInnerHTML={{ __html: block.data.text }}/>
       </blockquote>
-      { block.data.caption && <figcaption className="caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}/> }
+      { block.data.caption && <figcaption className="article-content-blockquote-caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}/> }
     </figure>
   );
 }
 
 export const renderArticleCode = (block, key) => {
   return(
-    <pre className="code" key={key} style={{ height: block.data.height + "px" }}>
+    <pre className="article-content-code" key={key} style={{ height: block.data.height + "px" }}>
       <code>{block.data.code}</code>
     </pre>
   );

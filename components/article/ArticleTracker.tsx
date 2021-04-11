@@ -23,6 +23,21 @@ const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
     });
   };
 
+  const onVisibilityChange = () => {
+    if(document.visibilityState === "hidden") {
+      onUnload();
+    } else {
+      // Reset session timer and count new pageview
+      // When user revisit the page
+      start = Date.now();
+      send({
+        event: "pageview",
+        site_id: process.env.NEXT_PUBLIC_SITE_ID,
+        article_id: props.articleID
+      });
+    } 
+  }
+
   const getScrollLevel = (level: number) => {
     if (level < 0.25) return 25;
     if (level < 0.5) return 50;
@@ -44,14 +59,11 @@ const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
       article_id: props.articleID
     });
 
-    // Because unload event is extremely unreliable, especially on mobile
-    // Ref: https://developers.google.com/web/updates/2018/07/page-lifecycle-api?utm_source=lighthouse&utm_medium=devtools#the-unload-event
-    const terminationEvent = 'onpagehide' in self ? 'pagehide' : 'unload';
-    window.addEventListener(terminationEvent, onUnload);
+    window.document.addEventListener("visibilitychange", onVisibilityChange);
     window.addEventListener("scroll", onScroll);
 
     return () => {
-      window.removeEventListener(terminationEvent, onUnload);
+      window.document.removeEventListener("visibilitychange", onVisibilityChange);
       window.removeEventListener("scroll", onScroll);
       onUnload();
     }
