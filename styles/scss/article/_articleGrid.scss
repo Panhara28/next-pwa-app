@@ -184,6 +184,10 @@
           color: var(--color-text-primary);
           text-shadow: none;
           box-shadow: none;
+
+          .article-top-big-title {
+            color: var(--color-primary);
+          }
         }
 
         img {
