@@ -19,10 +19,14 @@
       .article-list-item-detail-title {
         margin: 0;
         display: -webkit-box;
-        -webkit-line-clamp: 3;
+        -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;  
         overflow: hidden;
         color: var(--color-text-primary);
+
+        &:hover {
+          color: var(--color-secondary);
+        }
       }
 
       .article-list-item-detail-title-sub {
@@ -90,6 +94,10 @@
         -webkit-box-orient: vertical;  
         overflow: hidden;
         color: var(--color-text-primary);
+
+        &:hover {
+          color: var(--color-secondary);
+        }
       }
 
       .article-list-small-item-detail-title-sub {

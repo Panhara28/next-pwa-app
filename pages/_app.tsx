@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
 import { ApolloProvider } from "@apollo/client";
-import '../styles/globals.css';
-import '../styles/scss/main.scss';
 import useApollo from '../lib/apolloClient';
 import ThemeProvider from '../components/context/ThemeContext';
 import { Router } from 'next/router';
 import  ReactGA  from 'react-ga';
+import '../styles/scss/main.scss';
 
 function MyApp({ Component, pageProps }) {
   const apolloClient = useApollo(pageProps.initialApolloState);

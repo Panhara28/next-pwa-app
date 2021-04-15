@@ -9,11 +9,18 @@ body {
   box-sizing: border-box;
 }
 
+/* Forcing word break in firefox to break khmer word*/
+@supports (-moz-appearance:none) {
+  *, *::after, *::before {
+    word-break: break-all;
+  }
+}
+
 a {
   color: #3498DB;
   text-decoration: none;
 }
 
 p, ul, ol {
-  font-size: 1.125rem;
+  font-size: rem(18px);
 }
