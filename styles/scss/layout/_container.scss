@@ -7,7 +7,7 @@
   .container-grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    gap: rem(16px);
+    gap: rem(32px);
     grid-template-areas: 
       "article-top article-top article-top"
       "article-latest article-latest article-weekly"

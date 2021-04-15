@@ -13,6 +13,7 @@ import ArticleList from '../components/article/ArticleList';
 import { graphQuery } from '../generated/graphQuery';
 import { getEndOfWeekDate, getStartOfWeekDate } from './../functions/date';
 import ArticleListSmall from '../components/article/ArticleListSmall';
+import ArticleTop from '../components/article/ArticleTop';
 
 const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const articleLatest: Graph.Article[] = data.articleLatest;
@@ -29,7 +30,9 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
       <Measure>
         <div className="container-grid">
           <div className="grid-article-top">
-            {/* <h2 className="uppercase">{t("common:trending-article")}</h2> */}
+            <h2 className="uppercase">{t("common:trending-article")}</h2>
+
+            <ArticleTop articleTop={articleTop5}/>
           </div>
           <div className="grid-article-weekly">
             <h2 className="uppercase">{t("common:weekly-article")}</h2>
