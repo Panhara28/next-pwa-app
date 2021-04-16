@@ -43,7 +43,7 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
           checkReachBackBottom = false;
         } 
 
-        if(box.top >= 0) checkReachTop = true;
+        if(box.top - thresholdTop >= 0) checkReachTop = true;
       }
     }
   };
