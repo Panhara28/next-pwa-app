@@ -25,7 +25,7 @@ function getInitialColorMode() {
 
 export const ThemeContext = React.createContext({colorMode: 'light', setColorMode: (value) => {}});
 
-const ThemeProvider : React.FunctionComponent = (props) => {
+const ThemeProvider = (props: React.PropsWithChildren<{}>) => {
   const [colorMode, rawSetColorMode] = useState(getInitialColorMode);
 
   const setColorMode = (value) => {

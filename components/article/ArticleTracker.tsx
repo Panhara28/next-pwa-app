@@ -1,15 +1,48 @@
 import { useEffect, useRef } from "react";
 
-const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
+type Props = {
+  articleId: number 
+  onReach: () => void
+}
+
+const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
   let level: number = 0;
   let start: number = Date.now();
+  let scrollPosition: number = 0;
+  let scrollDirection: string = "down";
+  let checkReachTop: boolean = true;
+  let checkReachBackBottom: boolean = false;
+  let navbarHeight: number = 0;
   const containerRef = useRef<HTMLDivElement>();
 
   const onScroll = () => {
     if(containerRef.current) {
       const box = containerRef.current.getBoundingClientRect();
-      const progress = (document.documentElement.clientHeight - box.top) / box.height;
+
+      // Detect scroll direction
+      scrollDirection = scrollPosition <= window.scrollY ? "down" : "up";
+      scrollPosition = window.scrollY;
+      
+      // Calculate scroll level
+      const progress = (window.innerHeight - box.top) / box.height;
       level = Math.max(level, progress);
+
+      // Calcuate reach top and reach back to bottom
+      if(scrollDirection === "down") {
+        if(checkReachTop && (box.top - navbarHeight) <= 0) {
+          props.onReach();
+          checkReachTop = false;
+        } 
+
+        if(box.bottom <= 0) checkReachBackBottom = true;
+      } else if(scrollDirection === "up") {
+        if(checkReachBackBottom && (box.bottom + navbarHeight) >= 0) {
+          props.onReach();
+          checkReachBackBottom = false;
+        } 
+
+        if(box.top >= 0) checkReachTop = true;
+      }
     }
   };
 
@@ -17,7 +50,7 @@ const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
     send({
       event: "unload",
       site_id: process.env.NEXT_PUBLIC_SITE_ID,
-      article_id: props.articleID,
+      article_id: props.articleId,
       time: Date.now() - start,
       scroll: getScrollLevel(level),
     });
@@ -33,7 +66,7 @@ const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
       send({
         event: "pageview",
         site_id: process.env.NEXT_PUBLIC_SITE_ID,
-        article_id: props.articleID
+        article_id: props.articleId
       });
     } 
   }
@@ -53,10 +86,12 @@ const ArticleTracker = (props: React.PropsWithChildren<{ articleID }>) => {
   }
 
   useEffect(() => {
+    navbarHeight = document.querySelector('.navbar').clientHeight;
+
     send({
       event: "pageview",
       site_id: process.env.NEXT_PUBLIC_SITE_ID,
-      article_id: props.articleID
+      article_id: props.articleId
     });
 
     window.document.addEventListener("visibilitychange", onVisibilityChange);

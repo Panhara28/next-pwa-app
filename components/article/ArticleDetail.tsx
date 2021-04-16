@@ -10,22 +10,33 @@ import { getDateByFormat, getElapseTime } from './../../functions/date';
 import SEO from '../utilities/SEO';
 import ArticleTracker from "./ArticleTracker";
 import ArticleRelated from "./ArticleRelated";
+import { useRouter } from 'next/router';
+import { useState, ReactNode } from 'react';
 
 const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
+  const router = useRouter();
   const pathname = `/article/${article.id}`;
   const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
+  const [ seo, setSeo ] = useState<ReactNode>(null);
 
   return (
-    <ArticleTracker articleID={article.id}>
-      <ArticleLayout>
-        <SEO 
+    <ArticleTracker 
+      articleId={article.id}
+      onReach={() => {
+        setSeo(null);// Resetting SEO
+        setSeo(<SEO 
           title={article.title}
           pathname={pathname}
           canonical={canonical}
           description={article.summary}
           type={"article"}
           image={article.thumbnail}
-        />
+        />);
+        router.replace(canonical, undefined, { shallow: true });
+      }}
+    >
+      <ArticleLayout>
+        {seo}
 
         <ArticleLayoutDetail>
           <h1 className="grid-article-title">{ article.title }</h1>

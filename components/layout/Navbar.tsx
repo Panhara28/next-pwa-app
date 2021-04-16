@@ -2,7 +2,7 @@ import Link from 'next/link';
 import React, { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
 
-const Navbar: React.FunctionComponent = () => {
+const Navbar = (props: React.PropsWithChildren<{}>) => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
 
   if(process.browser) {

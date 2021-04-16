@@ -5,7 +5,7 @@ import React, { ReactNode } from 'react';
 import { Graph } from '../../generated/graph';
 import { graphQuery } from '../../generated/graphQuery';
 
-const NavbarCategory: React.FunctionComponent = () => {
+const NavbarCategory = (props: React.PropsWithChildren<{}>) => {
   const router = useRouter();
   const { slug } = router.query;
   

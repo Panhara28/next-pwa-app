@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Measure: React.FunctionComponent = (props) => {
+const Measure = (props: React.PropsWithChildren<{}>) => {
   return (
     <div className="measure">
       {props.children}

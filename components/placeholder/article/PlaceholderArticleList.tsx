@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-const PalceholderArticleList: React.FunctionComponent = () => {
+const PalceholderArticleList = (props: React.PropsWithChildren<{}>) => {
   let placeholders: ReactNode[] = [];
 
   for(let i = 0; i <= 2; i++) {

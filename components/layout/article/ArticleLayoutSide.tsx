@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ArticleLayoutSide: React.FunctionComponent = (props) => {
+const ArticleLayoutSide = (props: React.PropsWithChildren<{}>) => {
   return (
     <div className="grid-article-side">
       {props.children}

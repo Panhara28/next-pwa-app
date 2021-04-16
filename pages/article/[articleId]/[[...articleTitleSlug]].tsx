@@ -9,19 +9,28 @@ import LazyLoading from '../../../components/utilities/LazyLoading';
 import ArticleDetail from './../../../components/article/ArticleDetail';
 import ArticleNext from '../../../components/article/ArticleNext';
 import { getArticleTitleSlug } from './../../../functions/articleHelper';
-import { useRouter } from 'next/router';
 import { graphQuery } from '../../../generated/graphQuery';
+import SEO from './../../../components/utilities/SEO';
 
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const article: Graph.Article = data.article;
   const articleRelated: Graph.Article[] = data.articleRelated;
-
+  const pathname = `/article/${article.id}`;
+  const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
   const [ nextIds, setNextIds ] = useState<number[]>(article.nextId ? [ article.nextId ] : []);
-  const router = useRouter();
 
   return (
     <Container>
       <Measure>
+        <SEO 
+          title={article.title}
+          pathname={pathname}
+          canonical={canonical}
+          description={article.summary}
+          type={"article"}
+          image={article.thumbnail}
+        />
+
         <ArticleDetail article={article} articleRelated={articleRelated}/>
         
         {
@@ -29,8 +38,6 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
             return (
               <LazyLoading key={inx}>
                 <ArticleNext nextId={nextId} onCompleted={(article) => { 
-                  if(article) router.replace( `/article/${article.id}/${getArticleTitleSlug(article.title)}`, undefined, { shallow: true });
-                  
                   if(article.nextId) {
                     setNextIds([...nextIds, article.nextId]); 
                   }
