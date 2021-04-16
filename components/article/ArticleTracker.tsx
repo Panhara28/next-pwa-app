@@ -13,6 +13,8 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
   let checkReachTop: boolean = true;
   let checkReachBackBottom: boolean = false;
   let navbarHeight: number = 0;
+  const thresholdTop: number = 200;
+  const thresholdBottom: number = 400;
   const containerRef = useRef<HTMLDivElement>();
 
   const onScroll = () => {
@@ -29,14 +31,14 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
 
       // Calcuate reach top and reach back to bottom
       if(scrollDirection === "down") {
-        if(checkReachTop && (box.top - navbarHeight) <= 0) {
+        if(checkReachTop && (box.top - navbarHeight - thresholdTop) <= 0) {
           props.onReach();
           checkReachTop = false;
         } 
 
         if(box.bottom <= 0) checkReachBackBottom = true;
       } else if(scrollDirection === "up") {
-        if(checkReachBackBottom && (box.bottom + navbarHeight) >= 0) {
+        if(checkReachBackBottom && (box.bottom + navbarHeight - thresholdBottom) >= 0) {
           props.onReach();
           checkReachBackBottom = false;
         } 
