@@ -36,6 +36,7 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
           checkReachTop = false;
         } 
 
+        // Only check reach back to bottom when uses scroll down pass container's bottom
         if((box.bottom - thresholdBottom) <= 0) checkReachBackBottom = true;
       } else if(scrollDirection === "up") {
         if(checkReachBackBottom && (box.bottom + navbarHeight - thresholdBottom) >= 0) {
@@ -43,6 +44,7 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
           checkReachBackBottom = false;
         } 
 
+        // Only check reach top when user scroll up pass container's top
         if(box.top - thresholdTop >= 0) checkReachTop = true;
       }
     }
