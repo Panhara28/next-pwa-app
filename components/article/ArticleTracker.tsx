@@ -36,7 +36,7 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
           checkReachTop = false;
         } 
 
-        if(box.bottom <= 0) checkReachBackBottom = true;
+        if((box.bottom - thresholdBottom) <= 0) checkReachBackBottom = true;
       } else if(scrollDirection === "up") {
         if(checkReachBackBottom && (box.bottom + navbarHeight - thresholdBottom) >= 0) {
           props.onReach();
