@@ -78,6 +78,10 @@
           .article-top-big-detail-author-name {
             margin: 0 rem(8px);
           }
+
+          .article-top-big-detail-datetime {
+            margin: rem(4px) 0;
+          }
         }
       }
 
@@ -141,6 +145,14 @@
         .article-top-card-detail-small-author-name {
           margin: 0 rem(8px);
         }
+
+        .article-top-card-detail-small-break {
+          width: 100%;
+        }
+
+        .article-top-card-detail-small-datetime {
+          margin: rem(4px) 0;
+        }
       }
     }
 
@@ -188,6 +200,12 @@
           .article-top-big-title {
             color: var(--color-text-primary);
             -webkit-line-clamp: 4;
+          }
+
+          .article-top-big-detail {
+            .article-top-big-detail-break {
+              width: 100%;
+            }
           }
         }
 

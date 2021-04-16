@@ -172,9 +172,9 @@
 
       .article-related-author {
         width: 100%;
-        line-height: 60px;
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
   
         img {
           border: 2px solid var(--color-secondary)!important;
