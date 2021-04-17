@@ -12,23 +12,24 @@ type Props = {
 
 const SEO: FunctionComponent<Props> = (props) => {
   const url = process.env.NEXT_PUBLIC_URL + (props.pathname ? props.pathname : "");
-  const cononical = process.env.NEXT_PUBLIC_URL + (props.canonical ? props.canonical : "");
+  const canonical = process.env.NEXT_PUBLIC_URL + (props.canonical ? props.canonical : "");
   const siteName = process.env.NEXT_PUBLIC_TITLE;
   const type = props.type ? props.type : "website";
   const title = (props.title ? props.title + " - " : "") + process.env.NEXT_PUBLIC_TITLE;
   const description = props.description ? props.description : `Visit ${process.env.NEXT_PUBLIC_TITLE} for up-to-the-minute news, breaking news, and feature stories.`;
-  const image = props.image ? props.image : "/assets/fallbackseo.jpg";
+  const image = props.image ? props.image : process.env.NEXT_PUBLIC_URL + "/assets/fallbackseo.jpg";
 
   return (
     <Head>
       <title>{(props.title ? props.title + " - " : "") + process.env.NEXT_PUBLIC_TITLE}</title>
+
       {/* Metatag Data */}
       <meta charSet='utf-8'/>
       <meta name="Content-Type-Script" content="text/javascript"/>
       <meta name="Content-Type-Style" content="text/css"/>
       <meta name="description" content={description}/>	
       <meta name="referrer" content="always" />
-      <link rel="canonical" href={cononical} key={"canonical"}/>
+      <link rel="canonical" href={canonical} key={"canonical"}/>
 
       {/* Facebook Meta */}
       <meta property="og:url" content={url} key={"fb-url"}/>

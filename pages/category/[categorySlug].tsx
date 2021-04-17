@@ -27,7 +27,11 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
 
   return (
     <Container>
-      <SEO title={category.name.kh}/>
+      <SEO 
+        title={category.name.kh}
+        pathname={`/category/${category.alias}`}
+        canonical={`/category/${category.alias}`}
+      />
 
       <Measure>
         <div className="container-grid">
