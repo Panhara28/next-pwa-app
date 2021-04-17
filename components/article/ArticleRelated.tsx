@@ -20,7 +20,7 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
         </Link>
 
         <div className="article-list-small-item-detail">
-          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h3 className="article-list-small-item-detail-title">{article.title}</h3></a></Link>
+          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h4 className="article-list-small-item-detail-title">{article.title}</h4></a></Link>
           <div className="article-list-small-item-detail-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
           <div className="article-list-small-item-detail-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
         </div>

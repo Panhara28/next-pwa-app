@@ -11,6 +11,7 @@ import ArticleNext from '../../../components/article/ArticleNext';
 import { getArticleTitleSlug } from './../../../functions/articleHelper';
 import { graphQuery } from '../../../generated/graphQuery';
 import SEO from './../../../components/utilities/SEO';
+import LocaleFlag from '../../../components/utilities/LocaleFlag';
 
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const article: Graph.Article = data.article;
@@ -33,6 +34,14 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
 
         <ArticleDetail article={article} articleRelated={articleRelated}/>
         
+        <LocaleFlag locales={["km"]}>
+          <div className="contributor-registration">
+            <h3>
+              ចង់ក្លាយជាអ្នកសរសេរក្រៅម៉ោងមានប្រាក់ចំណូល <a target="_blank" rel="noopener" href="https://editor.khmerload.com/contributor/registration">សូមចុះឈ្មោះទីនេះ <i className="fal fa-pencil-alt fa-lg"></i></a>
+            </h3>
+          </div>
+        </LocaleFlag>
+
         {
           nextIds.map((nextId, inx) => {
             return (

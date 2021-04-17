@@ -18,7 +18,7 @@ const ArticleListSmall = ({ articles }: { articles: Graph.Article[] }) => {
         </Link>
 
         <div className="article-list-small-item-detail">
-          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h3 className="article-list-small-item-detail-title">{article.title}</h3></a></Link>
+          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h4 className="article-list-small-item-detail-title">{article.title}</h4></a></Link>
 
           <div className="article-list-small-item-detail-author">
             <div className="article-list-small-item-detail-author-category">{getArticleCategoryName(article)}</div>
