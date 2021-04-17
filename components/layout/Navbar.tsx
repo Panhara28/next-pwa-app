@@ -42,7 +42,6 @@ const toggleDarkMode = (colorMode, setColorMode) => {
   if(colorMode === "dark") {
     theme = {
       '--color-bg-primary': '#D7DBDD',
-      '--color-bg-navbar': process.env.NEXT_PUBLIC_COLOR_PRIMARY,
       '--color-bg-container': '#FBFCFC',
       '--color-bg-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--color-bg-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%',
       '--color-text-primary': '#000000',
@@ -51,7 +50,6 @@ const toggleDarkMode = (colorMode, setColorMode) => {
   } else {
     theme = {
       '--color-bg-primary': '#292929',
-      '--color-bg-navbar': '#000000',
       '--color-bg-container': '#393939',
       '--color-bg-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--color-bg-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%',
       '--color-text-primary': '#FDFEFE',

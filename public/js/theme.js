@@ -31,7 +31,6 @@
     if(colorMode === "dark") {
       theme = {
         '--color-bg-primary': '#292929',
-        '--color-bg-navbar': '#000000',
         '--color-bg-container': '#393939',
         '--color-bg-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--color-bg-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%',
         '--color-text-primary': '#FDFEFE',
