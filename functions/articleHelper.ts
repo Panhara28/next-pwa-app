@@ -28,3 +28,15 @@ export const getArticleTitleSlug = (articleTitle: string) => {
 
   return encodeURIComponent(titleSlug);
 }
+
+export const sortArticle = (articles: Graph.Article[]) => {
+  let articleList = [...articles];
+  
+  // Sort by pageview
+  articleList.sort((a, b) => b.pageview - a.pageview);
+
+  // Get top 5 and remove from the list
+  const articleTop5 = articleList.splice(0, 5);
+
+  return [ articleTop5, articleList ];
+}

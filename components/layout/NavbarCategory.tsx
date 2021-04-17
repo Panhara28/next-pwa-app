@@ -7,10 +7,10 @@ import { graphQuery } from '../../generated/graphQuery';
 
 const NavbarCategory = (props: React.PropsWithChildren<{}>) => {
   const router = useRouter();
-  const { slug } = router.query;
+  const { categorySlug } = router.query;
   
   let categoryNodes: ReactNode | ReactNode[];
-  const { data, loading, error } = useQuery<Graph.Query>(graphQuery.QUERY_CATEGORY, {
+  const { data } = useQuery<Graph.Query>(graphQuery.QUERY_CATEGORY, {
     variables: {
       pagination: { page: 1, size: 100},
       parentId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
@@ -21,7 +21,7 @@ const NavbarCategory = (props: React.PropsWithChildren<{}>) => {
   });
   
   if(data && data.categoryList) {
-    categoryNodes = renderCategory(data.categoryList, slug as string);
+    categoryNodes = renderCategory(data.categoryList, categorySlug as string);
   }
 
   return (
@@ -33,12 +33,12 @@ const NavbarCategory = (props: React.PropsWithChildren<{}>) => {
   );
 }
 
-const renderCategory = (data: Graph.CategoryList, slug: string) => {
+const renderCategory = (data: Graph.CategoryList, categorySlug: string) => {
   const categoreis: Graph.Category[] = data.data;
   const categoryNodes: ReactNode[] = categoreis.map((category, inx) => {
     return (
       <Link key={inx} href={`/category/${category.alias}`}>
-        <a className={"navbar-category-items" + (category.alias === slug ? " active" : "")}>{category.name.kh}</a>
+        <a className={"navbar-category-items" + (category.alias === categorySlug ? " active" : "")}>{category.name.kh}</a>
       </Link>
     );
   });

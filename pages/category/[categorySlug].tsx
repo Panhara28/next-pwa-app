@@ -1,29 +1,32 @@
 import React, { useState } from 'react';
-import Container from '../components/layout/Container';
-import Measure from '../components/layout/Measure';
-import SEO from '../components/utilities/SEO';
+import Container from '../../components/layout/Container';
+import Measure from '../../components/layout/Measure';
+import SEO from '../../components/utilities/SEO';
 import useTranslation from 'next-translate/useTranslation';
-import PalceholderArticleList from '../components/placeholder/article/PlaceholderArticleList';
-import LazyLoading from '../components/utilities/LazyLoading';
-import ArticleListNext from '../components/article/ArticleListNext';
+import PalceholderArticleList from '../../components/placeholder/article/PlaceholderArticleList';
+import LazyLoading from '../../components/utilities/LazyLoading';
+import ArticleListNext from '../../components/article/ArticleListNext';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { initializeApollo } from './../lib/apolloClient';
-import { Graph } from '../generated/graph';
-import ArticleList from '../components/article/ArticleList';
-import { graphQuery } from '../generated/graphQuery';
-import { getEndOfWeekDate, getStartOfWeekDate } from './../functions/date';
-import ArticleListSmall from '../components/article/ArticleListSmall';
-import ArticleTop from '../components/article/ArticleTop';
-import { sortArticle } from '../functions/articleHelper';
+import { initializeApollo } from '../../lib/apolloClient';
+import { Graph } from '../../generated/graph';
+import ArticleList from '../../components/article/ArticleList';
+import { graphQuery } from '../../generated/graphQuery';
+import { getEndOfWeekDate, getStartOfWeekDate } from '../../functions/date';
+import ArticleListSmall from '../../components/article/ArticleListSmall';
+import ArticleTop from '../../components/article/ArticleTop';
+import { sortArticle } from '../../functions/articleHelper';
+import { useRouter } from 'next/router';
 
-const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const articleLatest: Graph.Article[] = data.articleLatest;
   const articleWeekly: Graph.Article[] = data.articleWeekly;
 
   const [ articleTop5, articleList ] = sortArticle(articleLatest);
   const { t } = useTranslation();
-  const [ nextPages, setNextPages ] = useState<number[]>([2]);
-  
+  const [ nextPages, setNextPages ] = useState<number[]>([2]);  
+  const router = useRouter();
+  const { categorySlug } = router.query;
+
   return (
     <Container>
       <SEO/>
@@ -46,7 +49,7 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
               nextPages.map((page, inx) => {
                 return (
                   <LazyLoading key={inx}>
-                    <ArticleListNext page={page} onCompleted={(nextPage) => { setNextPages([...nextPages, nextPage]); }}/>
+                    <ArticleListNext page={page} categorySlug={categorySlug as string} onCompleted={(nextPage) => { setNextPages([...nextPages, nextPage]); }}/>
                   </LazyLoading>
                 );
               })
@@ -60,8 +63,9 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   const client = initializeApollo();
+  const { categorySlug } = context.query;
 
   const articleLatest = (await client.query({
     query: graphQuery.QUERY_ARTICLE_LATEST,
@@ -74,6 +78,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
         type: "PUBLISHED",
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
         categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
+        categorySlug: !process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categorySlug : undefined,
+        categorySubSlug: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categorySlug : undefined,
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS)
       }, sort: "PUBLISHED"
     }
@@ -90,6 +96,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
         type: "PUBLISHED",
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
         categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
+        categorySlug: !process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categorySlug : undefined,
+        categorySubSlug: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categorySlug : undefined,
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS),
         startDate: getStartOfWeekDate(),
         endDate: getEndOfWeekDate()
@@ -107,4 +115,4 @@ export const getServerSideProps: GetServerSideProps = async () => {
   };
 }
 
-export default Home;
+export default Category;

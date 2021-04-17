@@ -54,7 +54,7 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
 }
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const { articleId } = context.params;
+  const { articleId } = context.query;
 
   const client = initializeApollo();
   const article = (await client.query({
