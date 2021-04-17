@@ -13,17 +13,19 @@ $content-padding-mobile: rem(14px);
 :root {
   --color-primary: #{$color-primary};
   --color-secondary: #{$color-secondary};
+  
+  --color-bg-primary: #D7DBDD;
+  --color-bg-navbar: var(--color-primary);
+  --color-bg-container: #FBFCFC;
+  --color-bg-placeholder-animation: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--color-bg-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%;
+
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: #474747;
+
   --color-black: #000000;
   --color-white: #FDFEFE;
   --color-red: #E74C3C;
   --color-yellow: #F1C40F;
   --color-green: #2ECC71;
   --color-blue: #3498DB;
-  --color-text-primary: var(--color-black);
-  --color-text-secondary: #474747;
-
-  --bg-color-navbar: var(--color-primary);
-  --bg-color-navbar-category: #D7DBDD;
-  --bg-color-container: #FBFCFC;
-  --bg-color-placeholder-animation: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--bg-color-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%;
 }

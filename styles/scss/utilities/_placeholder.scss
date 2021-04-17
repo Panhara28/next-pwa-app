@@ -32,8 +32,8 @@
 	padding: rem(30px) rem(15px) rem(15px);
 	overflow: hidden;
 	margin-bottom: rem(30px);
-	background-color: var(--bg-color-container);
-	border: 2px solid var(--bg-color-navbar-category);
+	background-color: var(--color-bg-container);
+	border: 2px solid var(--color-bg-primary);
 	border-radius: 10px;
 	box-sizing: border-box;
 
@@ -50,7 +50,7 @@
 		margin-left: -250%;
 		-webkit-animation: phAnimation 0.6s linear infinite;
 		animation: phAnimation 0.6s linear infinite;
-		background: var(--bg-color-placeholder-animation);
+		background: var(--color-bg-placeholder-animation);
 	}
 
 	>* {
@@ -70,7 +70,7 @@
 	div {
 		height: rem(10px);
 		margin-bottom: rem(7.5px);
-		background-color: var(--bg-color-navbar-category);
+		background-color: var(--color-bg-primary);
 	}
 
 	.big {
@@ -118,7 +118,7 @@
 	position: relative;
 	width: 100%;
 	min-width: 50px;
-	background-color: var(--bg-color-navbar-category);
+	background-color: var(--color-bg-primary);
 	margin-bottom: rem(15px);
 	border-radius: 50%;
 	overflow: hidden;
@@ -133,7 +133,7 @@
 .ph-picture {
 	width: 100%;
 	height: rem(120px);
-	background-color: var(--bg-color-navbar-category);
+	background-color: var(--color-bg-primary);
 	margin-bottom: rem(15px);
 
   &.small {

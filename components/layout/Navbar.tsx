@@ -41,21 +41,21 @@ const toggleDarkMode = (colorMode, setColorMode) => {
   let theme = {};
   if(colorMode === "dark") {
     theme = {
+      '--color-bg-primary': '#D7DBDD',
+      '--color-bg-navbar': process.env.NEXT_PUBLIC_COLOR_PRIMARY,
+      '--color-bg-container': '#FBFCFC',
+      '--color-bg-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--color-bg-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%',
       '--color-text-primary': '#000000',
-      '--color-text-secondary': '#474747',
-      '--bg-color-navbar': process.env.NEXT_PUBLIC_COLOR_PRIMARY,
-      '--bg-color-navbar-category': '#D7DBDD',
-      '--bg-color-container': '#FBFCFC',
-      '--bg-color-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--bg-color-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%'
+      '--color-text-secondary': '#474747'
     };
   } else {
     theme = {
+      '--color-bg-primary': '#292929',
+      '--color-bg-navbar': '#000000',
+      '--color-bg-container': '#393939',
+      '--color-bg-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--color-bg-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%',
       '--color-text-primary': '#FDFEFE',
-      '--color-text-secondary': '#d0d3d4',
-      '--bg-color-navbar': '#000000',
-      '--bg-color-navbar-category': '#292929',
-      '--bg-color-container': '#393939',
-      '--bg-color-placeholder-animation': 'linear-gradient(90deg, hsla(0, 0%, 100%, 0) 46%, var(--bg-color-container) 50%, hsla(0, 0%, 100%, 0) 54%) 50% 50%'
+      '--color-text-secondary': '#d0d3d4'
     };
   }
 
