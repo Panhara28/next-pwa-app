@@ -7,7 +7,7 @@ import  ReactGA  from 'react-ga';
 import Loading from '../components/utilities/Loading';
 import '../styles/scss/main.scss';
 
-function MyApp({ Component, pageProps }) {
+const MyApp = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
   const router = useRouter();
   const [ loading, setLoading ] = useState<boolean>(false);

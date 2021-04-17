@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 
 const cachedScripts = [];
 
-function useScript(src, options) {
+const useScript = (src, options) => {
   const { isEnabled = true, async = false } = options || {};
 
   // Keeping track of script loaded and error state

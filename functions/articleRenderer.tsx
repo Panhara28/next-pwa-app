@@ -5,7 +5,7 @@ export const renderArticleParagraph = (block, key) => {
   return <p key={key} dangerouslySetInnerHTML={{ __html: block.data.text }}/>;
 }
 
-export function renderArticleHeader(block, key) {
+export const renderArticleHeader = (block, key) => {
   if(block.data.level === 1) {
     return <h1 key={key} dangerouslySetInnerHTML={{ __html: block.data.text }}/>;
   } else if (block.data.level === 2) {

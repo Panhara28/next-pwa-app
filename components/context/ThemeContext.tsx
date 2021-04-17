@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function getInitialColorMode() {
+const getInitialColorMode = () => {
   if(process.browser) {
     const persistedColorPreference = window.localStorage.getItem('color-mode');
     const hasPersistedPreference = typeof persistedColorPreference === 'string';

@@ -1,5 +1,5 @@
 (function () {
-  function getInitialColorMode() {
+  const getInitialColorMode = () => {
     const persistedColorPreference = window.localStorage.getItem('color-mode');
     const hasPersistedPreference = typeof persistedColorPreference === 'string';
     // If the user has explicitly chosen light or dark,
@@ -20,7 +20,7 @@
     return 'light';
   }
 
-  function setCSSVar(property, color) {
+  const setCSSVar = (property, color) => {
     document.documentElement.style.setProperty(property, color);
   }
 

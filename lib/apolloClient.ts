@@ -4,7 +4,7 @@ import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
 let apolloClient;
 console.log(`Pointing end point: ${process.env.NEXT_PUBLIC_API_URI}`);
 
-function createApolloClient() {
+const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: !process.browser, // set to true for SSR
     link: new HttpLink({
@@ -15,7 +15,7 @@ function createApolloClient() {
   });
 }
 
-export function initializeApollo(initialState = null) {
+export const initializeApollo = (initialState = null) => {
   const _apolloClient = apolloClient ?? createApolloClient();
 
   // If your page has Next.js data fetching methods that use Apollo Client,
