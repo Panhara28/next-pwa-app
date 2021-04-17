@@ -10,7 +10,7 @@ const NavbarCategory = (props: React.PropsWithChildren<{}>) => {
   const { categorySlug } = router.query;
   
   let categoryNodes: ReactNode | ReactNode[];
-  const { data } = useQuery<Graph.Query>(graphQuery.QUERY_CATEGORY, {
+  const { data } = useQuery<Graph.Query>(graphQuery.QUERY_CATEGORY_LIST, {
     variables: {
       pagination: { page: 1, size: 100},
       parentId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,

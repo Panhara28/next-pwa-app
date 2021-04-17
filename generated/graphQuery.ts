@@ -1,6 +1,17 @@
 import { gql } from '@apollo/client';
 
 const QUERY_CATEGORY = gql`
+  query Category($categorySlug: String) {
+    category(categorySlug: $categorySlug) {
+      alias, 
+      name {
+        kh
+      }
+    }
+  }
+`;
+
+const QUERY_CATEGORY_LIST = gql`
   query CategoryList($pagination: PaginationInput!, $parentId: Int, $published: Boolean, $display: Boolean, $exceptCategories: [Int]) {
     categoryList(pagination: $pagination, parentId: $parentId, published: $published, display: $display, exceptCategories: $exceptCategories) {
       data {
@@ -114,6 +125,7 @@ const QUERY_ARTICLE_RELATED = gql`
 
 export const graphQuery = {
   QUERY_CATEGORY,
+  QUERY_CATEGORY_LIST,
   QUERY_ARTICLE,
   QUERY_ARTICLE_LATEST,
   QUERY_ARTICLE_RELATED,

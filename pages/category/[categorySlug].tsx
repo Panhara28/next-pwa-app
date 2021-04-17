@@ -15,21 +15,19 @@ import { getEndOfWeekDate, getStartOfWeekDate } from '../../functions/date';
 import ArticleListSmall from '../../components/article/ArticleListSmall';
 import ArticleTop from '../../components/article/ArticleTop';
 import { sortArticle } from '../../functions/articleHelper';
-import { useRouter } from 'next/router';
 
 const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+  const category: Graph.Category = data.category;
   const articleLatest: Graph.Article[] = data.articleLatest;
   const articleWeekly: Graph.Article[] = data.articleWeekly;
 
   const [ articleTop5, articleList ] = sortArticle(articleLatest);
   const { t } = useTranslation();
   const [ nextPages, setNextPages ] = useState<number[]>([2]);  
-  const router = useRouter();
-  const { categorySlug } = router.query;
 
   return (
     <Container>
-      <SEO/>
+      <SEO title={category.name.kh}/>
 
       <Measure>
         <div className="container-grid">
@@ -49,7 +47,7 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
               nextPages.map((page, inx) => {
                 return (
                   <LazyLoading key={inx}>
-                    <ArticleListNext page={page} categorySlug={categorySlug as string} onCompleted={(nextPage) => { setNextPages([...nextPages, nextPage]); }}/>
+                    <ArticleListNext page={page} categorySlug={category.alias} onCompleted={(nextPage) => { setNextPages([...nextPages, nextPage]); }}/>
                   </LazyLoading>
                 );
               })
@@ -66,6 +64,11 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const client = initializeApollo();
   const { categorySlug } = context.query;
+
+  const category = (await client.query({
+    query: graphQuery.QUERY_CATEGORY,
+    variables: { categorySlug }
+  })).data.category;
 
   const articleLatest = (await client.query({
     query: graphQuery.QUERY_ARTICLE_LATEST,
@@ -108,6 +111,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
       data: {
+        category: category,
         articleLatest: articleLatest,
         articleWeekly: articleWeekly
       }
