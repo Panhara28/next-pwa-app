@@ -46,7 +46,14 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
               nextPages.map((page, inx) => {
                 return (
                   <LazyLoading key={inx}>
-                    <ArticleListNext page={page} onCompleted={(nextPage) => { setNextPages([...nextPages, nextPage]); }}/>
+                    <ArticleListNext
+                      page={page} 
+                      onCompleted={(articles, nextPage) => { 
+                        if(articles.length > 0) {
+                          setNextPages([...nextPages, nextPage]); 
+                        }
+                      }}
+                    />
                   </LazyLoading>
                 );
               })

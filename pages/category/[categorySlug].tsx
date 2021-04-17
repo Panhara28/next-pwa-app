@@ -51,7 +51,15 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
               nextPages.map((page, inx) => {
                 return (
                   <LazyLoading key={inx}>
-                    <ArticleListNext page={page} categorySlug={category.alias} onCompleted={(nextPage) => { setNextPages([...nextPages, nextPage]); }}/>
+                    <ArticleListNext
+                      page={page} 
+                      categorySlug={category.alias} 
+                      onCompleted={(articles, nextPage) => { 
+                        if(articles.length > 0) {
+                          setNextPages([...nextPages, nextPage]); 
+                        }
+                      }}
+                    />
                   </LazyLoading>
                 );
               })

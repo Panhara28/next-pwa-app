@@ -6,7 +6,7 @@ import ReactGA from 'react-ga';
 import ArticleList from './ArticleList';
 import { graphQuery } from "../../generated/graphQuery";
 
-const ArticleListNext = ({ page, categorySlug, onCompleted }: { page: number, categorySlug?: string, onCompleted: (nextPage: number) => void }) => {
+const ArticleListNext = ({ page, categorySlug, onCompleted }: { page: number, categorySlug?: string, onCompleted: (articles: Graph.Article[], nextPage: number) => void }) => {
   const { t } = useTranslation();
   
   let articleLatest: ReactNode;
@@ -25,9 +25,11 @@ const ArticleListNext = ({ page, categorySlug, onCompleted }: { page: number, ca
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS)
       }, sort: "PUBLISHED"
     },
-    onCompleted: () => {
-      ReactGA.pageview('/?page=' + page);
-      onCompleted(++page);
+    onCompleted: (data) => {
+      if(data && data.articleList) {
+        ReactGA.pageview(`${window.location.pathname}/?page=${page}`);
+        onCompleted(data.articleList.data, ++page);
+      }
     }
   });
 
