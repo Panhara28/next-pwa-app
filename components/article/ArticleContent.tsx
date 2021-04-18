@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Graph } from '../../generated/graph';
 import { renderArticleImage, renderArticleParagraph, renderArticleEmbed, renderArticleHeader, renderArticleListItem, renderArticleBlockQuote, renderArticleCode, renderArticleSource } from './../../functions/articleRenderer';
 import useScript from './../hooks/useScript';
+import { getArticleTitleSlug } from './../../functions/articleHelper';
 
 const ArticleContent = ({ article }: { article: Graph.Article}) => {
   const { t } = useTranslation();
@@ -46,7 +47,7 @@ const share = (article: Graph.Article) => {
   const shareData = {
     title: article.title,
     text: article.summary,
-    url: window.location.pathname,
+    url: `/article/${article.id}/${getArticleTitleSlug(article.title)}`
   }
 
   window.navigator.share(shareData);
