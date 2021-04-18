@@ -36,8 +36,20 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
           }
         })
       }
+
+      <div className="article-content-share" onClick={() => share(article)}><i className="fal fa-share-alt fa-lg"></i></div>
     </div>
   );
+}
+
+const share = (article: Graph.Article) => {
+  const shareData = {
+    title: article.title,
+    text: article.summary,
+    url: window.location.pathname,
+  }
+
+  window.navigator.share(shareData);
 }
 
 const initEmbed = (containerRef) => {

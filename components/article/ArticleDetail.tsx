@@ -32,6 +32,7 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
           type={"article"}
           image={article.thumbnail}
         />);
+
         router.replace(canonical, undefined, { shallow: true });
       }}
     >
@@ -40,7 +41,7 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
 
         <ArticleLayoutDetail>
           <h1 className="grid-article-title">{ article.title }</h1>
-          <div className="grid-article-thumbnail"><Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={420} height={220}/></div>
+          <div className="grid-article-thumbnail"><Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={420} height={220}/></div>        
           <div className="grid-article-summary">
             <div className="article-summary-category">{getArticleCategoryName(article)}</div>
             <span className="article-summary-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>

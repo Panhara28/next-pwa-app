@@ -39,7 +39,6 @@
 
       .article-summary-category {
         display: inline-block;
-        font-size: rem(16px);
         background-color: var(--color-secondary);
         color: var(--color-white);
         border-radius: 5px;
@@ -158,6 +157,15 @@
 
       mark {
         padding: rem(2px) rem(1px);
+      }
+
+      .article-content-share {
+        display: inline-block;
+        padding: rem(10px) rem(10px) rem(8px) rem(8px);
+        border-radius: 50%;
+        background-color: var(--color-secondary);
+        color: var(--color-white);
+        cursor: pointer;
       }
     }
   }
