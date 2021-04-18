@@ -11,7 +11,6 @@
 
     .navbar-category-items {
       line-height: $navbar-category-height;
-      height: $navbar-category-height;
       padding: 0 $content-padding;
       flex-shrink: 0;
       min-width: 100px;
@@ -28,7 +27,7 @@
         border-right: none;
       }
 
-      &:hover, &.active {
+      &.active {
         color: var(--color-secondary);
       }
     }
@@ -49,8 +48,18 @@
     .navbar-category-measure {
       .navbar-category-items {
         line-height: $navbar-category-height-mobile;
-        height: $navbar-category-height-mobile;
         padding: 0 $content-padding-mobile;
+      }
+    }
+  }
+}
+
+// Use this to ignore hover style on tocuh device
+@media (hover: hover) and (pointer: fine) {
+  .navbar-category {
+    .navbar-category-measure {
+      .navbar-category-items:hover {
+        color: var(--color-secondary);
       }
     }
   }

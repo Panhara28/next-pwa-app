@@ -12,7 +12,7 @@
 .loadingio-wrapper {
   position: fixed;
   display: none;
-  bottom: $content-padding;
+  bottom: calc(#{$navbar-bottom-height} + #{$content-padding});
   right: $content-padding;
   background: var(--color-bg-primary);
   border-radius: 5px;
@@ -142,7 +142,7 @@
 
 @include responsive(mobile) {
   .loadingio-wrapper {
-    bottom: $content-padding-mobile;
+    bottom: calc(#{$navbar-bottom-height} + #{$content-padding-mobile});
     right: $content-padding-mobile;
   }
 }

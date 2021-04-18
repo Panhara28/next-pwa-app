@@ -1,5 +1,6 @@
 import React from 'react';
 import Navbar from './Navbar';
+import NavbarBottom from './NavbarBottom';
 import NavbarCategory from './NavbarCategory';
 
 const Container = (props: React.PropsWithChildren<{}>) => {
@@ -11,6 +12,8 @@ const Container = (props: React.PropsWithChildren<{}>) => {
       <div className={"container"}>
         { props.children }
       </div>
+
+      <NavbarBottom/>
     </>
   );
 }

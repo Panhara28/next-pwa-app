@@ -23,10 +23,6 @@
         -webkit-box-orient: vertical;  
         overflow: hidden;
         color: var(--color-text-primary);
-
-        &:hover {
-          color: var(--color-secondary);
-        }
       }
 
       .article-list-item-detail-title-sub {
@@ -93,10 +89,6 @@
         -webkit-box-orient: vertical;  
         overflow: hidden;
         color: var(--color-text-primary);
-
-        &:hover {
-          color: var(--color-secondary);
-        }
       }
 
       .article-list-small-item-detail-title-sub {
@@ -177,6 +169,29 @@
             width: 100%;
             margin: rem(2px) 0;
           }
+        }
+      }
+    }
+  }
+}
+
+// Use this to ignore hover style on tocuh device
+@media (hover: hover) and (pointer: fine) {
+  .article-list {
+    .article-list-item {
+      .article-list-item-detail {
+        .article-list-item-detail-title:hover {
+          color: var(--color-secondary);
+        }
+      }
+    }
+  }
+
+  .article-list-small {
+    .article-list-small-item {
+      .article-list-small-item-detail {
+        .article-list-small-item-detail-title:hover {
+          color: var(--color-secondary);
         }
       }
     }

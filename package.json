@@ -5,8 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "graph": "curl https://learning-space.sgp1.digitaloceanspaces.com/khmerload-graph.ts -o generated/graph.ts"
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/client": "^3.3.11",

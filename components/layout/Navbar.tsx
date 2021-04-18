@@ -24,7 +24,6 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
 
         <div className="navbar-items-grow"></div>
         <div className="navbar-items" onClick={() => { toggleDarkMode(colorMode, setColorMode) }}><i className={"toggle-dark-mode-ico fal fa-lg" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
-        <div className="navbar-items"><i className="fal fa-search fa-lg"></i></div>
       </div>
     </div>
   );
