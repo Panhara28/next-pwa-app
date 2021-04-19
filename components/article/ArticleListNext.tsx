@@ -6,7 +6,14 @@ import ReactGA from 'react-ga';
 import ArticleList from './ArticleList';
 import { graphQuery } from "../../generated/graphQuery";
 
-const ArticleListNext = ({ page, categorySlug, onCompleted }: { page: number, categorySlug?: string, onCompleted: (articles: Graph.Article[], nextPage: number) => void }) => {
+type Props = {
+  page: number
+  categorySlug?: string
+  topic?: string 
+  onCompleted: (articles: Graph.Article[], nextPage: number) => void
+}
+
+const ArticleListNext = ({ page, topic, categorySlug, onCompleted }: Props) => {
   const { t } = useTranslation();
   
   let articleLatest: ReactNode;
@@ -16,6 +23,7 @@ const ArticleListNext = ({ page, categorySlug, onCompleted }: { page: number, ca
         page: page,
         size: 10
       }, filter:{
+        title: topic,
         format: "EDITOR_JS",
         type: "PUBLISHED",
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),

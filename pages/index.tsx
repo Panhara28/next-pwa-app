@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Container from '../components/layout/Container';
 import Measure from '../components/layout/Measure';
 import SEO from '../components/utilities/SEO';
@@ -23,6 +23,20 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
   const [ articleTop5, articleList ] = sortArticle(articleLatest);
   const { t } = useTranslation();
   const [ nextPages, setNextPages ] = useState<number[]>([2]);
+  const lazyLoadArticleList: ReactNode[] = nextPages.map((page, inx) => {
+    return (
+      <LazyLoading key={inx}>
+        <ArticleListNext
+          page={page} 
+          onCompleted={(articles, nextPage) => { 
+            if(articles.length > 0) {
+              setNextPages([...nextPages, nextPage]); 
+            }
+          }}
+        />
+      </LazyLoading>
+    );
+  });
   
   return (
     <Container>
@@ -42,22 +56,7 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
             <h2 className="uppercase">{t("common:latest-article")}</h2>
             <ArticleList articles={articleList}/>
 
-            {
-              nextPages.map((page, inx) => {
-                return (
-                  <LazyLoading key={inx}>
-                    <ArticleListNext
-                      page={page} 
-                      onCompleted={(articles, nextPage) => { 
-                        if(articles.length > 0) {
-                          setNextPages([...nextPages, nextPage]); 
-                        }
-                      }}
-                    />
-                  </LazyLoading>
-                );
-              })
-            }
+            {lazyLoadArticleList}
 
             <PalceholderArticleList/>
           </div>

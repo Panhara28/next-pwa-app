@@ -2,9 +2,50 @@ import Container from "../components/layout/Container";
 import Measure from "../components/layout/Measure";
 import SEO from "../components/utilities/SEO";
 import useTranslation from 'next-translate/useTranslation';
+import { useRef, useState, ReactNode } from 'react';
+import { useRouter } from 'next/router';
+import LazyLoading from './../components/utilities/LazyLoading';
+import ArticleListNext from './../components/article/ArticleListNext';
+import PalceholderArticleList from './../components/placeholder/article/PlaceholderArticleList';
 
 const Search = (props: React.PropsWithChildren<{}>) => {
   const { t } = useTranslation();
+  const inputRef = useRef<HTMLInputElement>();
+  const router = useRouter();
+  const { topic } = router.query;
+  const [ nextPages, setNextPages ] = useState<number[]>([1]);
+  const lazyLoadArticleList: ReactNode = topic ? 
+    <div className="search-result">
+      {
+        nextPages.map((page, inx) => {
+          return (
+            <LazyLoading key={inx}>
+              <ArticleListNext
+                page={page}
+                topic={topic as string}
+                onCompleted={(articles, nextPage) => { 
+                  if(articles.length > 0) {
+                    setNextPages([...nextPages, nextPage]); 
+                  }
+                }}
+              />
+            </LazyLoading>
+          );
+        })
+      }
+
+      <PalceholderArticleList/>
+    </div> : null;
+
+  const validate = () => {
+    return inputRef.current.reportValidity();
+  }
+
+  const search = () => {
+    if(validate()) {
+      router.push(`/search?topic=${inputRef.current.value.trim()}`, undefined, { shallow: true });
+    }
+  }
 
   return(
     <Container>
@@ -16,6 +57,26 @@ const Search = (props: React.PropsWithChildren<{}>) => {
 
       <Measure>
         <h2>{t("common:search")}</h2>
+
+        <div className="search-grid">
+          <div className="search-input">
+            <input 
+              ref={inputRef}
+              defaultValue={topic}
+              autoFocus={true}
+              autoComplete="off" 
+              minLength={5} 
+              required
+              onChange={(e) => {
+                
+              }}
+            />
+
+            <button onClick={search}><i className="fal fa-search fa-lg"></i></button>
+          </div>
+
+          {lazyLoadArticleList}
+        </div>
       </Measure>
     </Container>
   );
