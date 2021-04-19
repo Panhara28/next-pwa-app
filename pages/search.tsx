@@ -63,6 +63,7 @@ const Search = (props: React.PropsWithChildren<{}>) => {
             <input 
               ref={inputRef}
               defaultValue={topic}
+              placeholder={t("common:topic")}
               autoFocus={true}
               autoComplete="off" 
               minLength={5} 

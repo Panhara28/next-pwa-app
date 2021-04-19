@@ -1,9 +1,11 @@
 import Link from 'next/link';
 import React, { useContext } from 'react';
 import { ThemeContext } from '../context/ThemeContext';
+import { useRouter } from 'next/router';
 
 const Navbar = (props: React.PropsWithChildren<{}>) => {
   const { colorMode, setColorMode } = useContext(ThemeContext);
+  const router = useRouter();
 
   if(process.browser) {
     if(colorMode === "dark") {
@@ -23,7 +25,16 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
         </div>
 
         <div className="navbar-items-grow"></div>
+
         <div className="navbar-items" onClick={() => { toggleDarkMode(colorMode, setColorMode) }}><i className={"toggle-dark-mode-ico fal fa-lg" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
+        
+        <Link href="/search">
+          <a className={`navbar-items ${(router.pathname === "/search" ? "active" : "")} d-none-mobile`}><i className="fal fa-search fa-lg"></i></a>
+        </Link>
+
+        <Link href="/menu">
+          <a className={`navbar-items ${(router.pathname === "/menu" ? "active" : "")} d-none-mobile`}><i className="fal fa-bars fa-lg"></i></a>
+        </Link>
       </div>
     </div>
   );

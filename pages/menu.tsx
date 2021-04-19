@@ -27,6 +27,10 @@ const Menu = (props: React.PropsWithChildren<{}>) => {
           <Link href="/privacy-policy">
             <a className="menu-items">{t("menu:privacy-policy")}</a>
           </Link>
+
+          <div className="menu-copyright">
+            {t("menu:copyright")} <i className="fal fa-copyright fa-lg"></i> Mediaload
+          </div>
         </div>
       </Measure>
     </Container>

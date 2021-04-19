@@ -24,6 +24,11 @@
       height: $navbar-height;
       cursor: pointer;
       padding: 0 $content-padding;
+      color: var(--color-white);
+
+      &.active {
+        color: var(--color-secondary);
+      }
 
       i {
         line-height: $navbar-height;
@@ -54,6 +59,15 @@
           line-height: $navbar-height-mobile;
         }
       }
+    }
+  }
+}
+
+// Use this to ignore hover style on tocuh device
+@media (hover: hover) and (pointer: fine) {
+  .navbar {
+    .navbar-items:hover {
+      color: var(--color-secondary);
     }
   }
 }
