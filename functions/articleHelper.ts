@@ -4,7 +4,7 @@ var md5 = require('md5');
 
 export const getArticleCategoryName = (article: Graph.Article) => {
   if(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) {
-    return article.categoryNameSub.kh ? article.categoryNameSub.kh : article.categoryName.kh;
+    return article.categoryNameSub.kh || article.categoryName.kh;
   } else {
     return article.categoryName.kh;
   }

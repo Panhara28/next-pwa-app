@@ -11,10 +11,11 @@ import { initializeApollo } from '../../lib/apolloClient';
 import { Graph } from '../../generated/graph';
 import ArticleList from '../../components/article/ArticleList';
 import { graphQuery } from '../../generated/graphQuery';
-import { getEndOfWeekDate, getStartOfWeekDate } from '../../functions/date';
+import { getLastSevenDaysDate } from '../../functions/date';
 import ArticleListSmall from '../../components/article/ArticleListSmall';
 import ArticleTop from '../../components/article/ArticleTop';
 import { sortArticle } from '../../functions/articleHelper';
+import { getNowDate } from './../../functions/date';
 
 const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const category: Graph.Category = data.category;
@@ -114,8 +115,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         categorySlug: !process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categorySlug : undefined,
         categorySubSlug: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? categorySlug : undefined,
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS),
-        startDate: getStartOfWeekDate(),
-        endDate: getEndOfWeekDate()
+        startDate: getLastSevenDaysDate(),
+        endDate: getNowDate()
       }, sort: "PAGEVIEW"
     }
   })).data.articleList.data;

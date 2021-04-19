@@ -11,7 +11,7 @@ import { initializeApollo } from './../lib/apolloClient';
 import { Graph } from '../generated/graph';
 import ArticleList from '../components/article/ArticleList';
 import { graphQuery } from '../generated/graphQuery';
-import { getEndOfWeekDate, getStartOfWeekDate } from './../functions/date';
+import { getLastSevenDaysDate, getNowDate } from './../functions/date';
 import ArticleListSmall from '../components/article/ArticleListSmall';
 import ArticleTop from '../components/article/ArticleTop';
 import { sortArticle } from '../functions/articleHelper';
@@ -98,8 +98,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
         categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
         exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS),
-        startDate: getStartOfWeekDate(),
-        endDate: getEndOfWeekDate()
+        startDate: getLastSevenDaysDate(),
+        endDate: getNowDate()
       }, sort: "PAGEVIEW"
     }
   })).data.articleList.data;

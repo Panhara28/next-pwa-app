@@ -11,17 +11,17 @@ type Props = {
 }
 
 const SEO: FunctionComponent<Props> = (props) => {
-  const url = process.env.NEXT_PUBLIC_URL + (props.pathname ? props.pathname : "");
-  const canonical = process.env.NEXT_PUBLIC_URL + (props.canonical ? props.canonical : "");
+  const url = process.env.NEXT_PUBLIC_URL + (props.pathname || "");
+  const canonical = process.env.NEXT_PUBLIC_URL + (props.canonical || "");
   const siteName = process.env.NEXT_PUBLIC_TITLE;
-  const type = props.type ? props.type : "website";
+  const type = props.type || "website";
   const title = (props.title ? props.title + " - " : "") + process.env.NEXT_PUBLIC_TITLE;
-  const description = props.description ? props.description : `Visit ${process.env.NEXT_PUBLIC_TITLE} for up-to-the-minute news, breaking news, and feature stories.`;
-  const image = props.image ? props.image : process.env.NEXT_PUBLIC_URL + "/assets/fallbackseo.jpg";
+  const description = props.description || `Visit ${process.env.NEXT_PUBLIC_TITLE} for up-to-the-minute news, breaking news, and feature stories.`;
+  const image = props.image || process.env.NEXT_PUBLIC_URL + "/assets/fallbackseo.jpg";
 
   return (
     <Head>
-      <title>{(props.title ? props.title + " - " : "") + process.env.NEXT_PUBLIC_TITLE}</title>
+      <title>{title}</title>
 
       {/* Metatag Data */}
       <meta charSet='utf-8'/>

@@ -24,6 +24,10 @@ export const getEndOfWeekDate = () => {
   return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).endOf('isoWeek').format('YYYY-MM-DD'); 
 }
 
+export const getLastSevenDaysDate = () => {
+  return moment().tz(process.env.NEXT_PUBLIC_TIMEZONE).subtract(7,'d').format('YYYY-MM-DD'); 
+}
+
 export const getElapseTime = (date: any, suffix: boolean = false) => {
   if(date) return moment(date).fromNow(suffix);
   

@@ -50,7 +50,7 @@ export const renderArticleEmbed = (block, key) => {
           <iframe 
             style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%" }}
             allowFullScreen
-            title={data.caption ? data.caption : "Untitled"}
+            title={data.caption || "Untitled"}
             allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             frameBorder={0}
             width={data.width}
