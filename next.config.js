@@ -1,6 +1,14 @@
+const withPWA = require('next-pwa');
 const nextTranslate = require('next-translate');
 
-module.exports = {
+module.exports = withPWA({
+  pwa: {
+    dest: 'public'
+  },
+  // For next-pwa to support webpack 5
+  future: { 
+    webpack5: true 
+  },
   ...nextTranslate(),
   images: {
     domains: [
@@ -30,4 +38,4 @@ module.exports = {
   publicRuntimeConfig: {
     // Will be available on both server and client
   },
-}
+});

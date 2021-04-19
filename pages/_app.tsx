@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import  ReactGA  from 'react-ga';
 import Loading from '../components/utilities/Loading';
 import '../styles/scss/main.scss';
+import Head from 'next/head';
 
 const MyApp = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
@@ -38,6 +39,9 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <ApolloProvider client={apolloClient}>
       <ThemeProvider>
+        <Head>
+          <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'/>
+        </Head>
         <Component {...pageProps} />
         <Loading loading={loading}/>
       </ThemeProvider>

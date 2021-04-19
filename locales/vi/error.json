@@ -2,6 +2,7 @@
   "description": {
     "general": "Có lỗi đã xảy ra. Vui lòng kiểm tra lại sau.",
     "404": "Xin lỗi, trang bạn đang tìm kiếm không khả dụng",
-    "500": "Có lỗi đã xảy ra trên máy chủ. Vui lòng kiểm tra lại sau"
+    "500": "Có lỗi đã xảy ra trên máy chủ. Vui lòng kiểm tra lại sau",
+    "offline": "không thể kết nối đến máy chủ"
   }
 }
