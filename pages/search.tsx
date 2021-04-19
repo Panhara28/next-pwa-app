@@ -67,8 +67,8 @@ const Search = (props: React.PropsWithChildren<{}>) => {
               autoComplete="off" 
               minLength={5} 
               required
-              onChange={(e) => {
-                
+              onKeyDown={(e) => {
+                if(e.key === "Enter") search();
               }}
             />
 
