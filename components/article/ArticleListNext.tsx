@@ -35,7 +35,7 @@ const ArticleListNext = ({ page, topic, categorySlug, onCompleted }: Props) => {
     },
     onCompleted: (data) => {
       if(data && data.articleList) {
-        ReactGA.pageview(`${window.location.pathname}/?page=${page}`);
+        ReactGA.pageview(`${window.location.pathname}${window.location.search}/?page=${page}`);
         onCompleted(data.articleList.data, ++page);
       }
     }
