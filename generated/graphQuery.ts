@@ -57,6 +57,8 @@ const QUERY_ARTICLE = gql`
           en
         }
       }
+      format
+      siteId
     }
   }
 `;

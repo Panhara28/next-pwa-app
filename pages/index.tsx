@@ -69,7 +69,7 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
 export const getServerSideProps: GetServerSideProps = async () => {
   const client = initializeApollo();
 
-  const articleLatest = (await client.query({
+  const articleLatest: Graph.Article[] = (await client.query({
     query: graphQuery.QUERY_ARTICLE_LATEST,
     variables: {
       pagination: {
@@ -85,7 +85,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
     }
   })).data.articleList.data;
 
-  const articleWeekly = (await client.query({
+  const articleWeekly: Graph.Article[] = (await client.query({
     query: graphQuery.QUERY_ARTICLE_LATEST,
     variables: {
       pagination: {

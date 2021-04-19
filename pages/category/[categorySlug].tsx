@@ -77,12 +77,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const client = initializeApollo();
   const { categorySlug } = context.query;
 
-  const category = (await client.query({
+  const category: Graph.Category = (await client.query({
     query: graphQuery.QUERY_CATEGORY,
     variables: { categorySlug }
   })).data.category;
 
-  const articleLatest = (await client.query({
+  // Check if the category is exist
+  if(!category) return { notFound: true };
+
+  const articleLatest: Graph.Article[] = (await client.query({
     query: graphQuery.QUERY_ARTICLE_LATEST,
     variables: {
       pagination: {
@@ -100,7 +103,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     }
   })).data.articleList.data;
 
-  const articleWeekly = (await client.query({
+  const articleWeekly: Graph.Article[] = (await client.query({
     query: graphQuery.QUERY_ARTICLE_LATEST,
     variables: {
       pagination: {
