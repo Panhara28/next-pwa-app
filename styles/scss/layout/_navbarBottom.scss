@@ -25,7 +25,10 @@
 
       &.active {
         color: var(--color-secondary);
-        box-shadow: inset 0px -2px 0px 0px var(--color-secondary);
+        
+        .navbar-bottom-item-wrapper {
+          box-shadow: inset 0px -2px 0px 0px var(--color-secondary);
+        }
       }
 
       .navbar-bottom-item-text {
