@@ -10,7 +10,7 @@ const Custom500 = (props: React.PropsWithChildren<{}>) => {
     <Container>
       <SEO 
         title={`500 | ${t("error:description.500")}`}
-        image={`${process.env.ASSET_URL}/404.png`}
+        image={`${process.env.NEXT_PUBLIC_ASSET_URL}/404.png`}
       />
 
       <Measure>

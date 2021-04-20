@@ -10,7 +10,7 @@ class MyDocument extends Document {
     const title = process.env.NEXT_PUBLIC_TITLE;
     const description = `Visit ${process.env.NEXT_PUBLIC_TITLE} for up-to-the-minute news, breaking news, and feature stories.`;
     const theme = process.env.NEXT_PUBLIC_COLOR_PRIMARY;
-    const assetUrl = process.env.ASSET_URL;
+    const assetUrl = process.env.NEXT_PUBLIC_ASSET_URL;
 
     return (
       <Html>

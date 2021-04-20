@@ -10,7 +10,7 @@ const Custom404 = (props: React.PropsWithChildren<{}>) => {
     <Container>
       <SEO 
         title={`404 | ${t("error:description.404")}`}
-        image={`${process.env.ASSET_URL}/404.png`}
+        image={`${process.env.NEXT_PUBLIC_ASSET_URL}/404.png`}
       />
 
       <Measure>

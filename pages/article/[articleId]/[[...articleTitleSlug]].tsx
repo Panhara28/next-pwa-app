@@ -79,7 +79,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   }
 
   // Check if the article is in correct format and correct site id
-  if(article.format !== "EDITOR_JS" || (article.siteId !== null && article.siteId !== Number(process.env.NEXT_PUBLIC_SITE_ID))) return { notFound: true };
+  if(!article || article.format !== "EDITOR_JS" || (article.siteId !== null && article.siteId !== Number(process.env.NEXT_PUBLIC_SITE_ID))) return { notFound: true };
 
   const articleRelated: Graph.Article[] = (await client.query({
     query: graphQuery.QUERY_ARTICLE_RELATED,
