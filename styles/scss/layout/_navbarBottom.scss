@@ -25,21 +25,13 @@
 
       &.active {
         color: var(--color-secondary);
+        box-shadow: inset 0px -2px 0px 0px var(--color-secondary);
       }
 
       .navbar-bottom-item-text {
         margin-top: rem(2px);
         font-size: rem(12px);
       }
-    }
-  }
-}
-
-// Use this to ignore hover style on tocuh device
-@media (hover: hover) and (pointer: fine) {
-  .navbar-bottom {
-    .navbar-bottom-items:hover {
-      color: var(--color-secondary);
     }
   }
 }

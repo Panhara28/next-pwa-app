@@ -17,7 +17,7 @@ const SEO: FunctionComponent<Props> = (props) => {
   const type = props.type || "website";
   const title = (props.title ? props.title + " - " : "") + process.env.NEXT_PUBLIC_TITLE;
   const description = props.description || `Visit ${process.env.NEXT_PUBLIC_TITLE} for up-to-the-minute news, breaking news, and feature stories.`;
-  const image = props.image || process.env.NEXT_PUBLIC_URL + "/assets/fallbackseo.jpg";
+  const image = props.image || process.env.NEXT_PUBLIC_URL + process.env.ASSET_URL + "/logo-600x300.png";
 
   return (
     <Head>

@@ -10,7 +10,7 @@ class MyDocument extends Document {
     const title = process.env.NEXT_PUBLIC_TITLE;
     const description = `Visit ${process.env.NEXT_PUBLIC_TITLE} for up-to-the-minute news, breaking news, and feature stories.`;
     const theme = process.env.NEXT_PUBLIC_COLOR_PRIMARY;
-    const pwaAsset = process.env.PWA_ASSET;
+    const assetUrl = process.env.ASSET_URL;
 
     return (
       <Html>
@@ -27,9 +27,9 @@ class MyDocument extends Document {
           <meta name='msapplication-tap-highlight' content='no'/>
           <meta name='theme-color' content={theme}/>
 
-          <link rel='apple-touch-icon' href={`${pwaAsset}/logo-192x192.png`}/>
-          <link rel="icon" href={`${pwaAsset}/favicon.ico`}/>
-          <link rel='manifest' href={`${pwaAsset}/manifest.json`}/>
+          <link rel='apple-touch-icon' href={`${assetUrl}/logo-192x192.png`}/>
+          <link rel="icon" href={`${assetUrl}/favicon.ico`}/>
+          <link rel='manifest' href={`${assetUrl}/manifest.json`}/>
           
           {/* <!-- Font --> */}
           <link rel="stylesheet" href={`/css/style.${process.env.LOCALE}.css`} />

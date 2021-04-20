@@ -8,7 +8,10 @@ const Custom500 = (props: React.PropsWithChildren<{}>) => {
 
   return(
     <Container>
-      <SEO title={`500 | ${t("error:description.500")}`}/>
+      <SEO 
+        title={`500 | ${t("error:description.500")}`}
+        image={`${process.env.ASSET_URL}/404.png`}
+      />
 
       <Measure>
         <div className="error-warpper">

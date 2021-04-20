@@ -8,7 +8,10 @@ const Custom404 = (props: React.PropsWithChildren<{}>) => {
 
   return(
     <Container>
-      <SEO title={`404 | ${t("error:description.404")}`}/>
+      <SEO 
+        title={`404 | ${t("error:description.404")}`}
+        image={`${process.env.ASSET_URL}/404.png`}
+      />
 
       <Measure>
         <div className="error-warpper">

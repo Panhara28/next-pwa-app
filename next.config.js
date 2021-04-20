@@ -3,7 +3,8 @@ const nextTranslate = require('next-translate');
 
 module.exports = withPWA({
   pwa: {
-    dest: 'public'
+    dest: 'public',
+    mode: 'production'
   },
   // For next-pwa to support webpack 5
   future: { 
