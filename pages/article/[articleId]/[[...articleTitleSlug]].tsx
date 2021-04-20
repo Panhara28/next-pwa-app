@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Container from '../../../components/layout/Container';
 import Measure from '../../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
@@ -19,8 +19,10 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
   const articleRelated: Graph.Article[] = data.articleRelated;
   const pathname = `/article/${article.id}`;
   const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
+  const { t } = useTranslation();
   const [ nextIds, setNextIds ] = useState<number[]>(article.nextId ? [ article.nextId ] : []);
-  const { t } = useTranslation(); 
+  const [ loading, setLoading ] = useState<boolean>(true);
+  const placeholder:ReactNode = loading ? <PalceholderArticle/> : null;
 
   return (
     <Container>
@@ -51,6 +53,8 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
                 <ArticleNext nextId={nextId} onCompleted={(article) => { 
                   if(article.nextId) {
                     setNextIds([...nextIds, article.nextId]); 
+                  } else {
+                    setLoading(false);
                   }
                 }}/>
               </LazyLoading>
@@ -58,7 +62,7 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
           })
         }
 
-        <PalceholderArticle/>
+        {placeholder}
       </Measure>
     </Container>
   )

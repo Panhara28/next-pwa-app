@@ -14,6 +14,8 @@ const Search = (props: React.PropsWithChildren<{}>) => {
   const router = useRouter();
   const { topic } = router.query;
   const [ nextPages, setNextPages ] = useState<number[]>([1]);
+  const [ loading, setLoading ] = useState<boolean>(true);
+  const placeholder:ReactNode = loading ? <PalceholderArticleList/> : null;
   const lazyLoadArticleList: ReactNode = topic ? 
     <div className="search-result">
       {
@@ -26,6 +28,8 @@ const Search = (props: React.PropsWithChildren<{}>) => {
                 onCompleted={(articles, nextPage) => { 
                   if(articles.length > 0) {
                     setNextPages([...nextPages, nextPage]); 
+                  } else {
+                    setLoading(false);
                   }
                 }}
               />
@@ -34,7 +38,7 @@ const Search = (props: React.PropsWithChildren<{}>) => {
         })
       }
 
-      <PalceholderArticleList/>
+      {placeholder}
     </div> : null;
 
   const validate = () => {
@@ -44,6 +48,7 @@ const Search = (props: React.PropsWithChildren<{}>) => {
   const search = () => {
     if(validate()) {
       router.push(`/search?topic=${inputRef.current.value.trim()}`, undefined, { shallow: true });
+      setLoading(true);
     }
   }
 

@@ -25,7 +25,9 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
   const [ articleTop5, articleList ] = sortArticle(articleLatest);
   const { t } = useTranslation();
   const [ nextPages, setNextPages ] = useState<number[]>([2]);  
-  const lazyLoadArticleList: ReactNode[] = nextPages.map((page, inx) => {
+  const [ loading, setLoading ] = useState<boolean>(true);
+  const placeholder:ReactNode = loading ? <PalceholderArticleList/> : null;
+  const lazyLoadArticleList:ReactNode[] = nextPages.map((page, inx) => {
     return (
       <LazyLoading key={inx}>
         <ArticleListNext
@@ -34,6 +36,8 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
           onCompleted={(articles, nextPage) => { 
             if(articles.length > 0) {
               setNextPages([...nextPages, nextPage]); 
+            } else {
+              setLoading(false);
             }
           }}
         />
@@ -64,8 +68,7 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
             <ArticleList articles={articleList}/>
 
             {lazyLoadArticleList}
-
-            <PalceholderArticleList/>
+            {placeholder}
           </div>
         </div>
       </Measure>
