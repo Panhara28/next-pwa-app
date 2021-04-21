@@ -10,6 +10,7 @@ body {
 
 *, *::after, *::before {
   box-sizing: border-box;
+  overflow-wrap: break-word;
 }
 
 /* Forcing word break in firefox to break khmer word*/
