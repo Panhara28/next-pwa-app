@@ -1,7 +1,7 @@
-import { FC, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useScript from "../hooks/useScript";
 
-interface Props {
+type Props = {
   zoneId: number;
   screens: string[];
   categorySlug?: string;
@@ -9,7 +9,7 @@ interface Props {
   className?: string
 }
 
-const ReviveAd:FC<Props> = (props) => {
+const ReviveAd = (props: Props) => {
   const reviveId = "cd1bc51d84152257e4b8d51bcbb27650";
   const [scriptReviveAd, setReviveAdScript] = useState('');
   const [hasReviveAdLoaded] = useScript(scriptReviveAd, { async: true, isEnabled: !!scriptReviveAd });
