@@ -36,6 +36,7 @@ const QUERY_ARTICLE = gql`
       summary
       nextId
       categoryId
+      categorySlug
       categorySubId
       categoryName {
         kh
