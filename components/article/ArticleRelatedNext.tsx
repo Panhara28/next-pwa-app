@@ -21,7 +21,7 @@ const ArticleRelatedNext = ({ article }: { article: Graph.Article}) => {
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
         categoryId: !process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? article.categoryId : undefined,
         categorySubId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? article.categorySubId : undefined,
-        exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS),
+        exceptCategories: process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS ? JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS) : undefined,
         writerId: article.contentWriter.id
       }, sort: "PUBLISHED"
     }

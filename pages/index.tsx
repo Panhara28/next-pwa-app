@@ -89,7 +89,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         type: "PUBLISHED",
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
         categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
-        exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS)
+        exceptCategories: process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS ? JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS) : undefined
       }, sort: "PUBLISHED"
     }
   })).data.articleList.data;
@@ -105,7 +105,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
         type: "PUBLISHED",
         siteId: Number(process.env.NEXT_PUBLIC_SITE_ID),
         categoryId: process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID ? Number(process.env.NEXT_PUBLIC_CATEGORY_PARENT_ID) : undefined,
-        exceptCategories: JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS),
+        exceptCategories: process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS ? JSON.parse(process.env.NEXT_PUBLIC_CATEGORY_EXCEPT_IDS) : undefined,
         startDate: getLastSevenDaysDate(),
         endDate: getNowDate()
       }, sort: "PAGEVIEW"
