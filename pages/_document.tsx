@@ -15,6 +15,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta name="google" content="notranslate"/>
           <meta name='application-name' content={title}/>
           <meta name='apple-mobile-web-app-capable' content='yes'/>
           <meta name='apple-mobile-web-app-status-bar-style' content='default'/>

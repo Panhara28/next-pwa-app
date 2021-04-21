@@ -22,7 +22,7 @@
   "theme_color": "#000000",
   "background_color": "#FFFFFF",
   "start_url": "/",
-  "scope": "/",
+  "scope": "https://next.khmerload.com/",
   "display": "standalone",
   "orientation": "portrait"
 }
