@@ -15,6 +15,7 @@ import { getLastSevenDaysDate, getNowDate } from './../functions/date';
 import ArticleListSmall from '../components/article/ArticleListSmall';
 import ArticleTop from '../components/article/ArticleTop';
 import { sortArticle } from '../functions/articleHelper';
+import ReviveAd from '../components/utilities/ReviveAd';
 
 const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const articleLatest: Graph.Article[] = data.articleLatest;
@@ -43,14 +44,22 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
       <SEO/>
 
       <Measure>
+        <ReviveAd className="mt-2" zoneId={6} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true}/>
+
         <div className="container-grid">
           <div className="grid-article-top">
             <ArticleTop articleTop={articleTop5}/>
           </div>
           <div className="grid-article-weekly">
-            <h2 className="uppercase">{t("common:weekly-article")}</h2>
+            <ReviveAd className="mt-2" zoneId={2} screens={["tablet"]}/>
+            <ReviveAd className="mt-1" zoneId={2} screens={["desktop", "tablet-big", "mobile"]} fullWidth={true}/>
 
+            <h2 className="uppercase">{t("common:weekly-article")}</h2>
             <ArticleListSmall articles={articleWeekly}/>
+
+            <ReviveAd className="mt-2" zoneId={4} screens={["desktop", "tablet-big"]} fullWidth={true}/>
+            <ReviveAd className="mt-2" zoneId={2} screens={["tablet"]}/>
+            <ReviveAd className="mt-2" zoneId={2} screens={["mobile"]} fullWidth={true}/>
           </div>
           <div className="grid-article-latest">
             <h2 className="uppercase">{t("common:latest-article")}</h2>

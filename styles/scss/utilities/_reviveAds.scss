@@ -1,0 +1,15 @@
+.revive-ads {
+  text-align: center;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+  }
+
+  &.full-width {
+    img {
+      width: 100%;
+    }
+  }
+}

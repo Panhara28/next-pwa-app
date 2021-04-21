@@ -12,6 +12,7 @@ import ArticleTracker from "./ArticleTracker";
 import ArticleRelated from "./ArticleRelated";
 import { useRouter } from 'next/router';
 import { useState, ReactNode } from 'react';
+import ReviveAd from './../utilities/ReviveAd';
 
 const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
   const router = useRouter();
@@ -36,6 +37,8 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
         router.replace(canonical, undefined, { shallow: true });
       }}
     >
+      <ReviveAd className="mt-2" zoneId={6} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
+
       <ArticleLayout>
         {seo}
 
@@ -53,6 +56,8 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
         </ArticleLayoutDetail>
         <ArticleLayoutSide>
           <ArticleRelated article={article} articles={articleRelated}/>
+
+          <ReviveAd className="mt-2" zoneId={4} screens={["desktop", "tablet-big"]} fullWidth={true} categorySlug={article.categorySlug}/>
         </ArticleLayoutSide>
       </ArticleLayout>
     </ArticleTracker>
