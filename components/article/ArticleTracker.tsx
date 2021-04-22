@@ -53,7 +53,7 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
   const onUnload = () => {
     send({
       event: "unload",
-      site_id: process.env.NEXT_PUBLIC_SITE_ID,
+      site_id: Number(process.env.NEXT_PUBLIC_SITE_ID),
       article_id: props.articleId,
       time: Date.now() - start,
       scroll: getScrollLevel(level),
@@ -69,7 +69,7 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
       start = Date.now();
       send({
         event: "pageview",
-        site_id: process.env.NEXT_PUBLIC_SITE_ID,
+        site_id: Number(process.env.NEXT_PUBLIC_SITE_ID),
         article_id: props.articleId
       });
     } 
@@ -94,7 +94,7 @@ const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
 
     send({
       event: "pageview",
-      site_id: process.env.NEXT_PUBLIC_SITE_ID,
+      site_id: Number(process.env.NEXT_PUBLIC_SITE_ID),
       article_id: props.articleId
     });
 
