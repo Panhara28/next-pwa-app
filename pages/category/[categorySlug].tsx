@@ -89,10 +89,15 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   const client = initializeApollo();
   const { categorySlug } = context.query;
 
-  const category: Graph.Category = (await client.query({
-    query: graphQuery.QUERY_CATEGORY,
-    variables: { categorySlug }
-  })).data.category;
+  let category: Graph.Category;
+  try {
+    category = (await client.query({
+      query: graphQuery.QUERY_CATEGORY,
+      variables: { categorySlug }
+    })).data.category;
+  } catch(e) {
+    return { notFound: true };
+  }
 
   // Check if the category is exist
   if(!category) return { notFound: true };
