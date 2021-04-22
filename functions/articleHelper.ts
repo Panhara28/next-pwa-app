@@ -38,5 +38,10 @@ export const sortArticle = (articles: Graph.Article[]) => {
   // Get top 5 and remove from the list
   const articleTop5 = articleList.splice(0, 5);
 
+  // Sort back by publish date time normally
+  articleList.sort((a, b) => {
+    return new Date(b.publishedDateTime.en).valueOf() - new Date(a.publishedDateTime.en).valueOf();
+  });
+
   return [ articleTop5, articleList ];
 }
