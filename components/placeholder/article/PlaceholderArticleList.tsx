@@ -1,7 +1,7 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 
 const PalceholderArticleList = (props: React.PropsWithChildren<{}>) => {
-  let placeholders: ReactNode[] = [];
+  let placeholders: JSX.Element[] = [];
 
   for(let i = 0; i <= 2; i++) {
     placeholders.push(

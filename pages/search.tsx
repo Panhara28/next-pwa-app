@@ -2,7 +2,7 @@ import Container from "../components/layout/Container";
 import Measure from "../components/layout/Measure";
 import SEO from "../components/utilities/SEO";
 import useTranslation from 'next-translate/useTranslation';
-import { useRef, useState, ReactNode } from 'react';
+import { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import LazyLoading from './../components/utilities/LazyLoading';
 import ArticleListNext from './../components/article/ArticleListNext';
@@ -13,10 +13,10 @@ const Search = (props: React.PropsWithChildren<{}>) => {
   const inputRef = useRef<HTMLInputElement>();
   const router = useRouter();
   const { topic } = router.query;
-  const [ nextPages, setNextPages ] = useState<number[]>([1]);
-  const [ loading, setLoading ] = useState<boolean>(true);
-  const placeholder:ReactNode = loading ? <PalceholderArticleList/> : null;
-  const lazyLoadArticleList: ReactNode = topic ? 
+  const [ nextPages, setNextPages ] = useState([1]);
+  const [ loading, setLoading ] = useState(true);
+  const placeholder = loading ? <PalceholderArticleList/> : null;
+  const lazyLoadArticleList = topic ? 
     <div className="search-result">
       {
         nextPages.map((page, inx) => {

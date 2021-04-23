@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Graph } from '../../generated/graph';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,7 +7,7 @@ import { parsedImage } from '../../functions/Image';
 import { getElapseTime, getDateByFormat } from './../../functions/date';
 
 const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
-  const articleNodes: ReactNode[] = articles.map(article => {
+  const articleElms = articles.map(article => {
     return (
       <div className="article-list-item" key={article.id}>
         <Link href={`/article/${article.id}`}>
@@ -33,7 +33,7 @@ const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
 
   return (
     <div className="article-list">
-      { articleNodes }
+      { articleElms }
     </div>
   );
 }

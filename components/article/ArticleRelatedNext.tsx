@@ -1,5 +1,4 @@
 import useTranslation from "next-translate/useTranslation";
-import { ReactNode } from 'react';
 import { useQuery } from '@apollo/client';
 import { Graph } from "../../generated/graph";
 import ArticleDetail from './ArticleDetail';
@@ -9,7 +8,7 @@ import { graphQuery } from "../../generated/graphQuery";
 const ArticleRelatedNext = ({ article }: { article: Graph.Article}) => {
   const { t } = useTranslation();
 
-  let article_next: ReactNode;
+  let article_next: JSX.Element;
   const { data, error } = useQuery<Graph.Query>(graphQuery.QUERY_ARTICLE_RELATED, {
     variables: {
       pagination: {

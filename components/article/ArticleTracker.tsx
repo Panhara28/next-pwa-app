@@ -6,15 +6,15 @@ type Props = {
 }
 
 const ArticleTracker = (props: React.PropsWithChildren<Props>) => {
-  let level: number = 0;
-  let start: number = Date.now();
-  let scrollPosition: number = 0;
-  let scrollDirection: string = "down";
-  let checkReachTop: boolean = true;
-  let checkReachBackBottom: boolean = false;
-  let navbarHeight: number = 0;
-  const thresholdTop: number = 200;
-  const thresholdBottom: number = 400;
+  let level = 0;
+  let start = Date.now();
+  let scrollPosition = 0;
+  let scrollDirection = "down";
+  let checkReachTop = true;
+  let checkReachBackBottom = false;
+  let navbarHeight = 0;
+  const thresholdTop = 200;
+  const thresholdBottom = 400;
   const containerRef = useRef<HTMLDivElement>();
 
   const onScroll = () => {

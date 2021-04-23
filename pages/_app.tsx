@@ -11,7 +11,7 @@ import Head from 'next/head';
 const MyApp = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
   const router = useRouter();
-  const [ loading, setLoading ] = useState<boolean>(false);
+  const [ loading, setLoading ] = useState(false);
 
   useEffect(() => {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GA_ID);

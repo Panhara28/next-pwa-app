@@ -1,5 +1,4 @@
 import useTranslation from "next-translate/useTranslation";
-import { ReactNode } from 'react';
 import { useQuery } from '@apollo/client';
 import { Graph } from "../../generated/graph";
 import ReactGA from 'react-ga';
@@ -16,7 +15,7 @@ type Props = {
 const ArticleListNext = ({ page, topic, categorySlug, onCompleted }: Props) => {
   const { t } = useTranslation();
   
-  let articleLatest: ReactNode;
+  let articleLatest: JSX.Element;
   const { data, error } = useQuery<Graph.Query>(graphQuery.QUERY_ARTICLE_LATEST, {
     variables: {
       pagination: {

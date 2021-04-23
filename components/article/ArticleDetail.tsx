@@ -11,13 +11,13 @@ import SEO from '../utilities/SEO';
 import ArticleTracker from "./ArticleTracker";
 import ArticleRelated from "./ArticleRelated";
 import { useRouter } from 'next/router';
-import { useState, ReactNode } from 'react';
+import { useState } from 'react';
 import ReviveAd from './../utilities/ReviveAd';
 
 const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
   const router = useRouter();
   const pathname = `/article/${article.id}`;
-  const [ seo, setSeo ] = useState<ReactNode>(null);
+  const [ seo, setSeo ] = useState<JSX.Element>(null);
 
   return (
     <ArticleTracker 

@@ -4,11 +4,10 @@ import { Graph } from "../../generated/graph";
 import { parsedImage } from './../../functions/Image';
 import { getArticleCategoryName, getArticleContentWriterProfilePiceture } from './../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from './../../functions/date';
-import { ReactNode } from 'react';
 
 const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
-  const articleOrder: string[] = ["first", "second", "third", "fourth", "fifth"];
-  const articleTopOne: ReactNode = articleTop[0] ? 
+  const articleOrder = ["first", "second", "third", "fourth", "fifth"];
+  const articleTopOne = articleTop[0] ? 
     <div className="grid-article-top-first article-top-big">
       <div className="article-top-big-wrapper">
         <Link href={`/article/${articleTop[0].id}`}>
@@ -36,7 +35,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
       </div>
     </div> : null;
 
-  const articleTopFour: ReactNode[] = articleTop.map((article, inx) => {
+  const articleTopFour = articleTop.map((article, inx) => {
     // Ignore first article as it already include in the top
     if(inx === 0) return null;
 

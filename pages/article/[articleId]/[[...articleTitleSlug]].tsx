@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import Container from '../../../components/layout/Container';
 import Measure from '../../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
@@ -18,9 +18,9 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
   const articleRelated: Graph.Article[] = data.articleRelated;
   const pathname = `/article/${article.id}`;
   const { t } = useTranslation();
-  const [ nextIds, setNextIds ] = useState<number[]>(article.nextId ? [ article.nextId ] : []);
-  const [ loading, setLoading ] = useState<boolean>(true);
-  const placeholder:ReactNode = loading ? <PalceholderArticle/> : null;
+  const [ nextIds, setNextIds ] = useState(article.nextId ? [ article.nextId ] : []);
+  const [ loading, setLoading ] = useState(true);
+  const placeholder = loading ? <PalceholderArticle/> : null;
 
   return (
     <Container>

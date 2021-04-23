@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import ArticleLayout from './../../layout/article/ArticleLayout';
 import ArticleLayoutDetail from './../../layout/article/ArticleLayoutDetail';
 import ArticleLayoutSide from './../../layout/article/ArticleLayoutSide';

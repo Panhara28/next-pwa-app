@@ -1,5 +1,5 @@
 export const parsedImage = (url: string, width: number, height: number, quality: number = 100, resize = true) => {
-  let parsedUrl;
+  let parsedUrl: URL;
   if(url.indexOf("https") > -1 || url.indexOf("http") > -1) {
     parsedUrl = new URL(url);
   } else {

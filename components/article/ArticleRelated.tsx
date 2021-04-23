@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { Graph } from '../../generated/graph';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -10,7 +10,7 @@ import useTranslation from 'next-translate/useTranslation';
 const ArticleRelated = ({ article, articles }: { article: Graph.Article, articles: Graph.Article[] }) => {
   const { t } = useTranslation();
 
-  const articleNodes: ReactNode[] = articles.map(article => {
+  const articleElms = articles.map(article => {
     return (
       <div className="article-list-small-item" key={article.id}>
         <Link href={`/article/${article.id}`}>
@@ -38,7 +38,7 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
       <h2>{ t("article:related-article") }</h2>
 
       <div className="article-list-small article-list-related">
-        { articleNodes }
+        { articleElms }
       </div>
     </div> 
   );

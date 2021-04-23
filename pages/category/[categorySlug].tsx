@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react';
+import React, { useState } from 'react';
 import Container from '../../components/layout/Container';
 import Measure from '../../components/layout/Measure';
 import SEO from '../../components/utilities/SEO';
@@ -25,10 +25,10 @@ const Category = ({ data }: InferGetServerSidePropsType<typeof getServerSideProp
 
   const [ articleTop5, articleList ] = sortArticle(articleLatest);
   const { t } = useTranslation();
-  const [ nextPages, setNextPages ] = useState<number[]>([2]);  
-  const [ loading, setLoading ] = useState<boolean>(true);
-  const placeholder:ReactNode = loading ? <PalceholderArticleList/> : null;
-  const lazyLoadArticleList:ReactNode[] = nextPages.map((page, inx) => {
+  const [ nextPages, setNextPages ] = useState([2]);  
+  const [ loading, setLoading ] = useState(true);
+  const placeholder = loading ? <PalceholderArticleList/> : null;
+  const lazyLoadArticleList = nextPages.map((page, inx) => {
     return (
       <LazyLoading key={inx}>
         <ArticleListNext

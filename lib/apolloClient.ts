@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { ApolloClient, HttpLink, InMemoryCache } from "@apollo/client";
+import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
 
-let apolloClient;
+let apolloClient: ApolloClient<NormalizedCacheObject>;
 console.log(`Pointing end point: ${process.env.NEXT_PUBLIC_API_URI}`);
 
 const createApolloClient = () => {

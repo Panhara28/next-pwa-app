@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 const LazyLoading = (props: React.PropsWithChildren<{}>) => {
-  const [ scrollReached, setScrollReached ] = useState<boolean>(false);
+  const [ scrollReached, setScrollReached ] = useState(false);
   const containerRef = useRef<HTMLDivElement>();
   let timeoutRef: NodeJS.Timeout;
 
