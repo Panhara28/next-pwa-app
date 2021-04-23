@@ -1,16 +1,16 @@
 import React, { ReactNode, useState } from 'react';
-import Container from '../../components/layout/Container';
-import Measure from '../../components/layout/Measure';
+import Container from '../../../components/layout/Container';
+import Measure from '../../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { initializeApollo } from '../../lib/apolloClient';
-import { Graph } from '../../generated/graph';
-import PalceholderArticle from '../../components/placeholder/article/PlaceholderArticle';
-import LazyLoading from '../../components/utilities/LazyLoading';
-import ArticleDetail from '../../components/article/ArticleDetail';
-import ArticleNext from '../../components/article/ArticleNext';
-import { graphQuery } from '../../generated/graphQuery';
-import SEO from '../../components/utilities/SEO';
-import LocaleFlag from '../../components/utilities/LocaleFlag';
+import { initializeApollo } from '../../../lib/apolloClient';
+import { Graph } from '../../../generated/graph';
+import PalceholderArticle from '../../../components/placeholder/article/PlaceholderArticle';
+import LazyLoading from '../../../components/utilities/LazyLoading';
+import ArticleDetail from '../../../components/article/ArticleDetail';
+import ArticleNext from '../../../components/article/ArticleNext';
+import { graphQuery } from '../../../generated/graphQuery';
+import SEO from '../../../components/utilities/SEO';
+import LocaleFlag from '../../../components/utilities/LocaleFlag';
 import useTranslation  from 'next-translate/useTranslation';
 
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
