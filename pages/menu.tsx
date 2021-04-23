@@ -10,11 +10,7 @@ const Menu = (props: React.PropsWithChildren<{}>) => {
 
   return(
     <Container>
-      <SEO
-        title="Menu"
-        pathname="/menu"
-        canonical="/menu"
-      />
+      <SEO title="Menu" pathname="/menu"/>
 
       <Measure>
         <h2>{t("common:menu")}</h2>

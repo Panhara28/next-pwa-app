@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useScript from "../hooks/useScript";
 
 type Props = {
-  zoneId: number;
+  zoneId?: number | string;
   screens: string[];
   categorySlug?: string;
   fullWidth?: boolean;
@@ -10,6 +10,8 @@ type Props = {
 }
 
 const ReviveAd = (props: Props) => {
+  if(!props.zoneId) return null;
+
   const reviveId = "cd1bc51d84152257e4b8d51bcbb27650";
   const [scriptReviveAd, setReviveAdScript] = useState('');
   const [hasReviveAdLoaded] = useScript(scriptReviveAd, { async: true, isEnabled: !!scriptReviveAd });

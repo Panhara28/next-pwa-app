@@ -8,11 +8,7 @@ const PrivacyPolicy = (props: React.PropsWithChildren<{}>) => {
 
   return(
     <Container>
-      <SEO
-        title="Privacy Policy"
-        pathname="/privacy-policy"
-        canonical="/privacy-policy"
-      />
+      <SEO title="Privacy Policy" pathname="/privacy-policy"/>
 
       <Measure>
         <h2>{t("menu:privacy-policy")}</h2>

@@ -44,22 +44,22 @@ const Home = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) 
       <SEO/>
 
       <Measure>
-        <ReviveAd className="mt-2" zoneId={6} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true}/>
+        <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_ONE} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true}/>
 
         <div className="container-grid">
           <div className="grid-article-top">
             <ArticleTop articleTop={articleTop5}/>
           </div>
           <div className="grid-article-weekly">
-            <ReviveAd className="mt-2" zoneId={2} screens={["tablet"]}/>
-            <ReviveAd className="mt-1" zoneId={2} screens={["desktop", "tablet-big", "mobile"]} fullWidth={true}/>
+            <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["tablet"]}/>
+            <ReviveAd className="mt-1" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["desktop", "tablet-big", "mobile"]} fullWidth={true}/>
 
             <h2 className="uppercase">{t("common:weekly-article")}</h2>
             <ArticleListSmall articles={articleWeekly}/>
 
-            <ReviveAd className="mt-2" zoneId={4} screens={["desktop", "tablet-big"]} fullWidth={true}/>
-            <ReviveAd className="mt-2" zoneId={2} screens={["tablet"]}/>
-            <ReviveAd className="mt-2" zoneId={2} screens={["mobile"]} fullWidth={true}/>
+            <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["tablet"]}/>
+            <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["mobile"]} fullWidth={true}/>
+            <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_THREE} screens={["desktop", "tablet-big"]} fullWidth={true}/>
           </div>
           <div className="grid-article-latest">
             <h2 className="uppercase">{t("common:latest-article")}</h2>

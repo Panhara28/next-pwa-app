@@ -3,7 +3,6 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Graph } from '../../generated/graph';
 import { renderArticleImage, renderArticleParagraph, renderArticleEmbed, renderArticleHeader, renderArticleListItem, renderArticleBlockQuote, renderArticleCode, renderArticleSource } from './../../functions/articleRenderer';
 import useScript from './../hooks/useScript';
-import { getArticleTitleSlug } from './../../functions/articleHelper';
 import ReviveAd from '../utilities/ReviveAd';
 
 const ArticleContent = ({ article }: { article: Graph.Article}) => {
@@ -30,8 +29,8 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
     "ads": (_, inx) => {
       return (
         <div className="article-content-ads" key={inx}>
-          <ReviveAd zoneId={2} screens={["tablet"]} categorySlug={article.categorySlug}/>
-          <ReviveAd zoneId={2} screens={["mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
+          <ReviveAd zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["tablet"]} categorySlug={article.categorySlug}/>
+          <ReviveAd zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
         </div>
       );
     }
@@ -63,7 +62,7 @@ const share = (article: Graph.Article) => {
   const shareData = {
     title: article.title,
     text: article.summary,
-    url: `/article/${article.id}/${getArticleTitleSlug(article.title)}`
+    url: `/article/${article.id}`
   }
 
   window.navigator.share(shareData);

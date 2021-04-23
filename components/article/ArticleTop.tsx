@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Graph } from "../../generated/graph";
 import { parsedImage } from './../../functions/Image';
-import { getArticleTitleSlug, getArticleCategoryName, getArticleContentWriterProfilePiceture } from './../../functions/articleHelper';
+import { getArticleCategoryName, getArticleContentWriterProfilePiceture } from './../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from './../../functions/date';
 import { ReactNode } from 'react';
 
@@ -11,14 +11,14 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
   const articleTopOne: ReactNode = articleTop[0] ? 
     <div className="grid-article-top-first article-top-big">
       <div className="article-top-big-wrapper">
-        <Link href={`/article/${articleTop[0].id}/${getArticleTitleSlug(articleTop[0].title)}`}>
+        <Link href={`/article/${articleTop[0].id}`}>
           <a>
             <Image src={parsedImage(articleTop[0].thumbnail, 1200, 630)} alt={articleTop[0].thumbnail} width={800} height={420}/>
           </a>
         </Link>
 
         <div className="article-top-big-absolute">
-          <Link href={`/article/${articleTop[0].id}/${getArticleTitleSlug(articleTop[0].title)}`}>
+          <Link href={`/article/${articleTop[0].id}`}>
             <a>
               <h2 className="article-top-big-title">{articleTop[0].title}</h2>
             </a>
@@ -42,14 +42,14 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
 
     return(
       <div key={inx} className={`grid-article-top-${articleOrder[inx]} article-top-card`}>
-        <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}>
+        <Link href={`/article/${article.id}`}>
           <a>
             <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={800} height={420}/>
           </a>
         </Link>
         
         <div className="article-top-card-detail">
-          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h3 className="article-top-card-detail-title">{article.title}</h3></a></Link>
+          <Link href={`/article/${article.id}`}><a><h3 className="article-top-card-detail-title">{article.title}</h3></a></Link>
           <p className="article-top-card-detail-title-sub">{article.summary}</p>
 
           <div className="article-top-card-detail-small">

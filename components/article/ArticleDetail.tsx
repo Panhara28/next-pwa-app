@@ -5,7 +5,7 @@ import ArticleLayoutSide from './../layout/article/ArticleLayoutSide';
 import { Graph } from "../../generated/graph";
 import Image from "next/image";
 import { parsedImage } from './../../functions/Image';
-import { getArticleCategoryName, getArticleTitleSlug } from './../../functions/articleHelper';
+import { getArticleCategoryName } from './../../functions/articleHelper';
 import { getDateByFormat, getElapseTime } from './../../functions/date';
 import SEO from '../utilities/SEO';
 import ArticleTracker from "./ArticleTracker";
@@ -17,7 +17,6 @@ import ReviveAd from './../utilities/ReviveAd';
 const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
   const router = useRouter();
   const pathname = `/article/${article.id}`;
-  const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
   const [ seo, setSeo ] = useState<ReactNode>(null);
 
   return (
@@ -28,16 +27,15 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
         setSeo(<SEO 
           title={article.title}
           pathname={pathname}
-          canonical={canonical}
           description={article.summary}
           type={"article"}
           image={article.thumbnail}
         />);
 
-        router.replace(canonical, undefined, { shallow: true });
+        router.replace(pathname, undefined, { shallow: true });
       }}
     >
-      <ReviveAd className="mt-2" zoneId={6} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
+      <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_ONE} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
 
       <ArticleLayout>
         {seo}
@@ -57,7 +55,7 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
         <ArticleLayoutSide>
           <ArticleRelated article={article} articles={articleRelated}/>
 
-          <ReviveAd className="mt-2" zoneId={4} screens={["desktop", "tablet-big"]} fullWidth={true} categorySlug={article.categorySlug}/>
+          <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_THREE} screens={["desktop", "tablet-big"]} fullWidth={true} categorySlug={article.categorySlug}/>
         </ArticleLayoutSide>
       </ArticleLayout>
     </ArticleTracker>

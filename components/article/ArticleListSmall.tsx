@@ -2,7 +2,7 @@ import React, { ReactNode } from 'react';
 import { Graph } from '../../generated/graph';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getArticleContentWriterProfilePiceture, getArticleTitleSlug } from '../../functions/articleHelper';
+import { getArticleContentWriterProfilePiceture } from '../../functions/articleHelper';
 import { parsedImage } from '../../functions/Image';
 import { getElapseTime, getDateByFormat } from '../../functions/date';
 import { getArticleCategoryName } from './../../functions/articleHelper';
@@ -11,14 +11,14 @@ const ArticleListSmall = ({ articles }: { articles: Graph.Article[] }) => {
   const articleNodes: ReactNode[] = articles.map(article => {
     return (
       <div className="article-list-small-item" key={article.id}>
-        <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}>
+        <Link href={`/article/${article.id}`}>
           <a className="article-list-small-item-thumbnail">
             <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={350} height={185}/>
           </a>
         </Link>
 
         <div className="article-list-small-item-detail">
-          <Link href={`/article/${article.id}/${getArticleTitleSlug(article.title)}`}><a><h4 className="article-list-small-item-detail-title">{article.title}</h4></a></Link>
+          <Link href={`/article/${article.id}`}><a><h4 className="article-list-small-item-detail-title">{article.title}</h4></a></Link>
 
           <div className="article-list-small-item-detail-author">
             <div className="article-list-small-item-detail-author-category">{getArticleCategoryName(article)}</div>

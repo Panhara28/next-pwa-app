@@ -54,11 +54,7 @@ const Search = (props: React.PropsWithChildren<{}>) => {
 
   return(
     <Container>
-      <SEO
-        title="Search"
-        pathname="/search"
-        canonical="/search"
-      />
+      <SEO title="Search" pathname="/search"/>
 
       <Measure>
         <h2>{t("common:search")}</h2>

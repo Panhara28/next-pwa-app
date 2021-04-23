@@ -18,17 +18,6 @@ export const getArticleContentWriterProfilePiceture = (article: Graph.Article, w
   }
 }
 
-export const getArticleTitleSlug = (articleTitle: string) => {
-  let titleSlug = articleTitle.toLocaleLowerCase().replace(/ /g, "-");
-  // Replace hidden space for khmer character &#8203;
-  titleSlug = titleSlug.replace(/​/g, "");
-  
-  // Replace special characters
-  titleSlug = titleSlug.replace(/[!@^=&\/\\#,+()$~%'":*?<>.{}…]/g, '');
-
-  return encodeURIComponent(titleSlug);
-}
-
 export const sortArticle = (articles: Graph.Article[]) => {
   let articleList = [...articles];
   

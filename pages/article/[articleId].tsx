@@ -1,24 +1,22 @@
 import React, { ReactNode, useState } from 'react';
-import Container from '../../../components/layout/Container';
-import Measure from '../../../components/layout/Measure';
+import Container from '../../components/layout/Container';
+import Measure from '../../components/layout/Measure';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
-import { initializeApollo } from '../../../lib/apolloClient';
-import { Graph } from '../../../generated/graph';
-import PalceholderArticle from '../../../components/placeholder/article/PlaceholderArticle';
-import LazyLoading from '../../../components/utilities/LazyLoading';
-import ArticleDetail from './../../../components/article/ArticleDetail';
-import ArticleNext from '../../../components/article/ArticleNext';
-import { getArticleTitleSlug } from './../../../functions/articleHelper';
-import { graphQuery } from '../../../generated/graphQuery';
-import SEO from './../../../components/utilities/SEO';
-import LocaleFlag from '../../../components/utilities/LocaleFlag';
+import { initializeApollo } from '../../lib/apolloClient';
+import { Graph } from '../../generated/graph';
+import PalceholderArticle from '../../components/placeholder/article/PlaceholderArticle';
+import LazyLoading from '../../components/utilities/LazyLoading';
+import ArticleDetail from '../../components/article/ArticleDetail';
+import ArticleNext from '../../components/article/ArticleNext';
+import { graphQuery } from '../../generated/graphQuery';
+import SEO from '../../components/utilities/SEO';
+import LocaleFlag from '../../components/utilities/LocaleFlag';
 import useTranslation  from 'next-translate/useTranslation';
 
 const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const article: Graph.Article = data.article;
   const articleRelated: Graph.Article[] = data.articleRelated;
   const pathname = `/article/${article.id}`;
-  const canonical = pathname + `/${getArticleTitleSlug(article.title)}`;
   const { t } = useTranslation();
   const [ nextIds, setNextIds ] = useState<number[]>(article.nextId ? [ article.nextId ] : []);
   const [ loading, setLoading ] = useState<boolean>(true);
@@ -30,7 +28,6 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
         <SEO 
           title={article.title}
           pathname={pathname}
-          canonical={canonical}
           description={article.summary}
           type={"article"}
           image={article.thumbnail}

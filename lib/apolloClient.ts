@@ -11,7 +11,7 @@ const createApolloClient = () => {
       uri: process.env.NEXT_PUBLIC_API_URI,
     }),
     cache: new InMemoryCache(),
-    name: 'mediaload-web'
+    name: process.env.APOLLO_CLIENT_NAME
   });
 }
 
