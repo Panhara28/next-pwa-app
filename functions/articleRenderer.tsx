@@ -22,6 +22,9 @@ export const renderArticleHeader = (block, key) => {
 }
 
 export const renderArticleImage = (block, key) => {
+  // Prevent image component that don't have image url
+  if(!block.data.file.url) return null;
+
   const url = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height, 100, false);
 
   return (
