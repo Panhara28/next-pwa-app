@@ -32,7 +32,7 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
           image={article.thumbnail}
         />);
 
-        router.replace(pathname, undefined, { shallow: true });
+        router.push(pathname, undefined, { shallow: true });
       }}
     >
       <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_ONE} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
