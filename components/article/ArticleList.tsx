@@ -9,7 +9,7 @@ import { getElapseTime, getDateByFormat } from './../../functions/date';
 const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
   const articleElms = articles.map(article => {
     return (
-      <div className="article-list-item" key={article.id}>
+      <article className="article-list-item" key={article.id}>
         <Link href={`/article/${article.id}`}>
           <a className="article-list-item-thumbnail">
             <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={350} height={185}/>
@@ -27,7 +27,7 @@ const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
             <div className="article-list-item-detail-author-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
           </div>
         </div>
-      </div>
+      </article>
     );
   });
 

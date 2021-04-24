@@ -8,7 +8,7 @@ import { getDateByFormat, getElapseTime } from './../../functions/date';
 const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
   const articleOrder = ["first", "second", "third", "fourth", "fifth"];
   const articleTopOne = articleTop[0] ? 
-    <div className="grid-article-top-first article-top-big">
+    <article className="grid-article-top-first article-top-big">
       <div className="article-top-big-wrapper">
         <Link href={`/article/${articleTop[0].id}`}>
           <a>
@@ -33,14 +33,14 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
           </div>
         </div>
       </div>
-    </div> : null;
+    </article> : null;
 
   const articleTopFour = articleTop.map((article, inx) => {
     // Ignore first article as it already include in the top
     if(inx === 0) return null;
 
     return(
-      <div key={inx} className={`grid-article-top-${articleOrder[inx]} article-top-card`}>
+      <article key={inx} className={`grid-article-top-${articleOrder[inx]} article-top-card`}>
         <Link href={`/article/${article.id}`}>
           <a>
             <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={800} height={420}/>
@@ -60,7 +60,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
             <div className="article-top-card-detail-small-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
           </div>
         </div>
-      </div>
+      </article>
     );
   });
 
