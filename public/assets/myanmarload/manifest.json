@@ -1,6 +1,7 @@
 {
   "name": "Myanmarload",
   "short_name": "Myanmarload",
+  "description": "Visit Myanmarload for up-to-the-minute news, breaking news, and feature stories",
   "icons": [
     {
       "src": "/assets/myanmarload/logo-192x192.png",
@@ -19,10 +20,18 @@
       "type": "image/png"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Search",
+      "url": "/search",
+      "description": "Searching for content"
+    }
+  ],
   "theme_color": "#000000",
-  "background_color": "#FFFFFF",
+  "background_color": "#fbfcfc",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "lang": "my"
 }

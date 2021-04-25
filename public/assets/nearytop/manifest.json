@@ -1,6 +1,7 @@
 {
   "name": "Nearytop",
   "short_name": "Nearytop",
+  "description": "Visit Nearytop for up-to-the-minute news, breaking news, and feature stories",
   "icons": [
     {
       "src": "/assets/nearytop/logo-192x192.png",
@@ -19,10 +20,18 @@
       "type": "image/png"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Search",
+      "url": "/search",
+      "description": "Searching for content"
+    }
+  ],
   "theme_color": "#e84393",
-  "background_color": "#FFFFFF",
+  "background_color": "#fbfcfc",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "lang": "km"
 }

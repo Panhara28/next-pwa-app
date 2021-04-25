@@ -1,6 +1,7 @@
 {
   "name": "Yukvey",
   "short_name": "Yukvey",
+  "description": "Visit Yukvey for up-to-the-minute news, breaking news, and feature stories",
   "icons": [
     {
       "src": "/assets/yukvey/logo-192x192.png",
@@ -19,10 +20,18 @@
       "type": "image/png"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Search",
+      "url": "/search",
+      "description": "Searching for content"
+    }
+  ],
   "theme_color": "#b08bfc",
-  "background_color": "#FFFFFF",
+  "background_color": "#fbfcfc",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "lang": "km"
 }

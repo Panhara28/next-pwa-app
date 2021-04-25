@@ -1,6 +1,7 @@
 {
   "name": "Lomhe",
   "short_name": "Lomhe",
+  "description": "Visit Lomhe for up-to-the-minute news, breaking news, and feature stories",
   "icons": [
     {
       "src": "/assets/lomhe/logo-192x192.png",
@@ -19,10 +20,18 @@
       "type": "image/png"
     }
   ],
+  "shortcuts": [
+    {
+      "name": "Search",
+      "url": "/search",
+      "description": "Searching for content"
+    }
+  ],
   "theme_color": "#5bdafd",
-  "background_color": "#FFFFFF",
+  "background_color": "#fbfcfc",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
-  "orientation": "portrait"
+  "orientation": "portrait",
+  "lang": "km"
 }
