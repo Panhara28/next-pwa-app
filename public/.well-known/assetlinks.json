@@ -1,5 +1,5 @@
 [{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target" : { "namespace": "android_app", "package_name": "com.khmerload.next.twa",
-               "sha256_cert_fingerprints": ["SHA256: 60:F0:18:92:8F:3D:61:A0:47:28:7A:57:30:56:6A:29:92:08:22:92:68:18:69:E9:DF:59:0E:E2:06:F9:47:2F"] }
-}]
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target" : { "namespace": "android_app", "package_name": "com.khmerload.next.twa",
+                   "sha256_cert_fingerprints": ["CA:BE:20:E6:DD:0C:48:46:41:B2:06:84:BD:B7:96:5B:B9:E1:FA:EA:B3:AB:89:C4:AC:5D:CE:3C:1F:2A:C6:EE"] }
+    }]
