@@ -15,7 +15,7 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
       <article className="article-list-small-item" key={article.id}>
         <Link href={`/article/${article.id}`}>
           <a className="article-list-small-item-thumbnail">
-            <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={350} height={185}/>
+            <Image src={parsedImage(article.thumbnail, 150, 80)} alt={article.thumbnail} width={150} height={80}/>
           </a>
         </Link>
 
@@ -31,7 +31,7 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
   return (
     <div className="article-related">
       <div className="article-related-author">
-        <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={60} height={60}/>
+        <Image src={getArticleContentWriterProfilePiceture(article, 128, 128)} alt={article.contentWriter.name.en} width={60} height={60}/>
         <div className="article-related-name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
       </div>
 

@@ -12,7 +12,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
       <div className="article-top-big-wrapper">
         <Link href={`/article/${articleTop[0].id}`}>
           <a>
-            <Image src={parsedImage(articleTop[0].thumbnail, 1200, 630)} alt={articleTop[0].thumbnail} width={800} height={420}/>
+            <Image src={parsedImage(articleTop[0].thumbnail, 800, 420)} alt={articleTop[0].thumbnail} width={800} height={420}/>
           </a>
         </Link>
 
@@ -25,7 +25,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
           
           <div className="article-top-big-detail">
             <div className="article-top-big-detail-category">{getArticleCategoryName(articleTop[0])}</div>
-            <Image src={getArticleContentWriterProfilePiceture(articleTop[0], 256, 256)} alt={articleTop[0].contentWriter.name.en} width={25} height={25}/>
+            <Image src={getArticleContentWriterProfilePiceture(articleTop[0], 128, 128)} alt={articleTop[0].contentWriter.name.en} width={25} height={25}/>
             <div className="article-top-big-detail-author-name">{articleTop[0].contentWriter.nameDisplay} {articleTop[0].contentWriter.groupId === 13 ? "(C) " : ""}</div>
             <div className="article-top-big-detail-break"></div>
             <div className="article-top-big-detail-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(articleTop[0].publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
@@ -43,7 +43,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
       <article key={inx} className={`grid-article-top-${articleOrder[inx]} article-top-card`}>
         <Link href={`/article/${article.id}`}>
           <a>
-            <Image src={parsedImage(article.thumbnail, 1200, 630)} alt={article.thumbnail} width={800} height={420}/>
+            <Image src={parsedImage(article.thumbnail, 400, 210)} alt={article.thumbnail} width={400} height={210}/>
           </a>
         </Link>
         
@@ -53,7 +53,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
 
           <div className="article-top-card-detail-small">
             <div className="article-top-card-detail-small-category">{getArticleCategoryName(article)}</div>
-            <Image src={getArticleContentWriterProfilePiceture(article, 256, 256)} alt={article.contentWriter.name.en} width={25} height={25}/>
+            <Image src={getArticleContentWriterProfilePiceture(article, 128, 128)} alt={article.contentWriter.name.en} width={25} height={25}/>
             <div className="article-top-card-detail-small-author-name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
             <div className="article-top-card-detail-small-break"></div>
             <div className="article-top-card-detail-small-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
