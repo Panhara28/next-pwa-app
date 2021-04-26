@@ -42,6 +42,8 @@
     height: $navbar-height-mobile;
 
     .navbar-measure {
+      justify-content: space-between;
+      
       .navbar-title {
         font-size: rem(26px);
       }
@@ -53,6 +55,10 @@
 
         i {
           line-height: $navbar-height-mobile;
+
+          &.hidden {
+            visibility: hidden;
+          }
         }
       }
     }

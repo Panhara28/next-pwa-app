@@ -12,7 +12,7 @@ const NavbarBottom = (props: React.PropsWithChildren<{}>) => {
         <Link href="/">
           <a className={`navbar-bottom-items ${(router.pathname === "/" ? "active" : "")}`}>
             <div className="navbar-bottom-item-wrapper">
-              <i className="fal fa-home-alt fa-lg"></i>
+              <i className="fal fa-home-alt fa-lg fa-fw"></i>
               <div className="navbar-bottom-item-text">{t("common:homepage")}</div>
             </div>
           </a>
@@ -21,7 +21,7 @@ const NavbarBottom = (props: React.PropsWithChildren<{}>) => {
         <Link href="/search">
           <a className={`navbar-bottom-items ${(router.pathname === "/search" ? "active" : "")}`}>
             <div className="navbar-bottom-item-wrapper">
-              <i className="fal fa-search fa-lg"></i>
+              <i className="fal fa-search fa-lg fa-fw"></i>
               <div className="navbar-bottom-item-text">{t("common:search")}</div>
             </div>
           </a>
@@ -30,7 +30,7 @@ const NavbarBottom = (props: React.PropsWithChildren<{}>) => {
         <Link href="/menu">
           <a className={`navbar-bottom-items ${(router.pathname === "/menu" ? "active" : "")}`}>
             <div className="navbar-bottom-item-wrapper">
-              <i className="fal fa-bars fa-lg"></i>
+              <i className="fal fa-bars fa-lg fa-fw"></i>
               <div className="navbar-bottom-item-text">{t("common:menu")}</div>
             </div>
           </a>

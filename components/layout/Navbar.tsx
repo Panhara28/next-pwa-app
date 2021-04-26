@@ -18,6 +18,7 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
   const onPreviousPage = () => {
     // If not have previous history, go to home page
     // Ref: https://stackoverflow.com/questions/3588315/how-to-check-if-the-user-can-go-back-in-browser-history-or-not
+
     const haveHistory = window.history.length > 2;
     if(haveHistory) router.back();
     else router.push('/');
@@ -26,12 +27,11 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
   return (
     <div className="navbar">
       <div className="navbar-measure">
-        <div className="navbar-items d-none d-block-tablet-big"
-          onClick={onPreviousPage}
-          ><i className="fal fa-chevron-left fa-lg"></i>
+        <div className="navbar-items d-none d-block-tablet-big">
+          <i className={`fal fa-chevron-left fa-lg fa-fw ${(router.pathname !== "/" ? "" : "hidden")}`}
+            onClick={onPreviousPage}>
+          </i>
         </div>
-
-        <div className="navbar-items-grow d-none d-block-mobile"></div>
 
         <div className="navbar-items nav-items-title">
           <Link href="/">
@@ -39,16 +39,16 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
           </Link>
         </div>
 
-        <div className="navbar-items-grow"></div>
+        <div className="navbar-items-grow d-none-mobile"></div>
 
-        <div className="navbar-items" onClick={() => { toggleDarkMode(colorMode, setColorMode) }}><i className={"toggle-dark-mode-ico fal fa-lg" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
+        <div className="navbar-items" onClick={() => { toggleDarkMode(colorMode, setColorMode) }}><i className={"toggle-dark-mode-ico fal fa-lg fa-fw" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
         
         <Link href="/search">
-          <a className={`navbar-items d-none-mobile`}><i className="fal fa-search fa-lg"></i></a>
+          <a className={`navbar-items d-none-mobile`}><i className="fal fa-search fa-lg fa-fw"></i></a>
         </Link>
 
         <Link href="/menu">
-          <a className={`navbar-items d-none-mobile`}><i className="fal fa-bars fa-lg"></i></a>
+          <a className={`navbar-items d-none-mobile`}><i className="fal fa-bars fa-lg fa-fw"></i></a>
         </Link>
       </div>
     </div>

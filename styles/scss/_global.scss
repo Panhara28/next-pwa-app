@@ -6,11 +6,12 @@ body {
 
 * {
   font-family: 'Metropolis', 'Hanuman';
+  overflow-wrap: break-word;
+  -webkit-tap-highlight-color: transparent; /* For removing the highlight */
 }
 
 *, *::after, *::before {
   box-sizing: border-box;
-  overflow-wrap: break-word;
 }
 
 /* Forcing word break in firefox to break khmer word*/
