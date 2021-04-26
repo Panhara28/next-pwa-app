@@ -20,15 +20,8 @@
       "type": "image/png"
     }
   ],
-  "shortcuts": [
-    {
-      "name": "Search",
-      "url": "/search",
-      "description": "Searching for content"
-    }
-  ],
   "theme_color": "#5bdafd",
-  "background_color": "#fbfcfc",
+  "background_color": "#5bdafd",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
