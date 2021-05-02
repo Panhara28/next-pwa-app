@@ -43,10 +43,9 @@
 
 @include responsive(tablet) {
   .search-grid {
-    grid-template-columns: 1fr;
     grid-template-areas: 
-      "search-input"
-      "search-result"
+      "search-input search-input search-input"
+      "search-result search-result search-result"
     ;
   }
 }

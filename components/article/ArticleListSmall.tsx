@@ -13,7 +13,7 @@ const ArticleListSmall = ({ articles }: { articles: Graph.Article[] }) => {
       <article className="article-list-small-item" key={article.id}>
         <Link href={`/article/${article.id}`}>
           <a className="article-list-small-item-thumbnail">
-            <Image src={parsedImage(article.thumbnail, 150, 80)} alt={article.thumbnail} width={150} height={80}/>
+            <Image src={parsedImage(article.thumbnail, 150, 80)} alt={article.thumbnail} width={150} height={80} quality={100}/>
           </a>
         </Link>
 
@@ -22,7 +22,7 @@ const ArticleListSmall = ({ articles }: { articles: Graph.Article[] }) => {
 
           <div className="article-list-small-item-detail-author">
             <div className="article-list-small-item-detail-author-category">{getArticleCategoryName(article)}</div>
-            <Image src={getArticleContentWriterProfilePiceture(article, 128, 128)} alt={article.contentWriter.name.en} width={25} height={25}/>
+            <Image src={getArticleContentWriterProfilePiceture(article, 128, 128)} alt={article.contentWriter.name.en} width={25} height={25} quality={100}/>
             <div className="article-list-small-item-detail-author-name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
           </div>
 

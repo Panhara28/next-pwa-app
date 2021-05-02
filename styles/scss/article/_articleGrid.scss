@@ -167,13 +167,12 @@
 
 @include responsive(mobile) {
   .article-top-grid {
-    grid-template-columns: 1fr;
     grid-template-areas: 
-      "article-top-first"
-      "article-top-second"
-      "article-top-third"
-      "article-top-fourth"
-      "article-top-fifth"
+      "article-top-first article-top-first"
+      "article-top-second article-top-second"
+      "article-top-third article-top-third"
+      "article-top-fourth article-top-fourth"
+      "article-top-fifth article-top-fifth"
     ;
 
     .article-top-big {

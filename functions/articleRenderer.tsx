@@ -25,11 +25,11 @@ export const renderArticleImage = (block, key) => {
   // Prevent image component that don't have image url
   if(!block.data.file.url) return null;
 
-  const url = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height);
+  const src = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height, 650);
 
   return (
     <figure key={key} className="article-content-image">
-      <Image src={url} alt={url} width={block.data.file.width} height={block.data.file.height}/>
+      <Image src={src} alt={src} width={block.data.file.width} height={block.data.file.height} quality={100}/>
       { block.data.caption && <figcaption className="article-content-caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}/> }
     </figure>
   );
