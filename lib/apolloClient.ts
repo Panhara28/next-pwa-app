@@ -1,15 +1,16 @@
 import { useMemo } from "react";
 import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from "@apollo/client";
+import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
+import { sha256 } from 'crypto-hash';
 
 let apolloClient: ApolloClient<NormalizedCacheObject>;
+const linkChain = createPersistedQueryLink({ sha256 }).concat(new HttpLink({ uri: process.env.NEXT_PUBLIC_API_URI }));
 console.log(`Pointing end point: ${process.env.NEXT_PUBLIC_API_URI}`);
 
 const createApolloClient = () => {
   return new ApolloClient({
     ssrMode: !process.browser, // set to true for SSR
-    link: new HttpLink({
-      uri: process.env.NEXT_PUBLIC_API_URI,
-    }),
+    link: linkChain,
     cache: new InMemoryCache(),
     name: process.env.APOLLO_CLIENT_NAME
   });

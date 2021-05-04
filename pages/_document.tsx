@@ -45,7 +45,7 @@ class MyDocument extends Document {
           <link href={`${assetUrl}/splashscreens/ipadpro2_splash.png`} media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" rel="apple-touch-startup-image"/>
           
           {/* <!-- Font --> */}
-          <link rel="stylesheet" href={`/css/style.${process.env.LOCALE}.css`} />
+          <link rel="preload stylesheet" href={`/css/style.${process.env.LOCALE}.css`} as="style"/>
 
           {/* <!-- Theme Checking --> */}
           <script src="/js/theme.js"/>
