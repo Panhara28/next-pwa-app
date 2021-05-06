@@ -42,7 +42,7 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
 
         <ArticleLayoutDetail>
           <h1 className="grid-article-title">{ article.title }</h1>
-          <div className="grid-article-thumbnail"><Image priority={true} src={parsedImage(article.thumbnail, 400, 210)} alt={article.thumbnail} width={400} height={210} quality={100}/></div>        
+          <div className="grid-article-thumbnail"><Image priority={true} unoptimized={true} src={parsedImage(article.thumbnail, 400, 210)} alt={article.thumbnail} width={400} height={210}/></div>        
           <div className="grid-article-summary">
             <div className="article-summary-category">{getArticleCategoryName(article)}</div>
             <span className="article-summary-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}</span>

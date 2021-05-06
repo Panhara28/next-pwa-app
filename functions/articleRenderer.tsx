@@ -29,7 +29,7 @@ export const renderArticleImage = (block, key) => {
 
   return (
     <figure key={key} className="article-content-image">
-      <Image src={src} alt={src} width={block.data.file.width} height={block.data.file.height} quality={100}/>
+      <Image unoptimized={true} src={src} alt={src} width={block.data.file.width} height={block.data.file.height}/>
       { block.data.caption && <figcaption className="article-content-caption" dangerouslySetInnerHTML={{ __html: block.data.caption }}/> }
     </figure>
   );
