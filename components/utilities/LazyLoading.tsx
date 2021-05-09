@@ -31,7 +31,7 @@ const LazyLoading = (props: React.PropsWithChildren<{}>) => {
       // Add scroll event when component did mount
       window.addEventListener("scroll", onScroll);
       checkUpdate();
-    }, 1000);
+    }, 3000);
     
 
     // Remove scroll event when component unmount
