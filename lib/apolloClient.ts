@@ -3,14 +3,18 @@ import { ApolloClient, HttpLink, InMemoryCache, NormalizedCacheObject } from "@a
 import { createPersistedQueryLink } from "@apollo/client/link/persisted-queries";
 import { sha256 } from 'crypto-hash';
 
-let apolloClient: ApolloClient<NormalizedCacheObject>;
-const linkChain = createPersistedQueryLink({ sha256 }).concat(new HttpLink({ uri: process.env.NEXT_PUBLIC_API_URI }));
 console.log(`Pointing end point: ${process.env.NEXT_PUBLIC_API_URI}`);
+let apolloClient: ApolloClient<NormalizedCacheObject>;
+const secureRequest = process.browser ? (window.location.protocol === "https:" || window.location.hostname === "localhost" ? true : false) : true;
+const httpLink = new HttpLink({ uri: process.env.NEXT_PUBLIC_API_URI });
+// Using this to save network bandwidth
+// Ref: https://www.apollographql.com/docs/react/api/link/persisted-queries/
+const httpsLink = createPersistedQueryLink({ sha256 }).concat(httpLink);
 
 const createApolloClient = () => {
   return new ApolloClient({
-    ssrMode: !process.browser, // set to true for SSR
-    link: linkChain,
+    ssrMode: !process.browser, // Set to true for SSR
+    link: secureRequest ? httpsLink : httpLink,// Using normal http link for unsecure request
     cache: new InMemoryCache(),
     name: process.env.APOLLO_CLIENT_NAME
   });
