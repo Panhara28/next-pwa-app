@@ -35,7 +35,15 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
         router.push(pathname, undefined, { shallow: true });
       }}
     >
-      <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_ONE} screens={["desktop", "tablet-big", "tablet", "mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
+      <ReviveAd 
+        className="mt-2" 
+        zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_ONE} 
+        screens={["desktop", "tablet-big", "tablet", "mobile"]} 
+        categorySlug={article.categorySlug}
+        fullWidth={true} 
+        width={1100}
+        height={240}
+      />
 
       <ArticleLayout>
         {seo}
@@ -55,7 +63,15 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
         <ArticleLayoutSide>
           <ArticleRelated article={article} articles={articleRelated}/>
 
-          <ReviveAd className="mt-2" zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_THREE} screens={["desktop", "tablet-big"]} fullWidth={true} categorySlug={article.categorySlug}/>
+          <ReviveAd 
+            className="mt-2" 
+            zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_THREE} 
+            screens={["desktop", "tablet-big"]} 
+            categorySlug={article.categorySlug}
+            fullWidth={true}
+            width={300}
+            height={450}
+          />
         </ArticleLayoutSide>
       </ArticleLayout>
     </ArticleTracker>

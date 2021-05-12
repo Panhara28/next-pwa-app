@@ -2,11 +2,13 @@ import { useEffect, useState } from "react";
 import useScript from "../hooks/useScript";
 
 type Props = {
-  zoneId?: number | string;
-  screens: string[];
-  categorySlug?: string;
-  fullWidth?: boolean;
   className?: string
+  zoneId?: number | string
+  screens: string[]
+  categorySlug?: string
+  fullWidth?: boolean
+  width: number
+  height: number
 }
 
 const ReviveAd = (props: Props) => {
@@ -44,7 +46,10 @@ const ReviveAd = (props: Props) => {
 
   return (
     display ? 
-      <div key={props.categorySlug} className={`revive-ads ${(props.fullWidth ? "full-width": "")} ${props.className}`}>
+      <div
+        key={props.categorySlug} 
+        className={`revive-ads ${(props.fullWidth ? "full-width": "")} ${props.className}`} 
+        style={{ paddingBottom: (props.height / props.width) * 100 + "%"}}>
         {
           props.categorySlug ?
             <ins

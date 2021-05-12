@@ -29,8 +29,22 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
     "ads": (_, inx) => {
       return (
         <div className="article-content-ads" key={inx}>
-          <ReviveAd zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["tablet"]} categorySlug={article.categorySlug}/>
-          <ReviveAd zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} screens={["mobile"]} fullWidth={true} categorySlug={article.categorySlug}/>
+          <ReviveAd 
+            zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} 
+            screens={["tablet"]} 
+            categorySlug={article.categorySlug}
+            width={300}
+            height={250}
+          />
+
+          <ReviveAd 
+            zoneId={process.env.NEXT_PUBLIC_ADS_ZONE_TWO} 
+            screens={["mobile"]} 
+            categorySlug={article.categorySlug}
+            fullWidth={true} 
+            width={300}
+            height={250}
+          />
         </div>
       );
     }
