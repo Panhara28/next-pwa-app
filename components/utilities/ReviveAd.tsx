@@ -53,11 +53,13 @@ const ReviveAd = (props: Props) => {
         {
           props.categorySlug ?
             <ins
+              data-revive-platform='next-js'
               data-revive-category={props.categorySlug}
               data-revive-zoneid={props.zoneId}
               data-revive-id={reviveId}
             /> : 
             <ins
+              data-revive-platform='next-js'
               data-revive-zoneid={props.zoneId}
               data-revive-id={reviveId}
             />
