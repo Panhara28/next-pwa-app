@@ -22,10 +22,16 @@ export const renderArticleHeader = (block, key) => {
 }
 
 export const renderArticleImage = (block, key) => {
-  // Prevent image component that don't have image url
-  if(!block.data.file.url) return null;
+  let src = block.data.file.url;
 
-  const src = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height, 650);
+  // Prevent image component that don't have image url
+  if(!src) return null;
+
+  // Dont resize gif image
+  const fileExt = block.data.file.url.split('.').pop();
+  if(fileExt !== "gif") {
+    src = parsedImage(block.data.file.url, block.data.file.width, block.data.file.height, 650);
+  } 
 
   return (
     <figure key={key} className="article-content-image">
