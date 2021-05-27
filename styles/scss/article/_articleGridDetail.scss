@@ -167,6 +167,20 @@
         color: var(--color-white);
         cursor: pointer;
       }
+
+      .article-content-ads {
+        margin: rem(16px) 0;
+      }
+
+      .article-content-telegram-link {
+        display: block;
+        margin: rem(16px) 0;
+        padding: rem(12px) rem(16px);
+        text-align: center;
+        background-color: #0088cc;
+        color: var(--color-white);
+        border-radius: 5px;
+      }
     }
   }
 

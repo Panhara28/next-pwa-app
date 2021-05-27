@@ -11,9 +11,13 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Inject the ads in the second blocks
-  if (content.length > 2) {
+  if (content.length >= 2) {
     content.splice(2, 0, {
-      type: "ads",
+      type: "telegram"
+    });
+
+    content.splice(3, 0, {
+      type: "ads"
     });
   }
   
@@ -47,6 +51,17 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
           />
         </div>
       );
+    },
+    "telegram": (_, inx) => {
+      if(process.env.NEXT_PUBLIC_TELEGRAM) {
+        return(
+          <a key={inx} className="article-content-telegram-link" target="_blank" href={process.env.NEXT_PUBLIC_TELEGRAM}>
+            <i className="fab fa-telegram fa-lg fa-spin"></i> {t("article:join-us-on-telegram-to-get-the-fastest-news")}
+          </a>
+        )
+      }
+      
+      return null;
     }
   };
 
