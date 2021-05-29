@@ -24,6 +24,13 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
           <div className="article-list-small-item-detail-datetime"><i className="fal fa-calendar-days"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
           <div className="article-list-small-item-detail-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
         </div>
+
+        {
+          article.audio ? 
+            <div className="article-list-small-item-audio">
+              <i className="fal fa-waveform-lines fa-sm fa-beat"></i>
+            </div> : null
+        }
       </article>
     );
   });

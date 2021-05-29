@@ -33,6 +33,7 @@ const QUERY_ARTICLE = gql`
       id
       title
       content
+      audio
       summary
       nextId
       categoryId
@@ -73,6 +74,7 @@ const QUERY_ARTICLE_LATEST = gql`
         title
         summary
         thumbnail
+        audio
         categoryName {
           kh
         }
@@ -103,6 +105,7 @@ const QUERY_ARTICLE_WEEKLY = gql`
         id
         title
         thumbnail 
+        audio
         publishedDateTime {
           en
         } 
@@ -118,6 +121,7 @@ const QUERY_ARTICLE_RELATED = gql`
         id
         title
         thumbnail 
+        audio
         publishedDateTime {
           en
         } 

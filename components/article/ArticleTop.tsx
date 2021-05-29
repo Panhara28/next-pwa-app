@@ -32,6 +32,13 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
             <div className="article-top-big-detail-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(articleTop[0].publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(articleTop[0].publishedDateTime.en)}</div>
           </div>
         </div>
+
+        {
+          articleTop[0].audio ? 
+            <div className="article-top-audio">
+              <i className="fal fa-waveform-lines fa-sm fa-beat"></i>
+            </div> : null
+        }
       </div>
     </article> : null;
 
@@ -60,6 +67,13 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
             <div className="article-top-card-detail-small-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
           </div>
         </div>
+
+        {
+          article.audio ? 
+            <div className="article-top-card-audio">
+              <i className="fal fa-waveform-lines fa-sm fa-beat"></i>
+            </div> : null
+        }
       </article>
     );
   });

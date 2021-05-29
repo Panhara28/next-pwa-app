@@ -84,10 +84,21 @@
       img {
         border-radius: 5px;
       }
+
+      .article-top-audio {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: var(--color-red);
+        color: var(--color-white);
+        padding: rem(6px) rem(8px) rem(4px) rem(8px);
+        border-radius: 5px;
+      }
     }
   }
 
   .article-top-card {
+    position: relative;
     background: var(--color-bg-primary);
     border-radius: 5px;
 
@@ -151,6 +162,16 @@
     img {
       border-radius: 5px 5px 0 0;
     }
+
+    .article-top-card-audio {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: var(--color-red);
+      color: var(--color-white);
+      padding: rem(6px) rem(8px) rem(4px) rem(8px);
+      border-radius: 5px;
+    }
   }
 }
 
@@ -180,8 +201,6 @@
       border-radius: 5px;
 
       .article-top-big-wrapper {
-        position: unset;
-
         .article-top-big-absolute {
           position: unset;
           color: var(--color-text-primary);

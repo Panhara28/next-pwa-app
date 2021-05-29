@@ -2,6 +2,7 @@
   .article-list-item {
     margin-bottom: rem(16px);
     display: flex;
+    position: relative;
 
     .article-list-item-thumbnail {
       width: 30%;
@@ -60,6 +61,16 @@
         }
       }
     }
+
+    .article-list-item-audio {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: var(--color-red);
+      color: var(--color-white);
+      padding: rem(6px) rem(8px) rem(4px) rem(8px);
+      border-radius: 5px;
+    }
   }
 }
 
@@ -67,6 +78,7 @@
   .article-list-small-item {
     margin-bottom: rem(16px);
     display: flex;
+    position: relative;
 
     .article-list-small-item-thumbnail {
       width: 30%;
@@ -130,6 +142,17 @@
         padding: rem(4px) 0;
       }
     }
+
+    .article-list-small-item-audio {
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: var(--color-red);
+      color: var(--color-white);
+      font-size: rem(10px);
+      padding: rem(4px) rem(6px) rem(2px) rem(6px);
+      border-radius: 5px;
+    }
   }
 }
 
@@ -168,6 +191,11 @@
             margin: rem(2px) 0;
           }
         }
+      }
+
+      .article-list-item-audio {
+        font-size: rem(10px);
+        padding: rem(4px) rem(6px) rem(2px) rem(6px);
       }
     }
   }
