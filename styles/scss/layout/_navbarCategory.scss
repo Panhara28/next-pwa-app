@@ -4,7 +4,7 @@
   color: var(--color-text-primary);
 
   .navbar-category-measure {
-    max-width: $max-width;
+    max-width: calc(#{$max-width} - (#{$content-padding} * 2));
     margin:auto;
     overflow: auto;
     display: flex;
@@ -46,6 +46,8 @@
     height: $navbar-category-height-mobile;
 
     .navbar-category-measure {
+      max-width: calc(#{$max-width} - (#{$content-padding-mobile} * 2));
+
       .navbar-category-items {
         line-height: $navbar-category-height-mobile;
         padding: 0 $content-padding-mobile;
