@@ -38,7 +38,7 @@ const Article = ({ data }: InferGetServerSidePropsType<typeof getServerSideProps
         <LocaleFlag locales={["km"]}>
           <div className="contributor-registration">
             <h3>
-              {t("article:want-to-become-a-paid-part-time-writer")}? <a target="_blank" rel="noopener" href="https://editor.khmerload.com/contributor/registration">{t("article:please-register-here")} <i className="fal fa-pencil-alt fa-lg"></i></a>
+              {t("article:want-to-become-a-paid-part-time-writer")}? <a target="_blank" rel="noopener" href="https://editor.khmerload.com/contributor/registration">{t("article:please-register-here")} <i className="fal fa-pen-circle fa-xl"></i></a>
             </h3>
           </div>
         </LocaleFlag>

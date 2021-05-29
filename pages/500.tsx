@@ -16,7 +16,7 @@ const Custom500 = (props: React.PropsWithChildren<{}>) => {
       <Measure>
         <div className="error-warpper">
           <h1>
-            <i className="fal fa-frown fa-2x"></i>
+            <i className="fal fa-face-frown fa-2x"></i>
             <br/><br/>
             {`500 | ${t("error:description.500")}`}
           </h1>

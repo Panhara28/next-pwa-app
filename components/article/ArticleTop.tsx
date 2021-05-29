@@ -28,7 +28,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
             <Image priority={true} unoptimized={true} src={getArticleContentWriterProfilePiceture(articleTop[0], 128, 128)} alt={articleTop[0].contentWriter.name.en} width={25} height={25}/>
             <div className="article-top-big-detail-author-name">{articleTop[0].contentWriter.nameDisplay} {articleTop[0].contentWriter.groupId === 13 ? "(C) " : ""}</div>
             <div className="article-top-big-detail-break"></div>
-            <div className="article-top-big-detail-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(articleTop[0].publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
+            <div className="article-top-big-detail-datetime"><i className="fal fa-calendar-days"></i>&nbsp;{getDateByFormat(articleTop[0].publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
             <div className="article-top-big-detail-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(articleTop[0].publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(articleTop[0].publishedDateTime.en)}</div>
           </div>
         </div>
@@ -56,7 +56,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
             <Image priority={true} unoptimized={true} src={getArticleContentWriterProfilePiceture(article, 128, 128)} alt={article.contentWriter.name.en} width={25} height={25}/>
             <div className="article-top-card-detail-small-author-name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
             <div className="article-top-card-detail-small-break"></div>
-            <div className="article-top-card-detail-small-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
+            <div className="article-top-card-detail-small-datetime"><i className="fal fa-calendar-days"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
             <div className="article-top-card-detail-small-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
           </div>
         </div>

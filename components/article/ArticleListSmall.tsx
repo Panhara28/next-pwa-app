@@ -26,7 +26,7 @@ const ArticleListSmall = ({ articles }: { articles: Graph.Article[] }) => {
             <div className="article-list-small-item-detail-author-name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
           </div>
 
-          <div className="article-list-small-item-detail-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
+          <div className="article-list-small-item-detail-datetime"><i className="fal fa-calendar-days"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
           <div className="article-list-small-item-detail-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
         </div>
       </article>

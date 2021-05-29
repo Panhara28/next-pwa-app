@@ -56,7 +56,7 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
       if(process.env.NEXT_PUBLIC_TELEGRAM) {
         return(
           <a key={inx} className="article-content-telegram-link" target="_blank" href={process.env.NEXT_PUBLIC_TELEGRAM}>
-            <i className="fab fa-telegram fa-lg fa-spin"></i> {t("article:join-us-on-telegram-to-get-the-fastest-news")}
+            <i className="fab fa-telegram fa-xl fa-beat"></i> {t("article:join-us-on-telegram-to-get-the-fastest-news")}
           </a>
         )
       }
@@ -82,7 +82,7 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
         })
       }
 
-      <div className="article-content-share" onClick={() => share(article)}><i className="fal fa-share-alt fa-lg"></i></div>
+      <div className="article-content-share" onClick={() => share(article)}><i className="fal fa-share-nodes fa-xl"></i></div>
     </div>
   );
 }

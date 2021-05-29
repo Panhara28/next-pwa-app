@@ -23,7 +23,7 @@ const ArticleList = ({ articles }: { articles: Graph.Article[] }) => {
             <div className="article-list-item-detail-author-category">{getArticleCategoryName(article)}</div>
             <Image unoptimized={true} src={getArticleContentWriterProfilePiceture(article, 128, 128)} alt={article.contentWriter.name.en} width={25} height={25}/>
             <div className="article-list-item-detail-author-name">{article.contentWriter.nameDisplay} {article.contentWriter.groupId === 13 ? "(C) " : ""}</div>
-            <div className="article-list-item-detail-author-datetime"><i className="fal fa-calendar-alt"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
+            <div className="article-list-item-detail-author-datetime"><i className="fal fa-calendar-days"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "DD-MMM-YYYY")}&nbsp;</div>
             <div className="article-list-item-detail-author-datetime"><i className="fal fa-clock"></i>&nbsp;{getDateByFormat(article.publishedDateTime.en, "ha")}&nbsp;·&nbsp;{getElapseTime(article.publishedDateTime.en)}</div>
           </div>
         </div>

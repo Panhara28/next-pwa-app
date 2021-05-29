@@ -73,7 +73,7 @@ const Search = (props: React.PropsWithChildren<{}>) => {
               }}
             />
 
-            <button onClick={search}><i className="fal fa-search fa-lg"></i></button>
+            <button onClick={search}><i className="fal fa-magnifying-glass fa-xl"></i></button>
           </div>
 
           {lazyLoadArticleList}

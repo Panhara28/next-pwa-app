@@ -25,7 +25,7 @@ const Menu = (props: React.PropsWithChildren<{}>) => {
           </Link>
 
           <div className="menu-copyright">
-            {t("menu:copyright")} <i className="fal fa-copyright fa-lg"></i> Mediaload
+            {t("menu:copyright")} <i className="fal fa-copyright fa-xl"></i> Mediaload
           </div>
         </div>
       </Measure>

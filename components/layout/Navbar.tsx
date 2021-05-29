@@ -28,7 +28,7 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
     <div className="navbar">
       <div className="navbar-measure">
         <div className="navbar-items d-none d-block-tablet-big">
-          <i className={`fal fa-chevron-left fa-lg fa-fw ${(router.pathname !== "/" ? "" : "hidden")}`}
+          <i className={`fal fa-chevron-left fa-xl fa-fw ${(router.pathname !== "/" ? "" : "hidden")}`}
             onClick={onPreviousPage}>
           </i>
         </div>
@@ -41,14 +41,14 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
 
         <div className="navbar-items-grow d-none-mobile"></div>
 
-        <div className="navbar-items" onClick={() => { toggleDarkMode(colorMode, setColorMode) }}><i className={"toggle-dark-mode-ico fal fa-lg fa-fw" + (process.browser ? (colorMode === "dark" ? " fa-sun" : " fa-moon") : "")}></i></div>
+        <div className="navbar-items" onClick={() => { toggleDarkMode(colorMode, setColorMode) }}><i className={"toggle-dark-mode-ico fal fa-xl fa-fw" + (process.browser ? (colorMode === "dark" ? " fa-sun-cloud" : " fa-moon-cloud") : "")}></i></div>
         
         <Link href="/search">
-          <a className={`navbar-items d-none-mobile`}><i className="fal fa-search fa-lg fa-fw"></i></a>
+          <a className={`navbar-items d-none-mobile`}><i className="fal fa-magnifying-glass fa-xl fa-fw"></i></a>
         </Link>
 
         <Link href="/menu">
-          <a className={`navbar-items d-none-mobile`}><i className="fal fa-bars fa-lg fa-fw"></i></a>
+          <a className={`navbar-items d-none-mobile`}><i className="fal fa-bars fa-xl fa-fw"></i></a>
         </Link>
       </div>
     </div>

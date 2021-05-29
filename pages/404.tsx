@@ -16,7 +16,7 @@ const Custom404 = (props: React.PropsWithChildren<{}>) => {
       <Measure>
         <div className="error-warpper">
           <h1>
-            <i className="fal fa-frown fa-2x"></i>
+            <i className="fal fa-face-frown fa-2x"></i>
             <br/><br/>
             {`404 | ${t("error:description.404")}`}
           </h1>
