@@ -35,7 +35,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
 
         {
           articleTop[0].audio ? 
-            <div className="article-top-audio">
+            <div className="article-top-audio-badge">
               <i className="fal fa-waveform-lines fa-sm fa-beat"></i>
             </div> : null
         }
@@ -70,7 +70,7 @@ const ArticleTop = ({ articleTop }: { articleTop: Graph.Article[] }) => {
 
         {
           article.audio ? 
-            <div className="article-top-card-audio">
+            <div className="article-top-card-audio-badge">
               <i className="fal fa-waveform-lines fa-sm fa-beat"></i>
             </div> : null
         }

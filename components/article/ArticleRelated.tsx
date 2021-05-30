@@ -27,7 +27,7 @@ const ArticleRelated = ({ article, articles }: { article: Graph.Article, article
 
         {
           article.audio ? 
-            <div className="article-list-small-item-audio">
+            <div className="article-list-small-item-audio-badge">
               <i className="fal fa-waveform-lines fa-sm fa-beat"></i>
             </div> : null
         }

@@ -9,9 +9,9 @@ const Navbar = (props: React.PropsWithChildren<{}>) => {
 
   if(process.browser) {
     if(colorMode === "dark") {
-      document.querySelector(".toggle-dark-mode-ico").classList.add("fa-sun");
+      document.querySelector(".toggle-dark-mode-ico").classList.add("fa-sun-cloud");
     } else {
-      document.querySelector(".toggle-dark-mode-ico").classList.add("fa-moon");
+      document.querySelector(".toggle-dark-mode-ico").classList.add("fa-moon-cloud");
     }
   }
 
@@ -60,8 +60,8 @@ const setCSSVar = (property, color) => {
 }
 
 const toggleDarkMode = (colorMode, setColorMode) => {
-  document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-moon');
-  document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-sun');
+  document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-moon-cloud');
+  document.querySelector('.toggle-dark-mode-ico').classList.toggle('fa-sun-cloud');
 
   let theme = {};
   if(colorMode === "dark") {

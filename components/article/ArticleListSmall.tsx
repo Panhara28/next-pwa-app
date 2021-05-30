@@ -32,7 +32,7 @@ const ArticleListSmall = ({ articles }: { articles: Graph.Article[] }) => {
 
         {
           article.audio ? 
-            <div className="article-list-small-item-audio">
+            <div className="article-list-small-item-audio-badge">
               <i className="fal fa-waveform-lines fa-sm fa-beat"></i>
             </div> : null
         }

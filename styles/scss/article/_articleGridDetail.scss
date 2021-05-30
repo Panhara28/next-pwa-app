@@ -44,14 +44,24 @@
         color: var(--color-white);
         border-radius: 5px;
         padding: rem(4px) rem(4px) 0 rem(4px);
-        margin-bottom: rem(8px);
       }
     }
 
     .grid-article-thumbnail {
       grid-area: article-thumbnail;
+      position: relative;
 
       img {
+        border-radius: 5px;
+      }
+
+      .article-thumbnail-audio-badge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: var(--color-red);
+        color: var(--color-white);
+        padding: rem(6px) rem(8px) rem(4px) rem(8px);
         border-radius: 5px;
       }
     }
