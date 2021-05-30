@@ -4,23 +4,23 @@ import useApollo from '../lib/apolloClient';
 import ThemeProvider from '../components/context/ThemeContext';
 import { useRouter } from 'next/router';
 import  ReactGA  from 'react-ga';
-import Loading from '../components/utilities/Loading';
-import '../styles/scss/main.scss';
 import Head from 'next/head';
+import NProgress from 'nprogress';
+import '../styles/scss/main.scss';
 
 const MyApp = ({ Component, pageProps }) => {
   const apolloClient = useApollo(pageProps.initialApolloState);
   const router = useRouter();
-  const [ loading, setLoading ] = useState(false);
 
   useEffect(() => {
     ReactGA.initialize(process.env.NEXT_PUBLIC_GA_ID);
     ReactGA.pageview(window.location.pathname + window.location.search);
+    NProgress.configure({ showSpinner: false });
 
-    const routeChangeStart = () => setLoading(true);
-
+    const routeChangeStart = () => NProgress.start();
+    const routeChangeError = () => NProgress.done();
     const routeChangeComplete = () => {
-      setLoading(false);
+      NProgress.done();
 
       setTimeout(() => {
         ReactGA.pageview(window.location.pathname + window.location.search);
@@ -28,11 +28,13 @@ const MyApp = ({ Component, pageProps }) => {
     }
 
     router.events.on("routeChangeStart", routeChangeStart);
+    router.events.on("routeChangeError", routeChangeError);
     router.events.on("routeChangeComplete", routeChangeComplete);
 
     return () => {
-      router.events.off("routeChangeComplete", routeChangeComplete);
       router.events.off("routeChangeStart", routeChangeStart);
+      router.events.off("routeChangeError", routeChangeError);
+      router.events.off("routeChangeComplete", routeChangeComplete);
     }
   }, []);
 
@@ -43,7 +45,6 @@ const MyApp = ({ Component, pageProps }) => {
           <meta name='viewport' content='minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no, user-scalable=no, viewport-fit=cover'/>
         </Head>
         <Component {...pageProps} />
-        <Loading loading={loading}/>
       </ThemeProvider>
     </ApolloProvider>
   );

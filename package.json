@@ -17,6 +17,7 @@
     "next": "^10.2.0",
     "next-pwa": "^5.2.14",
     "next-translate": "^1.0.4",
+    "nprogress": "^0.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "react-ga": "^3.3.0",
