@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef } from 'react';
-import AudioPauseButton from './AudioPauseButton';
-import AudioPlayButton from './AudioPlayButton';
-import AudioBar from './AudioBar';
-import { convertSecondToTime } from '../../../functions/date';
+import { useState, useEffect, useRef } from "react";
+import AudioPauseButton from "./AudioPauseButton";
+import AudioPlayButton from "./AudioPlayButton";
+import AudioBar from "./AudioBar";
+import { convertSecondToTime } from "../../../functions/date";
 type Props = {
-  src: string
-}
+  src: string;
+};
 
 const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
   const audioRef = useRef<HTMLAudioElement>();
@@ -19,7 +19,7 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
     const onLoadedData = () => {
       setDuration(audio.duration);
       setCurTime(audio.currentTime);
-    }
+    };
 
     const onTimeUpdate = () => setCurTime(audio.currentTime);
     const onEnded = () => setPlaying(false);
@@ -27,45 +27,65 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
     audio.addEventListener("loadeddata", onLoadedData);
     audio.addEventListener("timeupdate", onTimeUpdate);
     audio.addEventListener("ended", onEnded);
-    audio.src = props.src;
+    // audio.src = props.src;
 
     return () => {
       audio.removeEventListener("loadeddata", onLoadedData);
       audio.removeEventListener("timeupdate", onTimeUpdate);
       audio.removeEventListener("ended", onEnded);
-    }
+    };
   }, []);
-  
+
   useEffect(() => {
     const audio = audioRef.current;
-    playing ? audio.play() : audio.pause();
 
     if (clickedTime && clickedTime !== curTime) {
       audio.currentTime = clickedTime;
       setClickedTime(0);
-    } 
-  }, [audioRef, playing, clickedTime]);
+    }
+  }, [audioRef, clickedTime]);
 
   return (
     <div className="player-audio">
       <audio ref={audioRef}>
         Your browser does not support the <code>audio</code> element.
+        <source src={props.src} type="audio/mpeg" />
       </audio>
 
       <div className="player-audio-controls">
-        <AudioBar curTime={curTime} duration={duration} onTimeUpdate={(time) => {setClickedTime(time)}}/>
+        <AudioBar
+          curTime={curTime}
+          duration={duration}
+          onTimeUpdate={(time) => {
+            setClickedTime(time);
+          }}
+        />
 
-        {playing ? 
-          <AudioPauseButton handleClick={() => setPlaying(false)}/> :
-          <AudioPlayButton handleClick={() => setPlaying(true)}/>
-        }
+        {playing ? (
+          <AudioPauseButton
+            handleClick={() => {
+              audioRef.current.pause();
+              setPlaying(false);
+            }}
+          />
+        ) : (
+          <AudioPlayButton
+            handleClick={() =>
+              audioRef.current.play().then(() => {
+                setPlaying(true);
+              })
+            }
+          />
+        )}
 
         <span className="player-audio-time">
-          {convertSecondToTime(curTime)} <i className="fal fa-slash-forward"></i> {convertSecondToTime(duration)}
+          {convertSecondToTime(curTime)}{" "}
+          <i className="fal fa-slash-forward"></i>{" "}
+          {convertSecondToTime(duration)}
         </span>
       </div>
     </div>
   );
-}
+};
 
 export default AudioPlayer;
