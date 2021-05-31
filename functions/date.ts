@@ -52,7 +52,7 @@ export const convertSecondToTime = (secondDuration: number) => {
     second = Math.floor(hourRemainder % 60);
   }
 
-  return pad(hour, 2) + ":" + pad(miniute, 2) + ":" + pad(second, 2);
+  return (hour > 0 ? pad(hour, 2) + ":" : "") + pad(miniute, 2) + ":" + pad(second, 2);
 }
 
 const pad = (number: number, size: number) => {

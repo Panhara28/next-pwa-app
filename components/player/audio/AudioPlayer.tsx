@@ -1,10 +1,8 @@
-import { useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import AudioPauseButton from './AudioPauseButton';
 import AudioPlayButton from './AudioPlayButton';
-import { useState } from 'react';
-import { useEffect } from 'react';
-import moment from 'moment-timezone';
-import { convertSecondToTime } from './../../../functions/date';
+import AudioBar from './AudioBar';
+import { convertSecondToTime } from '../../../functions/date';
 
 type Props = {
   src: string
@@ -36,7 +34,7 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
 
     if (clickedTime && clickedTime !== curTime) {
       audio.currentTime = clickedTime;
-      setClickedTime(null);
+      setClickedTime(0);
     } 
 
     // effect cleanup
@@ -44,7 +42,7 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
       audio.removeEventListener("loadeddata", setAudioData);
       audio.removeEventListener("timeupdate", setAudioTime);
     }
-  });
+  }, [audioRef, playing, clickedTime]);
 
   return (
     <div className="player-audio">
@@ -53,17 +51,17 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
         Your browser does not support the <code>audio</code> element.
       </audio>
 
-      <div className="player-controls">
+      <div className="player-audio-controls">
+        <AudioBar curTime={curTime} duration={duration} onTimeUpdate={(time) => {setClickedTime(time)}}/>
+
         {playing ? 
-          <AudioPauseButton handleClick={() => {
-            setPlaying(false); 
-            console.log("pause");
-          } } /> :
-          <AudioPlayButton handleClick={() => { 
-            setPlaying(true); 
-            console.log("play");
-          } } />
+          <AudioPauseButton handleClick={() => setPlaying(false)}/> :
+          <AudioPlayButton handleClick={() => setPlaying(true)}/>
         }
+
+        <span className="player-audio-time">
+          {convertSecondToTime(curTime)} <i className="fal fa-slash-forward"></i> {convertSecondToTime(duration)}
+        </span>
       </div>
     </div>
   );

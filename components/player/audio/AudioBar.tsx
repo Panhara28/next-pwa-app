@@ -1,30 +1,41 @@
-import React from "react";
-import { convertSecondToTime } from './../../../functions/date';
+import React, { useRef } from "react";
 
 type Props = {
   curTime: number 
   duration: number 
-  onTimeUpdate: () => void
+  onTimeUpdate: (time: number) => void
 }
 
 const AudioBar = (props: React.PropsWithChildren<Props>) => {
+  const barRef = useRef<HTMLDivElement>();
   const { duration, curTime, onTimeUpdate } = props;
-  const curPercentage = (curTime / duration) * 100;
+  const curPercentage = (curTime / duration) * 100 || 0;
 
   const calcClickedTime = (e) => {
     const clickPositionInPage = e.pageX;
-    const bar = document.querySelector(".bar__progress");
+    const bar = barRef.current;
     const barStart = bar.getBoundingClientRect().left + window.scrollX;
     const barWidth = bar.offsetWidth;
     const clickPositionInBar = clickPositionInPage - barStart;
     const timePerPixel = duration / barWidth;
     return timePerPixel * clickPositionInBar;
   }
-  //https://codesandbox.io/s/5wwj02qy7k?file=/src/Bar.js:934-949
-  function handleTimeDrag(e) {
+
+  const calcTouchedTime = (e) => {
+    const touch =  e.touches[0]
+    const clickPositionInPage = touch.pageX;
+    const bar = barRef.current;
+    const barStart = bar.getBoundingClientRect().left + window.scrollX;
+    const barWidth = bar.offsetWidth;
+    const clickPositionInBar = clickPositionInPage - barStart;
+    const timePerPixel = duration / barWidth;
+    return timePerPixel * clickPositionInBar;
+  }
+
+  const handleMouseDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     onTimeUpdate(calcClickedTime(e));
 
-    const updateTimeOnMove = eMove => {
+    const updateTimeOnMove = (eMove: MouseEvent) => {
       onTimeUpdate(calcClickedTime(eMove));
     };
 
@@ -35,22 +46,36 @@ const AudioBar = (props: React.PropsWithChildren<Props>) => {
     });
   }
 
+  const handleTouchDrag = (e: React.TouchEvent<HTMLDivElement>) => {
+    onTimeUpdate(calcTouchedTime(e));
+
+    const updateTimeOnMove = (eMove: TouchEvent) => {
+      onTimeUpdate(calcTouchedTime(eMove));
+    };
+
+    document.addEventListener("touchmove", updateTimeOnMove);
+
+    document.addEventListener("touchend", () => {
+      document.removeEventListener("touchmove", updateTimeOnMove);
+    });
+  }
+
   return (
-    <div className="bar">
-      <span className="bar__time">{convertSecondToTime(curTime)}</span>
+    <div className="player-audio-bar">
       <div
-        className="bar__progress"
+        ref={barRef}
+        className="player-audio-bar-progress"
         style={{
-          background: `linear-gradient(to right, orange ${curPercentage}%, white 0)`
+          background: `linear-gradient(to right, var(--color-secondary) ${curPercentage}%, var(--color-white) 0)`
         }}
-        onMouseDown={e => handleTimeDrag(e)}
+        onMouseDown={e => handleMouseDrag(e)}
+        onTouchStart={e => handleTouchDrag(e)}
       >
         <span
-          className="bar__progress__knob"
+          className="player-audio-bar-progress-knob"
           style={{ left: `${curPercentage - 2}%` }}
         />
       </div>
-      <span className="bar__time">{convertSecondToTime(duration)}</span>
     </div>
   );
 }
