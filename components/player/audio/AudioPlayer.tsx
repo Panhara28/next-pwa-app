@@ -3,7 +3,6 @@ import AudioPauseButton from './AudioPauseButton';
 import AudioPlayButton from './AudioPlayButton';
 import AudioBar from './AudioBar';
 import { convertSecondToTime } from '../../../functions/date';
-
 type Props = {
   src: string
 }
@@ -17,37 +16,39 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
 
   useEffect(() => {
     const audio = audioRef.current;
-    // state setters wrappers
-    const setAudioData = () => {
+    const onLoadedData = () => {
       setDuration(audio.duration);
       setCurTime(audio.currentTime);
     }
 
-    const setAudioTime = () => setCurTime(audio.currentTime);
+    const onTimeUpdate = () => setCurTime(audio.currentTime);
+    const onEnded = () => setPlaying(false);
 
-    // DOM listeners: update React state on DOM events
-    audio.addEventListener("loadeddata", setAudioData);
-    audio.addEventListener("timeupdate", setAudioTime);
+    audio.addEventListener("loadeddata", onLoadedData);
+    audio.addEventListener("timeupdate", onTimeUpdate);
+    audio.addEventListener("ended", onEnded);
+    audio.src = props.src;
 
-    // React state listeners: update DOM on React state changes
+    return () => {
+      audio.removeEventListener("loadeddata", onLoadedData);
+      audio.removeEventListener("timeupdate", onTimeUpdate);
+      audio.removeEventListener("ended", onEnded);
+    }
+  }, []);
+  
+  useEffect(() => {
+    const audio = audioRef.current;
     playing ? audio.play() : audio.pause();
 
     if (clickedTime && clickedTime !== curTime) {
       audio.currentTime = clickedTime;
       setClickedTime(0);
     } 
-
-    // effect cleanup
-    return () => {
-      audio.removeEventListener("loadeddata", setAudioData);
-      audio.removeEventListener("timeupdate", setAudioTime);
-    }
   }, [audioRef, playing, clickedTime]);
 
   return (
     <div className="player-audio">
       <audio ref={audioRef}>
-        <source src={props.src}/>
         Your browser does not support the <code>audio</code> element.
       </audio>
 

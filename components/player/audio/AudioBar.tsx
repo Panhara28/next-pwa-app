@@ -32,7 +32,7 @@ const AudioBar = (props: React.PropsWithChildren<Props>) => {
     return timePerPixel * clickPositionInBar;
   }
 
-  const handleMouseDrag = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const handleMouse = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     onTimeUpdate(calcClickedTime(e));
 
     const updateTimeOnMove = (eMove: MouseEvent) => {
@@ -43,10 +43,10 @@ const AudioBar = (props: React.PropsWithChildren<Props>) => {
 
     document.addEventListener("mouseup", () => {
       document.removeEventListener("mousemove", updateTimeOnMove);
-    });
+    }, { once: true });
   }
 
-  const handleTouchDrag = (e: React.TouchEvent<HTMLDivElement>) => {
+  const handleTouch = (e: React.TouchEvent<HTMLDivElement>) => {
     onTimeUpdate(calcTouchedTime(e));
 
     const updateTimeOnMove = (eMove: TouchEvent) => {
@@ -57,7 +57,7 @@ const AudioBar = (props: React.PropsWithChildren<Props>) => {
 
     document.addEventListener("touchend", () => {
       document.removeEventListener("touchmove", updateTimeOnMove);
-    });
+    }, { once: true });
   }
 
   return (
@@ -68,8 +68,8 @@ const AudioBar = (props: React.PropsWithChildren<Props>) => {
         style={{
           background: `linear-gradient(to right, var(--color-secondary) ${curPercentage}%, var(--color-white) 0)`
         }}
-        onMouseDown={e => handleMouseDrag(e)}
-        onTouchStart={e => handleTouchDrag(e)}
+        onMouseDown={e => handleMouse(e)}
+        onTouchStart={e => handleTouch(e)}
       >
         <span
           className="player-audio-bar-progress-knob"
