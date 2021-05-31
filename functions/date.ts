@@ -33,3 +33,30 @@ export const getElapseTime = (date: any, suffix: boolean = false) => {
   
   return "Unknown";
 }
+
+export const convertSecondToTime = (secondDuration: number) => {
+  let hour = 0;
+  let hourRemainder = 0;
+
+  let miniute = 0;
+
+  let second = 0;
+
+  // Calculate hour
+  hour = Math.floor(secondDuration / 3600);
+  hourRemainder = Math.floor(secondDuration % 3600);
+
+  // Calculate minute and second
+  if(hourRemainder > 0) {
+    miniute = Math.floor(hourRemainder / 60);
+    second = Math.floor(hourRemainder % 60);
+  }
+
+  return pad(hour, 2) + ":" + pad(miniute, 2) + ":" + pad(second, 2);
+}
+
+const pad = (number: number, size: number) => {
+  let num = number.toString();
+  while (num.length < size) num = "0" + num;
+  return num;
+}

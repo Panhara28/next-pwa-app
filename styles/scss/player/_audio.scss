@@ -1,0 +1,17 @@
+.player-audio {
+  background: var(--color-bg-primary);
+  padding: 1rem;
+  border-radius: 5px;
+
+  .player-controls {
+    button {
+      border: none;
+      background: var(--color-secondary);
+      color: var(--color-white);
+      padding: rem(8px) rem(4px) rem(6px) rem(4px);
+      cursor: pointer;
+      outline: none;
+      border-radius: 5px;
+    }
+  }
+}

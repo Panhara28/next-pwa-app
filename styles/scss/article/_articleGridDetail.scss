@@ -15,6 +15,7 @@
     grid-template-areas: 
       "article-title article-title"
       "article-thumbnail article-summary"
+      "article-audio article-audio"
       "article-content article-content"
     ;
 
@@ -192,6 +193,10 @@
         border-radius: 5px;
       }
     }
+
+    .grid-article-audio {
+      grid-area: article-audio;
+    }
   }
 
   .grid-article-side {
@@ -239,6 +244,7 @@
         "article-title article-title"
         "article-summary article-summary"
         "article-thumbnail article-thumbnail"
+        "article-audio article-audio"
         "article-content article-content"
       ;
 

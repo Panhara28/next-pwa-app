@@ -10,4 +10,4 @@ const LocaleFlag = (props: React.PropsWithChildren<Props>) => {
   return props.locales.indexOf(router.locale) > -1 ? <>{props.children}</> : null;
 }
 
-export default LocaleFlag
+export default LocaleFlag;
