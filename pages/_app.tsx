@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import  ReactGA  from 'react-ga';
 import Head from 'next/head';
 import NProgress from 'nprogress';
+import 'intl-pluralrules';
 import '../styles/scss/main.scss';
 
 const MyApp = ({ Component, pageProps }) => {
