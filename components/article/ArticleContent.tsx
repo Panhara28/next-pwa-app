@@ -4,7 +4,6 @@ import { Graph } from '../../generated/graph';
 import { renderArticleImage, renderArticleParagraph, renderArticleEmbed, renderArticleHeader, renderArticleListItem, renderArticleBlockQuote, renderArticleCode, renderArticleSource } from './../../functions/articleRenderer';
 import useScript from './../hooks/useScript';
 import ReviveAd from '../utilities/ReviveAd';
-import ArticleAudio from './ArticleAudio';
 
 const ArticleContent = ({ article }: { article: Graph.Article}) => {
   const { t } = useTranslation();
@@ -71,8 +70,6 @@ const ArticleContent = ({ article }: { article: Graph.Article}) => {
   
   return (
     <div ref={containerRef} className="grid-article-content">
-      <ArticleAudio article={article}/>
-
       {
         content.map((block, inx) => {
           if(renderContents[block.type] === undefined) return null;

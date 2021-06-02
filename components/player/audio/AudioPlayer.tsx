@@ -49,7 +49,6 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
     <div className="player-audio">
       <audio ref={audioRef}>
         Your browser does not support the <code>audio</code> element.
-        {/* <source src={props.src} type="audio/mpeg" /> */}
       </audio>
 
       <div className="player-audio-controls">
@@ -78,11 +77,10 @@ const AudioPlayer = (props: React.PropsWithChildren<Props>) => {
           />
         )}
 
-        <span className="player-audio-time">
-          {convertSecondToTime(curTime)}{" "}
-          <i className="fal fa-slash-forward"></i>{" "}
-          {convertSecondToTime(duration)}
-        </span>
+        <div className="player-audio-time">
+          <span>{convertSecondToTime(curTime)}</span>
+          <span>{convertSecondToTime(duration)}</span>
+        </div>
       </div>
     </div>
   );

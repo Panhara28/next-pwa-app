@@ -71,10 +71,6 @@ const AudioBar = (props: React.PropsWithChildren<Props>) => {
         onMouseDown={e => handleMouse(e)}
         onTouchStart={e => handleTouch(e)}
       >
-        <span
-          className="player-audio-bar-progress-knob"
-          style={{ left: `${curPercentage - 2}%` }}
-        />
       </div>
     </div>
   );

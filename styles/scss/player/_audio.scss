@@ -4,6 +4,9 @@
   border-radius: 5px;
 
   .player-audio-controls {
+    display: flex;
+    flex-wrap: wrap;
+
     .player-audio-button {
       border: none;
       background: var(--color-secondary);
@@ -16,6 +19,10 @@
 
     .player-audio-time {
       margin: 0 rem(8px);
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .player-audio-bar {
@@ -30,15 +37,6 @@
         display: flex;
         align-items: center;
         cursor: pointer;
-
-        .player-audio-bar-progress-knob {
-          position: relative;
-          height: 16px;
-          width: 16px;
-          border: 1.5px solid var(--color-white);
-          border-radius: 50%;
-          background-color: var(--color-secondary);
-        }
       }
     }
   }

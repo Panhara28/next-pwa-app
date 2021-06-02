@@ -13,6 +13,7 @@ import ArticleRelated from "./ArticleRelated";
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import ReviveAd from './../utilities/ReviveAd';
+import ArticleAudio from './ArticleAudio';
 
 const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, articleRelated: Graph.Article[] }) => {
   const router = useRouter();
@@ -50,6 +51,7 @@ const ArticleDetail = ({ article, articleRelated }: { article: Graph.Article, ar
 
         <ArticleLayoutDetail>
           <h1 className="grid-article-title">{ article.title }</h1>
+          <ArticleAudio article={article}/>
           <div className="grid-article-thumbnail">
             <Image priority={true} unoptimized={true} src={parsedImage(article.thumbnail, 400, 210)} alt={article.thumbnail} width={400} height={210}/>
 
