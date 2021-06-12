@@ -5,7 +5,7 @@ module.exports = withPWA({
   pwa: {
     dest: 'public',
     mode: process.env.NODE_ENV,
-    disable: process.env.NODE_ENV === 'production' ? false : true 
+    disable: process.env.NODE_ENV === 'development'
   },
   // For next-pwa to support webpack 5
   future: { 

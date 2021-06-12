@@ -34,5 +34,7 @@ yarn-error.log*
 .vercel
 /.env.production
 /.vscode
-/public/sw.js.map
-/public/sw.js
+
+/public/sw.js*
+/public/fallback-development.js
+/public/workbox-*.js*
