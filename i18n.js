@@ -6,7 +6,7 @@ module.exports = {
     "*": ["common", "error"],
     "/menu": ["menu"],
     "/privacy-policy": ["menu"],
-    "/article/[articleId]/[[...articleTitleSlug]]": ["article"]
+    "/article/[articleId]/[[...articleSlug]]": ["article"]
   },
   logBuild: false
 }

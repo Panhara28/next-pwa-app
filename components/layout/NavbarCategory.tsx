@@ -4,10 +4,14 @@ import { useRouter } from 'next/router';
 import React from 'react';
 import { Graph } from '../../generated/graph';
 import { graphQuery } from '../../generated/graphQuery';
+import { useRef, useEffect } from 'react';
 
 const NavbarCategory = (props: React.PropsWithChildren<{}>) => {
   const router = useRouter();
   const { categorySlug } = router.query;
+  let scrollPosition = 0;
+  let scrollDirection = "down";
+  const containerRef = useRef<HTMLDivElement>();
   
   let categoryElms: JSX.Element[];
   const { data } = useQuery<Graph.Query>(graphQuery.QUERY_CATEGORY_LIST, {
@@ -24,8 +28,31 @@ const NavbarCategory = (props: React.PropsWithChildren<{}>) => {
     categoryElms = renderCategory(data.categoryList, categorySlug as string);
   }
 
+  const onScroll = () => {
+    if(containerRef.current) {
+      // Detect scroll direction
+      scrollDirection = scrollPosition <= window.scrollY ? "down" : "up";
+      scrollPosition = window.scrollY;
+
+      // Stick category when user scroll up
+      if(scrollDirection === "down") {
+        containerRef.current.classList.remove("sticky");
+      } else if(scrollDirection === "up") {
+        containerRef.current.classList.add("sticky");
+      }
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    }
+  }, []);
+
   return (
-    <div className="navbar-category">
+    <div className="navbar-category" ref={containerRef}>
       <div className="navbar-category-measure">
         {categoryElms}
       </div>

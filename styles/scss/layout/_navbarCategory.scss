@@ -1,7 +1,15 @@
 .navbar-category {
+  position: relative;
   height: $navbar-category-height;
   background-color: var(--color-bg-primary);
   color: var(--color-text-primary);
+  box-shadow: 0px 0px 2px 0px rgba(0,0,0,1);
+
+  &.sticky {
+    position: sticky;
+    top: $navbar-height;
+    z-index: 1;
+  }
 
   .navbar-category-measure {
     max-width: calc(#{$max-width} - (#{$content-padding} * 2));
@@ -10,6 +18,7 @@
     display: flex;
 
     .navbar-category-items {
+      font-weight: bold;
       line-height: $navbar-category-height;
       padding: 0 $content-padding;
       flex-shrink: 0;
@@ -44,6 +53,10 @@
 @include responsive(mobile) {
   .navbar-category {
     height: $navbar-category-height-mobile;
+
+    &.sticky {
+      top: $navbar-height-mobile;
+    }
 
     .navbar-category-measure {
       max-width: calc(#{$max-width} - (#{$content-padding-mobile} * 2));
