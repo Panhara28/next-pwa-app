@@ -10,7 +10,7 @@ class MyDocument extends Document {
     const title = "Shity"
     const description = `Visit for up-to-the-minute news, breaking news, and feature stories.`;
     const theme = "Hello world 1"
-    const assetUrl = "/assets/keylatop"
+    const assetUrl = "/assets/default"
 
     return (
       <Html>
@@ -32,7 +32,6 @@ class MyDocument extends Document {
           <link rel="icon" href={`${assetUrl}/favicon.ico`}/>
           <link rel='manifest' href={`${assetUrl}/manifest.json`}/>
         
-
         </Head>
         
         <body>

@@ -1,8 +1,0 @@
-{
-  "description": {
-    "general": "Something went wrong. Please try again later.",
-    "404": "Sorry! We couldn’t find the page you looking for.",
-    "500": "Something went wrong from our side. Please try again later.",
-    "offline": "Can not connect to the server."
-  }
-}
