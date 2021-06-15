@@ -9,7 +9,7 @@ class MyDocument extends Document {
   render() {
     const title = "Shity"
     const description = `Visit for up-to-the-minute news, breaking news, and feature stories.`;
-    const theme = "Hello world"
+    const theme = "Hello world 1"
     const assetUrl = "/assets/keylatop"
 
     return (
