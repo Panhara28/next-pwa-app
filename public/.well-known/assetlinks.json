@@ -1,6 +1,0 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target" : { "namespace": "android_app", "package_name": "com.chlat.khmerload.app",
-               "sha256_cert_fingerprints": ["9E:29:7E:88:1D:BB:26:7F:B1:51:5E:C8:3B:62:4C:03:08:38:46:70:B4:A4:A5:E9:BB:7A:10:4D:BA:CD:1C:4A"] }
-}]
-
